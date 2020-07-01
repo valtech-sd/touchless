@@ -5,7 +5,7 @@ V_ is exploring various options for low-touch and touchless physical experiences
 # Files
 
 * docs - Github Pages source content which is served at https://touchless.valtech.engineering
-* demos - source files for the various demos
+* src - source files for the various demos
 
 # Contributing
 
