@@ -1,0 +1,25 @@
+{
+  "name": "hand-tracking-poc",
+  "version": "1.0.0",
+  "description": "Hand tracking proof-of-concept for handsfree look-book navigation by Valtech.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erik-valtechsd/hand-tracking-poc.git"
+  },
+  "author": "Erik Parr, Valtech SD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erik-valtechsd/hand-tracking-poc/issues"
+  },
+  "homepage": "https://github.com/erik-valtechsd/hand-tracking-poc#readme",
+  "dependencies": {
+    "fullpage.js": "^3.0.8",
+    "handtrackjs": "0.0.13",
+    "popmotion": "^8.7.3",
+    "swipe-listener": "^1.2.0"
+  }
+}

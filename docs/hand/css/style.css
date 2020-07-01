@@ -1,0 +1,105 @@
+body {
+    --pink: #FF1C68;
+    --green: #14D790;
+    --blue: #198FE3;
+    --black: #21282D;
+    --purple: #9B65DE;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+/* 
+#video-container {
+  width: 240px;
+  height: 160px;
+  position: absolute;
+  left:20px;
+  bottom:20px;
+} */
+
+#video-container {
+  width: 320px;
+  height: 240px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#pose-video {
+  transform: scaleX(-1);
+}
+  #pose-canvas {
+    position: absolute;
+    top: 0;
+  left:0;
+  width:inherit;
+  height:inherit;
+}
+#pose-result {
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+
+
+.controlcontainer {
+  text-transform: capitalize;
+  color: #d3d3d3;
+  font-size:12px;
+  width: 25%; /* Width of the outside container */
+  position: absolute !important;
+  bottom: 20px;
+  left:350px;
+
+}
+.slidetextcontainer{
+  display:flex;
+  align-items: center;
+  width:300px;
+}
+.textcontainer{
+  width: 65%; /* Width of the outside container */
+
+}
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 5px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.5; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 10px; /* Set a specific slider handle width */
+  height: 10px; /* Slider handle height */
+  background: #d3d3d3; /* Green background */
+}
+
+#bigfont{
+  font-family: Helvetica, sans-serif;
+  font-size:1.9em !important;
+  font-weight: 300;
+}

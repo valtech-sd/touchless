@@ -1,9 +1,151 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+<html lang="en">
+
 <head>
-	<title>Hand Placeholder</title>
+  <meta charset="utf-8">
+  <title>Handtracking Navigation</title>
 </head>
+
 <body>
-Hand Placeholder
-</body>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-background-color="rgb(70, 70, 255)">
+          <br></ br>
+          <h8 id="bigfont">Touchless Experiences</h8>          <br></ br>
+          <br></ br>
+          Valtech is exploring new prototypes for touchless interactive experiences. 
+          <br></ br>
+          To navigate the presentation, use your hands to display 👍 to move forward and ✌️ to move back.
+          <br></ br>
+          <br></ br>
+          <br></ br>
+          <br></ br>
+
+          </h5>
+        </section>
+        <section data-background-color="rgb(17, 148, 157)">
+          The health crisis is making the world completely rethink the way we interact with technology.
+        </section>
+        <section data-background-color="rgb(13, 232, 226)">
+          <br></ br>
+          <br></ br>
+          Everything from in-store experiences, to self-service checkouts, to theme parks are now feeling a big push
+          toward touchless interaction.
+          <br></ br>
+          <img src="images/touchless.png" height="236" width="420">
+        </section>
+        <section data-background-color="rgb(255, 246, 133)">
+          Touchless offers the potential for not only safer experiences but also innovative ways to interact.
+          <br></ br>
+          <br></ br>
+        </section>
+
+        <section data-background-color="rgb(0, 73, 183)">
+          <br></ br>
+          <br></ br>
+          This technology relies on open-source machine learning models to recognize specific hand gestures.
+          <br></ br>
+            <img src="images/tf.png" height="168" width="300">
+
+        </section>
+        <section data-background-color="rgb(254, 164, 159)">
+          <br></ br>
+          <br></ br>
+          <br></ br>
+          <br></ br>
+          Other options for touchless experiences could include voice recognition.
+          <br></ br>
+
+          <img src="images/waves.png" height="355" width="430">
+        </section>
+        <section data-background-color="rgb(92,219,149)">
+          <br></ br>
+          <br></ br>  
+          Or possibly using a personal smartphone as a type of remote control.
+          <br></ br>
+            <img src="images/qr-phone.png" height="203" width="134">
+        </section>
+        <section data-background-color="rgb(0,0,0)">
+          <br></ br>
+          <br></ br>  
+          Interested in learning more? <a href="https://www.valtech.com/about/contact-us/">Please contact us. </a> 
+          <br></ br>
+          <img src="images/valtech.jpeg" height="200" width="200">
+        </section>
+      </div>
+    </div>
+    <div id="video-container">
+      <video id="pose-video"  playsinline></video>
+      <canvas id="pose-canvas" ></canvas>
+      <div id="pose-result" ></div>
+    </div>
+
+    <div class="controlcontainer">
+      <b>settings:</b>
+        <div class="slidetextcontainer">
+          <div class="textcontainer">
+          confidence:
+        </div>  
+        <div class="slidecontainer">
+          <input type="range" oninput="sliderControl(0, this.value)" min="0.5" max="10" value="7.5" class="slider"
+            id="myRange">
+          </div>      
+    </div>
+    <div class="slidetextcontainer">
+      <div class="textcontainer">
+        cooldown time:
+      </div>  
+      <div class="slidecontainer">
+      <input type="range" oninput="sliderControl(1, this.value)" min="1" max="3000" value="1000" class="slider"
+        id="myRange">
+      </div>
+    </div>
+    <div class="slidetextcontainer">
+      <div class="textcontainer">
+        detection time:
+      </div>  
+      <div class="slidecontainer">
+      <input type="range" oninput="sliderControl(2, this.value)" min="0" max="30" value="5" class="slider"
+        id="myRange">
+      </div>
+    </div>
+  </div>  
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+    <script src="fingerpose.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popmotion/9.0.0-beta-8/popmotion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handtrackjs@latest/dist/handtrack.min.js"></script>
+    <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
+    <script src="js/index.js"></script>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        controls: false,
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+      });
+    </script>
+
+  </body>
+
 </html>
