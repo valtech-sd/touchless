@@ -103,3 +103,28 @@ body {
   font-size:1.9em !important;
   font-weight: 300;
 }
+
+#loading{
+  height: 100% !important;
+  width: 100% !important;
+  display: block; /* Display block instead of inline */
+  position: absolute !important;
+  z-index: 1 !important; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgb(0,0,0); /* Black fallback color */
+  background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size: 2.6em;
+  color: white;
+  margin: auto;
+  display:flex;
+  margin: auto;
+  justify-content: center;
+  padding:305px 00px 50px 0px;
+
+
+}

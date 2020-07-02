@@ -112,6 +112,7 @@ async function main() {
 
   estimateHands();
   console.log("Starting predictions");
+  hideLoadingOverlay();
 }
 
 async function initCamera(width, height, fps) {
@@ -148,6 +149,10 @@ function drawPoint(ctx, x, y, r, color) {
 
 function activateDetection() {
   detectable = true;
+}
+
+function hideLoadingOverlay(){
+  document.querySelector("#loading").style.display = 'none';
 }
 
 window.addEventListener("DOMContentLoaded", () => {
