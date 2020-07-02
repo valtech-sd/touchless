@@ -55,6 +55,7 @@ async function main() {
   // load handpose model
   const model = await handpose.load();
   console.log("Handpose model loaded");
+  console.log("test");
 
   // main estimation loop
   const estimateHands = async () => {
@@ -110,7 +111,7 @@ async function main() {
     setTimeout(() => { estimateHands(); }, 1000 / config.video.fps);
   };
 
-  estimateHands();
+  estimateHands().then(console.log("finished loading"));
   console.log("Starting predictions");
   hideLoadingOverlay();
 }
@@ -152,6 +153,7 @@ function activateDetection() {
 }
 
 function hideLoadingOverlay(){
+  console.log("hide loading page");
   document.querySelector("#loading").style.display = 'none';
 }
 
