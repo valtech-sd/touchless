@@ -1,9 +1,3 @@
-// import Reveal from '../node_modules/reveal.js';
-// import Markdown from '../node_modules/reveal.js/plugin/markdown/markdown.esm.js';
-// const Reveal = require('../node_modules/reveal.js');
-// const Markdown = require('../node_modules/reveal.js/plugin/markdown/markdown.esm.js');
-// const {Reveal, Markdown}
-
 const { styler, inertia, listen, pointer, value, calc, tween, easing } = window.popmotion;
 const boundaries = document.querySelector('.carousel');
 const box = document.querySelector('.item');
@@ -14,15 +8,12 @@ let detectable = true;
 let swipeIndex = 3;
 let middleIndex = swipeIndex;
 
-// let deck = new Reveal({
-//   plugins: [ Markdown ]
-// })
-// deck.initialize();
-
+// config video params
 const config = {
   video: { width: 320, height: 240, fps: 30 }
 };
 
+// assign skeleton tracking colors
 const landmarkColors = {
   thumb: 'red',
   indexFinger: 'blue',
@@ -30,11 +21,6 @@ const landmarkColors = {
   ringFinger: 'green',
   pinky: 'pink',
   palmBase: 'white'
-};
-
-const gestureStrings = {
-  'thumbs_up': '👍',
-  'victory': '✌🏻'
 };
 
 async function main() {
@@ -72,11 +58,11 @@ async function main() {
     for (let i = 0; i < predictions.length; i++) {
 
       // draw colored dots at each predicted joint position
-      // for (let part in predictions[i].annotations) {
-      //   for (let point of predictions[i].annotations[part]) {
-      //     drawPoint(ctx, point[0], point[1], 3, landmarkColors[part]);
-      //   }
-      // }
+      for (let part in predictions[i].annotations) {
+        for (let point of predictions[i].annotations[part]) {
+          drawPoint(ctx, point[0], point[1], 3, landmarkColors[part]);
+        }
+      }
 
       // now estimate gestures based on landmarks
       // using a minimum confidence of 7.5 (out of 10)
@@ -90,7 +76,6 @@ async function main() {
           return (p.confidence > c.confidence) ? p : c;
         });
 
-        // resultLayer.innerText = gestureStrings[result.name];
         if (result.name == 'thumbs_up' && detectable ) {
           detectable = false;
           console.log('👍')
