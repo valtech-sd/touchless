@@ -66,3 +66,10 @@ a {
   padding: 40px;
 
 }
+
+.embed-image{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
