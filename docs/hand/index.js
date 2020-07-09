@@ -23,6 +23,9 @@ const landmarkColors = {
   palmBase: 'white'
 };
 
+//set video to play if not already playing
+document.getElementById('vid').play();
+
 async function main() {
 
   const video = document.querySelector("#pose-video");
