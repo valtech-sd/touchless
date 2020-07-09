@@ -45,6 +45,7 @@ body {
   justify-content: center;
   font-size: 1.1em;
   color: #ffffff;
+  padding: 0em 10em 0em 10em;
 }
 
 #text-box {
@@ -64,6 +65,7 @@ a {
 
 #flex-item {
 flex-direction: row;
+text-align:center;
 }
 
 .embed-image{
