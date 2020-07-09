@@ -63,7 +63,7 @@ a {
 }
 
 #flex-item {
-flex-direction: column;
+flex-direction: row;
 }
 
 .embed-image{
