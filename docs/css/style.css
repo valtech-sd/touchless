@@ -14,13 +14,14 @@ body {
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  height: 200px;
+  height: 400px;
   width: 50%;
   justify-content: center;
   object-fit: contain;
   background-image: url("/images/airport.jpg");
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: 800px 533px;
 }
 
 #footer {
@@ -58,19 +59,37 @@ body {
 }
 
 a {
-  color: #3500D3;
+  color: #66fcf1;
   text-decoration: none;
 
 }
 
 #flex-item {
-flex-direction: row;
-text-align:center;
+  display: block;
+  text-align: center;
+  padding: 1em 1em;
 }
 
-.embed-image{
+#flex-sublist {
+  flex-direction: column;
+  text-align: center;
+}
+
+a {
+  display: block;
+}
+
+.embed-image {
   display: flex;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
+}
+
+#vid-display {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+
 }
