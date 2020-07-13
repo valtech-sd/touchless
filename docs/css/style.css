@@ -61,6 +61,13 @@ body {
 a {
   color: #66fcf1;
   text-decoration: none;
+}
+
+#title-text{
+  font: "HelveticaNeue-Light";
+  font-size: 1.8em;
+  text-align: center;
+  font-weight:300;
 
 }
 
