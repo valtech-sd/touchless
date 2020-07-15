@@ -23,44 +23,62 @@
 </head>
 
 <body>
+  <div id="flex-container">
+
+    <div id="text-box">
 
   <!-- Add your site or application content here -->
   <p>Touchless Control Test</p>
+  <model-viewer src="models/Astronaut.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls></model-viewer>
 
+  </div>
+  </div>
+  <!--google model viewer-->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-database.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-database.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
+  <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
 
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDNzSRFhlT_Nch6TTB3UZTpFfvW0m8sa1Q",
-    authDomain: "touchless-qr.firebaseapp.com",
-    databaseURL: "https://touchless-qr.firebaseio.com",
-    projectId: "touchless-qr",
-    storageBucket: "touchless-qr.appspot.com",
-    messagingSenderId: "1069402189378",
-    appId: "1:1069402189378:web:6b5314c8e86a87016607db",
-    measurementId: "G-8JB2KE736F"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDNzSRFhlT_Nch6TTB3UZTpFfvW0m8sa1Q",
+      authDomain: "touchless-qr.firebaseapp.com",
+      databaseURL: "https://touchless-qr.firebaseio.com",
+      projectId: "touchless-qr",
+      storageBucket: "touchless-qr.appspot.com",
+      messagingSenderId: "1069402189378",
+      appId: "1:1069402189378:web:6b5314c8e86a87016607db",
+      measurementId: "G-8JB2KE736F"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
 
-  var colorVal = firebase.database().ref('color/');
-  colorVal.on('value', function(snapshot) {
-    let newColor = snapshot.val();
-    document.body.style.backgroundColor = newColor; 
-        console.log("color: " + snapshot.val());
-  });
+    // var colorVal = firebase.database().ref('color/');
+    // colorVal.on('value', function (snapshot) {
+    //   let newColor = snapshot.val();
+    //   document.body.style.backgroundColor = newColor;
+    //   console.log("color: " + snapshot.val());
+    // });
 
-</script>
+    var rotX = firebase.database().ref('rot/x/');
+    rotX.on('value', function (snapshot) {
+      let newColor = snapshot.val();
+      document.body.style.backgroundColor = newColor;
+      console.log("rotX: " + snapshot.val());
+      const modelViewer = document.querySelector('model-viewer');
+      modelViewer.cameraOrbit = snapshot.val().toString() + 'deg auto 10%';
+
+    });
 
 
+  </script>
 
 </html>

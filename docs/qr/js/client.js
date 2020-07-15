@@ -1,0 +1,35 @@
+
+const { styler, spring, listen, multitouch, value } = window.popmotion;
+
+let colorCount =0;
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyDNzSRFhlT_Nch6TTB3UZTpFfvW0m8sa1Q",
+  authDomain: "touchless-qr.firebaseapp.com",
+  databaseURL: "https://touchless-qr.firebaseio.com",
+  projectId: "touchless-qr",
+  storageBucket: "touchless-qr.appspot.com",
+  messagingSenderId: "1069402189378",
+  appId: "1:1069402189378:web:6b5314c8e86a87016607db",
+  measurementId: "G-8JB2KE736F"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+
+// Get a key for a new Post.
+function changeColor() {
+  let newColor = randomColor();
+  console.log(newColor)
+  firebase.database().ref('color/').set(newColor);
+}
+
+// const modelViewer = document.querySelector('model-viewer');
+// modelViewer.cameraOrbit = 'auto auto 10%;
+
+multitouch().start(({ touches, scale, rotate }) => {
+  
+  console.log(touches[0].x, touches[0].y);
+  firebase.database().ref('rot/x/').set(touches[0].x);
+});
