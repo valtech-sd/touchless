@@ -1,7 +1,7 @@
 
 const { styler, spring, listen, multitouch, value } = window.popmotion;
 
-let colorCount =0;
+let colorCount = 0;
 // Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyDNzSRFhlT_Nch6TTB3UZTpFfvW0m8sa1Q",
@@ -17,7 +17,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-
+let touchX = 0;
+let touchY = 0;
 // Get a key for a new Post.
 function changeColor() {
   let newColor = randomColor();
@@ -29,7 +30,26 @@ function changeColor() {
 // modelViewer.cameraOrbit = 'auto auto 10%;
 
 multitouch().start(({ touches, scale, rotate }) => {
-  
+  let x, y = 0;
+  if (touches[0].x < touchX) {
+    x = -1;
+  } else if (touches[0].x > touchX) {
+    x = 1;
+  } else {
+    x = 0;
+  }
+  if (touches[0].y < touchY) {
+    y = -1;
+  } else if (touches[0].y > touchY) {
+    y = 1;
+  } else {
+    y = 0;
+  }
+  // console.log(touches[0].x, touches[0].y);
+  firebase.database().ref('rot/x/').set(x);
   console.log(touches[0].x, touches[0].y);
-  firebase.database().ref('rot/x/').set(touches[0].x);
+  firebase.database().ref('rot/x/').set(y);
+  touchX = x;
+  touchY = y;
+
 });
