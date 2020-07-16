@@ -30,7 +30,7 @@
       <!-- Add your site or application content here -->
       <p>Touchless Control Test</p>
       <div id="placeHolder"></div>
-      <model-viewer src="models/Astronaut.glb" alt="A 3D model of an astronaut" camera-controls></model-viewer>
+      <model-viewer src="models/Astronaut.glb" alt="A 3D model of an astronaut" camera-orbit="45deg 55deg 2.5m" camera-controls></model-viewer>
 
     </div>
   </div>
@@ -49,6 +49,7 @@
   <!--QR code generator-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
   <script>
+    const modelViewer = document.querySelector('model-viewer');
     // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyDNzSRFhlT_Nch6TTB3UZTpFfvW0m8sa1Q",
@@ -81,23 +82,15 @@
     var rotX = firebase.database().ref(uid + '/rotation/x/');
     var rotY = firebase.database().ref(uid + '/rotation/y/');
     rotX.on('value', function (snapshot) {
-      const modelViewer = document.querySelector('model-viewer');
       const cameraOrbit = modelViewer.getCameraOrbit(); // Get the (possibly changed) value
-      var pi = Math.PI;
-      let currentX = cameraOrbit.theta * (180 / pi);;
-
-      let x = snapshot.val() + currentX;
+      let x = snapshot.val();
       modelViewer.cameraOrbit = x.toString() + 'deg auto 2.5m';
 
     });
 
     rotY.on('value', function (snapshot) {
-      const modelViewer = document.querySelector('model-viewer');
       const cameraOrbit = modelViewer.getCameraOrbit(); // Get the (possibly changed) value
-      var pi = Math.PI;
-      let currentY = cameraOrbit.phi * (180 / pi);;
-
-      let y = snapshot.val() + currentY;
+      let y = snapshot.val();
       modelViewer.cameraOrbit = y.toString() + 'deg auto 2.5m';
 
     });
