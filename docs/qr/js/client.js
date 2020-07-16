@@ -32,6 +32,6 @@ function changeColor() {
 // modelViewer.cameraOrbit = 'auto auto 10%;
 
 multitouch().start(({ touches, scale, rotate }) => {
-  firebase.database().ref('rotation/x/').set(touches[0].x);
+  firebase.database().ref('queryUIDString/rotation/x/').set(touches[0].x);
 
 });
