@@ -49,7 +49,6 @@
   <!--QR code generator-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
   <script>
-    const modelViewer = document.querySelector('model-viewer');
     // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyDNzSRFhlT_Nch6TTB3UZTpFfvW0m8sa1Q",
@@ -82,6 +81,7 @@
     var rotX = firebase.database().ref(uid + '/rotation/x/');
     var rotY = firebase.database().ref(uid + '/rotation/y/');
     rotX.on('value', function (snapshot) {
+      const modelViewer = document.querySelector('model-viewer');
       const cameraOrbit = modelViewer.getCameraOrbit(); // Get the (possibly changed) value
       var pi = Math.PI;
       let currentX = cameraOrbit.theta * (180 / pi);;
@@ -92,6 +92,7 @@
     });
 
     rotY.on('value', function (snapshot) {
+      const modelViewer = document.querySelector('model-viewer');
       const cameraOrbit = modelViewer.getCameraOrbit(); // Get the (possibly changed) value
       var pi = Math.PI;
       let currentY = cameraOrbit.phi * (180 / pi);;

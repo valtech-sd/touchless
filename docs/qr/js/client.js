@@ -49,9 +49,9 @@ multitouch().start(({ touches, scale, rotate }) => {
   }
 
   // console.log(touches[0].x, touches[0].y);
-  firebase.database().ref(queryUIDString+'rotation/x/').set(x);
+  firebase.database().ref(queryUIDString+'/rotation/x/').set(x);
   console.log(touches[0].x, touches[0].y);
-  firebase.database().ref(queryUIDString+'rotation/x/').set(y);
+  firebase.database().ref(queryUIDString+'/rotation/x/').set(y);
   touchX = x;
   touchY = y;
 
