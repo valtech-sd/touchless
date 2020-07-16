@@ -79,6 +79,7 @@
     let previousSession = Cookies.get('touchlessqr-cookie') // => 'value'
     
     console.log("previousSession : " + previousSession);
+    console.log("Cookies.get() : " + Cookies.get());
     if (typeof previousSession !== 'undefined') {
             uid = previousSession;
       console.log("cookie found - previous session id: " + previousSession);
