@@ -1,7 +1,7 @@
 
 const { styler, spring, listen, multitouch, value } = window.popmotion;
 
-const queryUIDString = window.location.search;
+const queryUIDString = window.location.search.substr(1);
 
 let colorCount = 0;
 // Your web app's Firebase configuration
