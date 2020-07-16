@@ -78,9 +78,9 @@
     // checking for and adding cookies to prevent repeated additions to the db
     let previousSession = Cookies.get('touchlessqr-cookie') // => 'value'
     
-    console.log("previousSession : " + previousSession);
-    if (previousSession != "undefined"){
-      uid = previousSession;
+    console.log("previousSession1 : " + previousSession);
+    if (typeof previousSession !== 'undefined') {
+            uid = previousSession;
       console.log("cookie found - previous session id: " + previousSession);
     } else {
       //if no previous session found, create new cookie and add new unique field to db
