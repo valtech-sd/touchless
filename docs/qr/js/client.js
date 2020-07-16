@@ -33,30 +33,6 @@ function changeColor() {
 console.log(queryUIDString+'/rotation/x/');
 
 multitouch().start(({ touches, scale, rotate }) => {
-  let x, y = 0;
-  if (touches[0].x < touchX) {
-    x = -1;
-  } else if (touches[0].x > touchX) {
-    x = 1;
-  } else {
-    x = 0;
-  }
-  if (touches[0].y < touchY) {
-    y = -1;
-  } else if (touches[0].y > touchY) {
-    y = 1;
-  } else {
-    y = 0;
-  }
-
-  console.log(queryUIDString+'/rotation/x/');
-  firebase.database().ref(queryUIDString+'/rotation/x/').set(x);
-  console.log(touches[0].x, touches[0].y);
-  firebase.database().ref(queryUIDString+'/rotation/y/').set(y);
-  touchX = x;
-  touchY = y;
-
-
-  
+  firebase.database().ref('/rotation/x/').set(touches[0].x);
 
 });
