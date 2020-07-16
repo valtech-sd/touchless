@@ -30,9 +30,8 @@ function changeColor() {
 
 // const modelViewer = document.querySelector('model-viewer');
 // modelViewer.cameraOrbit = 'auto auto 10%;
-console.log(queryUIDString+'/rotation/x/');
 
 multitouch().start(({ touches, scale, rotate }) => {
-  firebase.database().ref('/rotation/x/').set(touches[0].x);
+  firebase.database().ref('rotation/x/').set(touches[0].x);
 
 });
