@@ -53,6 +53,26 @@ model-viewer {
 }
 
 
+.carousel {
+  display: flex;
+  background:#000000;
+  flex-direction: row;
+  align-items: center;
+  justify-content:center;
+  height: 400px;
+  position: relative;
+  width: 100%;
+  border-radius: 5px;
+}
+.carousel .item {
+  height:100%;
+  flex: 0 0 1000px;
+  border-radius: 5px;
+  margin-right: 15px;
+  background-repeat:no-repeat;
+  background-position: center center;  
+}
+
 .controlcontainer {
   text-transform: capitalize;
   color: #d3d3d3;

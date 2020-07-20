@@ -30,8 +30,51 @@
       <!-- Add your site or application content here -->
       <p>Touchless Control Test</p>
       <div id="placeHolder"></div>
-      <model-viewer src="models/Astronaut.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
-      </model-viewer>
+
+      <div class="carousel">
+        <div class="item">
+          <model-viewer src="models/sun.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/mercury.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/venus.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/earth.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/mars.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/jupiter.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/saturn.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/uranus.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/neptune.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/pluto.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+      </div>
+
+
     </div>
   </div>
   <!--google model viewer-->
@@ -49,9 +92,13 @@
   <!--QR code generator-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 
+  <!--carousel/slider-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+  <!--physics-->
+  <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
   <!--cookie handler -->
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-  
+
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
@@ -75,13 +122,35 @@
         y: 0
       }
     }
+
+    const { styler, inertia, listen, pointer, value, calc, tween, easing } = window.popmotion;
+    const mix = calc.getValueFromProgress;
+
+    const boundaries = document.querySelector('.carousel');
+    const box = document.querySelector('.item');
+    const boxes = document.querySelectorAll('.item');
+    const getBoundariesWidth = () => boundaries.getBoundingClientRect().width - box.getBoundingClientRect().width;
+    const divStylers = [];
+
+    let distance = 1000;
+
+
+    [].forEach.call(boxes, function (div) {
+      // do whatever
+      divStylers.push(styler(div));
+    });
+    console.log("divStylers: " + divStylers.length);
+    function resetMovement() {
+      movements = [];
+    }
+
     // checking for and adding cookies to prevent repeated additions to the db
     let previousSession = Cookies.get('touchlessqr-cookie'); // => 'value'
-    
+
     console.log("previousSession : " + previousSession);
     console.log("Cookies.get() : " + Cookies.get('touchlessqr-cookie'));
-    if ( previousSession != 'undefined') {
-            uid = previousSession;
+    if (previousSession != 'undefined') {
+      uid = previousSession;
       console.log("cookie found - previous session id: " + previousSession);
     } else {
       //if no previous session found, create new cookie and add new unique field to db
@@ -94,18 +163,43 @@
 
 
     const modelViewer = document.querySelector('model-viewer');
-
     var rotX = firebase.database().ref(uid + '/rotation/x/');
     var rotY = firebase.database().ref(uid + '/rotation/y/');
     rotX.on('value', function (snapshot) {
       let x = snapshot.val();
-      modelViewer.cameraOrbit = x.toString() + 'deg auto 2.5m';
+      // modelViewer.cameraOrbit = x.toString() + 'deg auto 2.5m';
 
     });
 
     rotY.on('value', function (snapshot) {
       let y = snapshot.val();
-      modelViewer.cameraOrbit = y.toString() + 'deg auto 2.5m';
+      // modelViewer.cameraOrbit = y.toString() + 'deg auto 2.5m';
+    });
+
+        // on left keypress slide left
+    listen(boundaries, 'keydown').filter(e => e.keyCode == '37').start(() => {
+      divStylers.forEach(element =>
+        tween({
+          from: element.get('x'),
+          to: { x: element.get('x') + distance },
+          duration: 700,
+          ease: easing.backOut
+        }).
+          start(element.set)
+      );
+    });
+
+    // on right keypress slide right
+    listen(boundaries, 'keydown').filter(e => e.keyCode == '39').start(() => {
+      divStylers.forEach(element =>
+        tween({
+          from: element.get('x'),
+          to: { x: element.get('x') - distance },
+          duration: 700,
+          ease: easing.backOut
+        }).
+          start(element.set)
+      );
     });
 
     //generate qr based on uid
