@@ -30,8 +30,56 @@
       <!-- Add your site or application content here -->
       <p>Touchless Control Test</p>
       <div id="placeHolder"></div>
-      <model-viewer src="models/Astronaut.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls>
-      </model-viewer>
+
+      <div class="carousel">
+        <div class="item">
+          <model-viewer src="models/sun.glb" id="sun" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/mercury.glb" id="mercury" alt="A 3D model of an astronaut" auto-rotate
+            camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/venus.glb" id="venus" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/earth.glb" id="earth" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/mars.glb" id="mars" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/jupiter.glb" id="jupiter" alt="A 3D model of an astronaut" auto-rotate
+            camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/saturn.glb" id="saturn" alt="A 3D model of an astronaut" auto-rotate
+            camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/uranus.glb" id="uranus" alt="A 3D model of an astronaut" auto-rotate
+            camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/neptune.glb" id="neptune" alt="A 3D model of an astronaut" auto-rotate
+            camera-controls>
+          </model-viewer>
+        </div>
+        <div class="item">
+          <model-viewer src="models/pluto.glb" id="pluto" alt="A 3D model of an astronaut" auto-rotate camera-controls>
+          </model-viewer>
+        </div>
+      </div>
+
+
     </div>
   </div>
   <!--google model viewer-->
@@ -49,9 +97,11 @@
   <!--QR code generator-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 
+  <!--physics-->
+  <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
   <!--cookie handler -->
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-  
+
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
@@ -75,13 +125,35 @@
         y: 0
       }
     }
+
+    const { styler, inertia, listen, pointer, value, calc, tween, easing } = window.popmotion;
+    const mix = calc.getValueFromProgress;
+
+    const boundaries = document.querySelector('.carousel');
+    const box = document.querySelector('.item');
+    const boxes = document.querySelectorAll('.item');
+    const getBoundariesWidth = () => boundaries.getBoundingClientRect().width - box.getBoundingClientRect().width;
+    const divStylers = [];
+
+    let distance = 1000;
+    let planetIndex = 5; // begin at mars
+    let elementId = 'mars';
+    [].forEach.call(boxes, function (div) {
+      // do whatever
+      divStylers.push(styler(div));
+    });
+    console.log("divStylers: " + divStylers.length);
+    function resetMovement() {
+      movements = [];
+    }
+
     // checking for and adding cookies to prevent repeated additions to the db
     let previousSession = Cookies.get('touchlessqr-cookie'); // => 'value'
-    
+
     console.log("previousSession : " + previousSession);
     console.log("Cookies.get() : " + Cookies.get('touchlessqr-cookie'));
-    if ( previousSession != 'undefined') {
-            uid = previousSession;
+    if (previousSession != 'undefined') {
+      uid = previousSession;
       console.log("cookie found - previous session id: " + previousSession);
     } else {
       //if no previous session found, create new cookie and add new unique field to db
@@ -92,14 +164,13 @@
       var uid = newPostRef.key;
     }
 
-
-    const modelViewer = document.querySelector('model-viewer');
-
+    //select selected planet element
+    let modelViewer = document.getElementById(elementId);
     var rotX = firebase.database().ref(uid + '/rotation/x/');
     var rotY = firebase.database().ref(uid + '/rotation/y/');
     rotX.on('value', function (snapshot) {
       let x = snapshot.val();
-      modelViewer.cameraOrbit = x.toString() + 'deg auto 2.5m';
+      modelViewer.cameraOrbit = x.toString() + 'deg auto auto';
 
     });
 
@@ -108,15 +179,92 @@
       modelViewer.cameraOrbit = y.toString() + 'deg auto 2.5m';
     });
 
+    // on left keypress slide left
+    listen(boundaries, 'keydown').filter(e => e.keyCode == '37').start(() => {
+      divStylers.forEach(element =>
+        tween({
+          from: element.get('x'),
+          to: { x: element.get('x') + distance },
+          duration: 1000,
+          ease: easing.anticipate
+        }).
+          start(element.set)
+      );
+      planetIndex--;
+      getElementName();
+      modelViewer = document.getElementById(elementId);
+      console.log("queueing planet: " + elementId);
+    });
+
+    // on right keypress slide right
+    listen(boundaries, 'keydown').filter(e => e.keyCode == '39').start(() => {
+      divStylers.forEach(element =>
+        tween({
+          from: element.get('x'),
+          to: { x: element.get('x') - distance },
+          duration: 1000,
+          ease: easing.anticipate
+        }).
+          start(element.set)
+      );
+      planetIndex++;
+      getElementName();
+      modelViewer = document.getElementById(elementId);
+      console.log("queueing planet: " + elementId);
+    });
+
     //generate qr based on uid
     var typeNumber = 4;
     var errorCorrectionLevel = 'L';
     var qr = qrcode(typeNumber, errorCorrectionLevel);
     qr.addData('https://touchless.valtech.engineering/qr/client.html?' + uid);
+    // qr.addData('localhost:8081/client.html?' + uid);
     qr.make();
     document.getElementById('placeHolder').innerHTML = qr.createImgTag();
-    console.log('https://touchless.valtech.engineering/qr/client.html?' + uid);
+    // var a = document.createElement('a');
+    // var linkText = document.createTextNode("my title text");
+    // a.appendChild(linkText);
+    // a.title = "temporary link";
+    // a.href = 'http://192.168.2.1:8081/client.html?-MCNmx5SaHVbuNPo6sgm';
+    // document.body.appendChild(a);
+    // console.log('https://touchless.valtech.engineering/qr/client.html?' + uid);
+    // console.log('http://localhost:8081/client.html?' + uid);
 
+
+    function getElementName() {
+      switch (planetIndex) {
+        case 1:
+          elementId = 'sun';
+          break;
+        case 2:
+          elementId = 'mercury';
+          break;
+        case 3:
+          elementId = 'venus';
+          break;
+        case 4:
+          elementId = 'earth';
+          break;
+        case 5:
+          elementId = 'mars';
+          break;
+        case 6:
+          elementId = 'jupiter';
+          break;
+        case 7:
+          elementId = 'saturn';
+          break;
+        case 8:
+          elementId = 'uranus';
+          break;
+        case 9:
+          elementId = 'neptune';
+          break;
+        case 10:
+          elementId = 'pluto';
+          break;
+      }
+    }
   </script>
 </body>
 
