@@ -1,27 +1,43 @@
+@font-face {
+  font-family: "Merriweather-Regular";
+  src: url("/fonts/Merriweather/Merriweather-Regular.ttf");
+}
+
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   font-size: 1.6em;
-  background-color: #000000;
+  background-color: black;
   color: white;
   margin: auto;
 
 }
 
+#img-section-container {
+  padding: 20px;
+
+}
+
 #img-container {
-  padding: 105px 00px 50px 0px;
-  border: 10px solid #000;
+  /* TODO: Separate Image from this container, and move textbox to overlay image with offsets */
+  margin: 30px 30px 40px 30px;
   display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  height: 400px;
-  width: 50%;
-  justify-content: center;
+  height: 30em;
+  align-items: center;
   object-fit: contain;
   background-image: url("/images/airport.jpg");
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 800px 533px;
+  background-position: center;
+}
+
+/* Custom image settings for phones */
+@media only screen and (max-width: 600px) {
+  #img-container {
+  }
+  #title-text {
+    margin: auto;
+    background: #66fcf1;
+  }
 }
 
 #footer {
@@ -30,7 +46,8 @@ body {
   margin-right: auto;
   width: 100%;
   justify-content: center;
-  padding: 105px 00px 50px 0px;
+  background: black;
+  padding: 50px 00px 50px 0px;
 }
 
 #page-container{
@@ -40,26 +57,42 @@ width:100%;
 #flex-container {
   display: flex;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30em
+  padding: 60px 120px;
+  background: white;
+  color: black;
 }
 
 #flex-list {
   display: flex;
   justify-content: center;
   font-size: 1.1em;
-  color: #ffffff;
+  background: #F1F1F1;
   padding: 0em 10em 0em 10em;
 }
 
-#text-box {
-  display: block;
+#content-wrapper {
+  /* overflow: hidden; */
+  /* display: block;
   justify-content: left;
   align-items: left;
-  padding: 20px 00px 50px 0px;
+  padding: 0.5em 00px 50px 0px;
   width: 100%;
-  line-height: 1.4;
+  line-height: 1.4; */
+}
+
+.text-image-container .text-box {
+  padding-right: 120px;
+}
+
+.text-box {
+  font-size: 24px;
+  padding: 50px 0px
+  /* TODO: Put font styling here */
+}
+
+.text-image-container {
+  display: flex;
+
 }
 
 a {
@@ -67,18 +100,34 @@ a {
   text-decoration: none;
 }
 
-#title-text{
-  font: "HelveticaNeue-Light";
-  font-size: 1.8em;
-  text-align: center;
-  font-weight:300;
-
+#title-text {
+  overflow: hidden;
+  font-family: "Merriweather-Regular";
+  font-size: 3.5em;
+  letter-spacing: 0.05em;
+  border: white 10px solid;
+  margin: auto auto auto 85px;
+  /* position: relative;
+  top: -6em;
+  left: 2em; */
+  width: fit-content;
+  padding: 25px 85px;
 }
 
 #flex-item {
   display: block;
-  text-align: center;
   padding: 1em 1em;
+  margin: 50px 0px 110px 0px;
+}
+
+#flex-item p {
+  color: black;
+  font-size: 42px;
+  font-family: "Merriweather-Light";
+}
+
+#flex-item video {
+  border: black 1px solid;
 }
 
 #flex-sublist {
@@ -91,16 +140,25 @@ a {
 }
 
 .embed-image {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
+  width: auto;
+  max-width: 526px;
+  height: auto;
+  max-height: 496px;
+}
+
+.vid-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
 }
 
 #vid-display {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
-
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }
