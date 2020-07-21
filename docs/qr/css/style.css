@@ -12,6 +12,7 @@ body {
   color: white;
   margin: auto;
   overflow: hidden;
+  --poster-color: transparent
 }
 
 #flex-container {
