@@ -10,13 +10,18 @@ body {
   background-color: black;
   color: white;
   margin: auto;
-
+  min-width: 1160px;
 }
+/* Custom image settings for phones */
+/* @media only screen and (max-width: 600px) {
+  .text-image-container {
+    flex-direction: column;
+  }
 
-#img-section-container {
-  padding: 20px;
-
-}
+  .text-image-container .text-box {
+    padding: 0px;
+  }
+} */
 
 #img-container {
   /* TODO: Separate Image from this container, and move textbox to overlay image with offsets */
@@ -28,16 +33,6 @@ body {
   background-image: url("/images/airport.jpg");
   background-repeat: no-repeat;
   background-position: center;
-}
-
-/* Custom image settings for phones */
-@media only screen and (max-width: 600px) {
-  #img-container {
-  }
-  #title-text {
-    margin: auto;
-    background: #66fcf1;
-  }
 }
 
 #footer {
@@ -80,9 +75,6 @@ width:100%;
   line-height: 1.4; */
 }
 
-.text-image-container .text-box {
-  padding-right: 120px;
-}
 
 .text-box {
   font-size: 24px;
@@ -92,7 +84,10 @@ width:100%;
 
 .text-image-container {
   display: flex;
+}
 
+.text-image-container .text-box {
+  padding-right: 120px;
 }
 
 a {
