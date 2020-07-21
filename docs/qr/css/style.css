@@ -11,7 +11,7 @@ body {
   background-color: #000000;
   color: white;
   margin: auto;
-
+  overflow: hidden;
 }
 
 #flex-container {
@@ -63,6 +63,8 @@ model-viewer {
   position: relative;
   width: 100%;
   border-radius: 5px;
+  left: 66%;
+
 }
 .carousel .item {
   height:100%;
