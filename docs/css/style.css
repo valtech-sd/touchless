@@ -56,7 +56,7 @@ body {
 }
 
 .text-box {
-  font-size: 24px;
+  font-size: 20px;
   padding: 50px 0px;
   /* TODO: Put font styling here */
 }
@@ -67,6 +67,11 @@ body {
 
 .text-image-container .text-box {
   padding-right: 120px;
+}
+
+.content-image-container {
+  display: flex;
+  align-items: center;
 }
 
 a {
