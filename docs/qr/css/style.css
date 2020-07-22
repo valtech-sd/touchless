@@ -96,30 +96,18 @@ model-viewer {
   position: relative;
   width: 100%;
   border-radius: 5px;
-<<<<<<< HEAD
-  left: 66%;
-=======
   transform: translate(50%, 50%);
 
->>>>>>> master
 }
 
 .carousel .item {
   height: 100%;
-<<<<<<< HEAD
-  flex: 0 0 1000px;
-=======
   width:100%;
   flex: 0 0 100%;
->>>>>>> master
   border-radius: 5px;
   margin-right: 15px;
   background-repeat: no-repeat;
   background-position: center center;
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 }
 
 .controlcontainer {
