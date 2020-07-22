@@ -101,7 +101,14 @@ li {
 }
 
 a {
-  /* color: #66fcf1; */
+  color: #00B0BA;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #00B0BA;
+  font-weight: bold;
   text-decoration: none;
 }
 
