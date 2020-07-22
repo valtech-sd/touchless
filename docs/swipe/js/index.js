@@ -1,12 +1,12 @@
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-windowHeight = window.innerHeight
-windowWidth = window.innerWidth
+windowHeight = window.innerHeight;
+windowWidth = window.innerWidth;
 let model = null;
 let worldXRange = 0;
 let windowXRange = 0;
-let videoInterval = 10
+let videoInterval = 10;
 let maxMovementSize = 15;
 // Store the hand movement
 let movements = [];
@@ -19,19 +19,29 @@ let swipeIndex = 3;
 
 //setup handtracking model parameters
 const modelParams = {
-  flipHorizontal: true, // flip e.g for video  
+  flipHorizontal: true, // flip e.g for video
   maxNumBoxes: 1, // maximum number of boxes to detect
   iouThreshold: 0.5, // ioU threshold for non-max suppression
   scoreThreshold: 0.85, // confidence threshold for predictions.
-}
+};
 
-const { styler, inertia, listen, pointer, value, calc, tween, easing } = window.popmotion;
+const {
+  styler,
+  inertia,
+  listen,
+  pointer,
+  value,
+  calc,
+  tween,
+  easing,
+} = window.popmotion;
 const mix = calc.getValueFromProgress;
 
-const boundaries = document.querySelector('.carousel');
-const box = document.querySelector('.item');
-const boxes = document.querySelectorAll('.item');
-const getBoundariesWidth = () => boundaries.getBoundingClientRect().width - box.getBoundingClientRect().width;
+const boundaries = document.querySelector(".carousel");
+const box = document.querySelector(".item");
+const boxes = document.querySelectorAll(".item");
+const getBoundariesWidth = () =>
+  boundaries.getBoundingClientRect().width - box.getBoundingClientRect().width;
 const divStylers = [];
 [].forEach.call(boxes, function (div) {
   // do whatever
@@ -46,7 +56,7 @@ function startVideo() {
   handTrack.startVideo(video).then(function (status) {
     console.log("video started", status);
     if (status) {
-      runDetection()
+      runDetection();
     }
   });
 }
@@ -60,11 +70,11 @@ function detectSwipe() {
 
     // Determine left or right
     let diff = xs - xe;
-    let swipe = 'none';
+    let swipe = "none";
     if (diff > 0) {
-      swipe = 'left';
+      swipe = "left";
     } else {
-      swipe = 'right';
+      swipe = "right";
     }
 
     let min = Math.min(...movements);
@@ -73,33 +83,31 @@ function detectSwipe() {
 
     // If minimum horizontal distance was travelled
     if (Math.abs(diff) >= minHorizontal) {
-      if (swipe == 'left') {
+      if (swipe == "left") {
         _diff = Math.abs(min - movements[movements.length - 1]);
         if (_diff <= deltaHorizontal && swipeIndex < boxes.length) {
           console.log("swiped left");
-          divStylers.forEach(element =>
+          divStylers.forEach((element) =>
             tween({
-              from: element.get('x'),
-              to: { x: element.get('x') - distance },
+              from: element.get("x"),
+              to: { x: element.get("x") - distance },
               duration: 700,
-              ease: easing.backOut
-            }).
-              start(element.set)
+              ease: easing.backOut,
+            }).start(element.set)
           );
-            swipeIndex++;
+          swipeIndex++;
         }
       } else {
         _diff = Math.abs(max - movements[movements.length - 1]);
         if (_diff <= deltaHorizontal && swipeIndex > 1) {
           console.log("swiped right");
-          divStylers.forEach(element =>
+          divStylers.forEach((element) =>
             tween({
-              from: element.get('x'),
-              to: { x: element.get('x') + distance },
+              from: element.get("x"),
+              to: { x: element.get("x") + distance },
               duration: 700,
-              ease: easing.backOut
-            }).
-              start(element.set)
+              ease: easing.backOut,
+            }).start(element.set)
           );
           swipeIndex--;
         }
@@ -109,7 +117,7 @@ function detectSwipe() {
       detectActive = false;
       setTimeout(activateDetection, 2000);
     }
-    // clear movement array when it 
+    // clear movement array when it
     if (movements.length > maxMovementSize) {
       movements.shift();
     }
@@ -117,35 +125,31 @@ function detectSwipe() {
 }
 
 function runDetection() {
-  model.detect(video).then(predictions => {
+  model.detect(video).then((predictions) => {
     // get the middle x value of the bounding box and map to paddle location
     model.renderPredictions(predictions, canvas, context, video);
     if (predictions[0]) {
-      let midval = predictions[0].bbox[0] + (predictions[0].bbox[2] / 2)
-      gamex = document.body.clientWidth * (midval / video.width)
+      let midval = predictions[0].bbox[0] + predictions[0].bbox[2] / 2;
+      gamex = document.body.clientWidth * (midval / video.width);
       coordX = gamex.mapRange(0, document.body.clientWidth, 0, 100);
-      movements.push(
-        parseFloat(coordX)
-      );
+      movements.push(parseFloat(coordX));
       if (detectActive) {
         detectSwipe();
       }
     }
     setTimeout(() => {
-      runDetection(video)
+      runDetection(video);
     }, videoInterval);
   });
 }
 
 // Load the model
-handTrack.load(modelParams).then(lmodel => {
+handTrack.load(modelParams).then((lmodel) => {
   model = lmodel;
   startVideo();
 });
 
-
-
-// map 
+// map
 function convertToRange(value, srcRange, dstRange) {
   // value is outside source range return
   if (value < srcRange[0] || value > srcRange[1]) {
@@ -155,14 +159,13 @@ function convertToRange(value, srcRange, dstRange) {
   var srcMax = srcRange[1] - srcRange[0],
     dstMax = dstRange[1] - dstRange[0],
     adjValue = value - srcRange[0];
-  return (adjValue * dstMax / srcMax) + dstRange[0];
-
+  return (adjValue * dstMax) / srcMax + dstRange[0];
 }
 
 function getTranslateX(element) {
   var style = window.getComputedStyle(element);
   var matrix = new WebKitCSSMatrix(style.webkitTransform);
-  return matrix.m41
+  return matrix.m41;
 }
 
 function activateDetection() {
@@ -171,8 +174,5 @@ function activateDetection() {
 
 // map values to a given range
 Number.prototype.mapRange = function (in_min, in_max, out_min, out_max) {
-  return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
-
-
-
+  return ((this - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+};
