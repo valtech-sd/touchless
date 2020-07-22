@@ -12,19 +12,8 @@ body {
   margin: auto;
   min-width: 1160px;
 }
-/* Custom image settings for phones */
-/* @media only screen and (max-width: 600px) {
-  .text-image-container {
-    flex-direction: column;
-  }
-
-  .text-image-container .text-box {
-    padding: 0px;
-  }
-} */
 
 #img-container {
-  /* TODO: Separate Image from this container, and move textbox to overlay image with offsets */
   margin: 30px 30px 40px 30px;
   display: flex;
   height: 30em;
@@ -49,7 +38,7 @@ body {
 width:100%;
 }
 
-#flex-container {
+.flex-container {
   display: flex;
   align-items: center;
   padding: 60px 120px;
@@ -64,17 +53,6 @@ width:100%;
   background: #F1F1F1;
   padding: 0em 10em 0em 10em;
 }
-
-#content-wrapper {
-  /* overflow: hidden; */
-  /* display: block;
-  justify-content: left;
-  align-items: left;
-  padding: 0.5em 00px 50px 0px;
-  width: 100%;
-  line-height: 1.4; */
-}
-
 
 .text-box {
   font-size: 24px;
@@ -91,7 +69,7 @@ width:100%;
 }
 
 a {
-  color: #66fcf1;
+  /* color: #66fcf1; */
   text-decoration: none;
 }
 
@@ -109,19 +87,19 @@ a {
   padding: 25px 85px;
 }
 
-#flex-item {
+.flex-item {
   display: block;
   padding: 1em 1em;
   margin: 50px 0px 110px 0px;
 }
 
-#flex-item p {
+.flex-item p {
   color: black;
   font-size: 42px;
   font-family: "Merriweather-Light";
 }
 
-#flex-item video {
+.flex-item video {
   border: black 1px solid;
 }
 
@@ -156,4 +134,52 @@ a {
   right: 0;
   width: 100%;
   height: 100%;
+}
+
+.links-container {
+  display: flex;
+  align-items: center;
+  padding: 60px 120px;
+  background: white;
+  color: black;
+}
+
+/* Custom image settings for phones */
+@media only screen and (max-width: 600px) {
+  .text-image-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+  }
+  .text-image-container .text-box {
+    padding-right: 0px;
+  }
+
+  #flex-list {
+    flex-direction: column;
+    padding-bottom: 30px;
+  }
+
+  .flex-item {
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+
+/* Custom image settings for phones */
+@media only screen and (min-width: 1800px) {
+  .flex-container {
+    padding: 7em 12em;
+  }
+
+  .links-container {
+    display: flex;
+    align-items: center;
+    padding: 2em 12em;
+    background: white;
+    color: black;
+  }
 }
