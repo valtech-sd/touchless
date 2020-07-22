@@ -15,13 +15,46 @@ body {
   overflow: hidden;
   --poster-color: transparent;
 }
-
+#annotation{
+  height: 50%;
+  font-size:2.5em;
+  transform: translate(10px, 50%);
+  padding: 0px 0px 100px 100px;
+}
 #flex-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  width: 30em;
+  justify-content: center;
+  width: 100%;
+}
+
+#qr-title {
+  font-size: 0.8em;
+  font-family:"Merriweather-Regular";
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px 0px 0px;
+}
+
+#qr-container {
+  border: 2px solid;
+  position: absolute;
+  bottom: 2em;
+  left:2em;
+}
+
+#placeHolder {
+
+  display: flex;
+  align-content: bottom;
+  align-self: center;
+  padding: 30px 10px 10px 10px;
+  width: 6em;
+  height: 5em;
+  justify-content: center;
 }
 
 #flex-list {
@@ -63,15 +96,30 @@ model-viewer {
   position: relative;
   width: 100%;
   border-radius: 5px;
+<<<<<<< HEAD
   left: 66%;
+=======
+  transform: translate(50%, 50%);
+
+>>>>>>> master
 }
+
 .carousel .item {
   height: 100%;
+<<<<<<< HEAD
   flex: 0 0 1000px;
+=======
+  width:100%;
+  flex: 0 0 100%;
+>>>>>>> master
   border-radius: 5px;
   margin-right: 15px;
   background-repeat: no-repeat;
   background-position: center center;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 }
 
 .controlcontainer {
