@@ -62,10 +62,10 @@ multitouch().start(({ touches, scale, rotate }) => {
 
 });
 
-const touchRotation = (initialRotate = 0) => multitouch({ rotate: initialRotate })
-  .pipe(({ rotate }) => rotate);
+// const touchRotation = (initialRotate = 0) => multitouch({ rotate: initialRotate })
+//   .pipe(({ rotate }) => rotate);
 
-touchRotation().start((rotate) =>   firebase.database().ref(queryUIDString + '/rotation/y/').set(touches[0].x));
+// touchRotation().start((rotate) =>   firebase.database().ref(queryUIDString + '/rotation/y/').set(touches[0].x));
 
 
 // queue planet when device tilts
