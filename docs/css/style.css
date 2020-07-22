@@ -41,18 +41,37 @@ body {
 
 .flex-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 60px 120px;
   background: white;
   color: black;
 }
 
-#flex-list {
-  display: flex;
+#poc-container {
+  /* display: flex;
+  flex-direction: column;
   justify-content: center;
   font-size: 1.1em;
   background: #f1f1f1;
-  padding: 0em 10em 0em 10em;
+  padding: 60px 120px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 120px;
+  background: #f1f1f1;
+  color: black;
+
+}
+
+.poc-title {
+  color: black;
+  font-size: 42px;
+}
+
+.poc-description {
+  font-size: 20px;
+  color: black;
 }
 
 .text-box {
@@ -90,22 +109,32 @@ a {
   top: -6em;
   left: 2em; */
   width: fit-content;
-  padding: 25px 85px;
+  padding: 20px 85px;
 }
 
-.flex-item {
-  display: block;
-  padding: 1em 1em;
-  margin: 50px 0px 110px 0px;
+.poc-item {
+  display: flex;
+  justify-content: flex-start;
+  margin: 40px 0px;
 }
 
-.flex-item p {
-  color: black;
-  font-size: 42px;
-  font-family: "Merriweather-Light";
+.poc-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-right: 150px;
+  /* padding: 1em 1em;
+  margin: 50px 0px 110px 0px; */
+
 }
 
-.flex-item video {
+/* .poc-video-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+} */
+
+.poc-video-wrapper video {
   border: black 1px solid;
 }
 
@@ -114,9 +143,9 @@ a {
   text-align: center;
 }
 
-a {
+/* a {
   display: block;
-}
+} */
 
 .embed-image {
   width: auto;
@@ -162,16 +191,48 @@ a {
     padding-right: 0px;
   }
 
-  #flex-list {
+  #poc-container {
     flex-direction: column;
     padding-bottom: 30px;
   }
 
-  .flex-item {
-    padding: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  .poc-item {
+    flex-direction: column;
+    align-items: center;
+
   }
+
+  .poc-text-wrapper {
+    order: 2;
+    margin-right: 0px;
+  }
+
+  .poc-title {
+    margin: 30px 0px 10px 0px;
+  }
+
+  .poc-description {
+    margin: 10px 0px;
+  }
+
+  .poc-video-wrapper {
+    order: 1;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;  
+  }
+
+  .poc-video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+    
 }
 
 /* Custom image settings for phones */
@@ -186,5 +247,9 @@ a {
     padding: 2em 12em;
     background: white;
     color: black;
+  }
+
+  #poc-container {
+    padding: 7em 12em;
   }
 }
