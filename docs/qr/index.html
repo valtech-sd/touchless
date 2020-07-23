@@ -23,67 +23,61 @@
 </head>
 
 <body>
-  <div id="flex-container">
-
-      <!-- Add your site or application content here -->
-
-      <div class="carousel">
-        <div class="item">
-          <model-viewer src="models/sun.glb" id="sun" auto-rotate camera-controls>
-            <div id="annotation">SUN</div>
-          </model-viewer>
-        </div>
-        <div class="item">
-          <model-viewer src="models/mercury.glb" id="mercury" auto-rotate camera-controls>
-            <div id="annotation">MERCURY</div>
-          </model-viewer>
-        </div>
-        <div class="item">
-          <model-viewer src="models/venus.glb" id="venus" auto-rotate camera-controls>
-            <div id="annotation">VENUS</div>
-          </model-viewer>
-        </div>
-        <div class="item">
-          <model-viewer src="models/earth.glb" id="earth" auto-rotate camera-controls>
-            <div id="annotation">EARTH</div>
-          </model-viewer>
-        </div>
-        <div class="item">
-          <model-viewer src="models/mars.glb" id="mars" auto-rotate camera-controls>
-            <div id="annotation">MARS</div>
-          </model-viewer>
-        </div>
-        <div class="item">
-          <model-viewer src="models/jupiter.glb" id="jupiter" auto-rotate camera-controls>
-            <div id="annotation">JUPITER</div>
-          </model-viewer>
-        </div>
-        <div class="item">
-          <model-viewer src="models/saturn.glb" id="saturn" auto-rotate camera-controls>
-            <div id="annotation">SATURN</div>
-          </model-viewer>
-        </div>
-        <div class="item">
-          <model-viewer src="models/uranus.glb" id="uranus" auto-rotate camera-controls>
-            <div id="annotation">URANUS</div>
-          </model-viewer>
-        </div>
-        <div class="item">
-          <model-viewer src="models/neptune.glb" id="neptune" auto-rotate camera-controls>
-            <div id="annotation">NEPTUNE</div>
-          </model-viewer>
-        </div>
-        <div class="item">
-          <model-viewer src="models/pluto.glb" id="pluto" auto-rotate camera-controls>
-            <div id="annotation">PLUTO</div>
-          </model-viewer>
-        </div>
-      </div>
-      <div id="qr-container">
-        <div id="qr-title">Scan QR to begin</div>
-        <div id="placeHolder"> </div></div>
-  
-
+  <div class="carousel">
+    <div class="item">
+      <model-viewer src="models/sun.glb" id="sun" auto-rotate camera-controls>
+        <div id="annotation">SUN</div>
+      </model-viewer>
+    </div>
+    <div class="item">
+      <model-viewer src="models/mercury.glb" id="mercury" auto-rotate camera-controls>
+        <div id="annotation">MERCURY</div>
+      </model-viewer>
+    </div>
+    <div class="item">
+      <model-viewer src="models/venus.glb" id="venus" auto-rotate camera-controls>
+        <div id="annotation">VENUS</div>
+      </model-viewer>
+    </div>
+    <div class="item">
+      <model-viewer src="models/earth.glb" id="earth" auto-rotate camera-controls>
+        <div id="annotation">EARTH</div>
+      </model-viewer>
+    </div>
+    <div class="item">
+      <model-viewer src="models/mars.glb" id="mars" auto-rotate camera-controls>
+        <div id="annotation">MARS</div>
+      </model-viewer>
+    </div>
+    <div class="item">
+      <model-viewer src="models/jupiter.glb" id="jupiter" auto-rotate camera-controls>
+        <div id="annotation">JUPITER</div>
+      </model-viewer>
+    </div>
+    <div class="item">
+      <model-viewer src="models/saturn.glb" id="saturn" auto-rotate camera-controls>
+        <div id="annotation">SATURN</div>
+      </model-viewer>
+    </div>
+    <div class="item">
+      <model-viewer src="models/uranus.glb" id="uranus" auto-rotate camera-controls>
+        <div id="annotation">URANUS</div>
+      </model-viewer>
+    </div>
+    <div class="item">
+      <model-viewer src="models/neptune.glb" id="neptune" auto-rotate camera-controls>
+        <div id="annotation">NEPTUNE</div>
+      </model-viewer>
+    </div>
+    <div class="item">
+      <model-viewer src="models/pluto.glb" id="pluto" auto-rotate camera-controls>
+        <div id="annotation">PLUTO</div>
+      </model-viewer>
+    </div>
+  </div>
+  <div id="qr-container">
+    <div id="qr-title">Scan QR to begin</div>
+    <div id="placeHolder"> </div>
   </div>
   <!--google model viewer-->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
@@ -152,14 +146,14 @@
     function resetMovement() {
       movements = [];
     }
-    let uid=null;
+    let uid = null;
     // checking for and adding cookies to prevent repeated additions to the db
     let previousSession = Cookies.get('touchlessqr-cookie'); // => 'value'
 
     if (typeof previousSession === 'undefined') {
       previousSession = null;
     }
-    if (previousSession != null ) {
+    if (previousSession != null) {
       uid = previousSession;
       console.log("cookie found - previous session id: " + previousSession);
     } else {
@@ -176,36 +170,45 @@
 
     //select selected planet element
     let modelViewer = document.getElementById(elementId);
-    var orientEvent = firebase.database().ref(uid + '/orient/');
-    var motionEvent = firebase.database().ref(uid + '/motion/');
     var rotX = firebase.database().ref(uid + '/rotation/x/');
     var rotY = firebase.database().ref(uid + '/rotation/y/');
+    var buttonRight = firebase.database().ref(uid + '/navigate/right/');
+    var buttonLeft = firebase.database().ref(uid + '/navigate/left/');
     rotX.on('value', function (snapshot) {
       let x = snapshot.val();
       modelViewer.cameraOrbit = -x.toString() + 'deg auto auto';
 
     });
 
+    buttonRight.on('value', function (snapshot) {
+      queueForward();
+    });
+
+    buttonLeft.on('value', function (snapshot) {
+      queueBackward();
+    });
+
+
     // rotY.on('value', function (snapshot) {
     //   let y = snapshot.val();
     //   modelViewer.cameraOrbit = y.toString() + 'deg auto 2.5m';
     // });
 
-    orientEvent.on('value', function (snapshot) {
-      let orientation = snapshot.val();
-      if (orientation == -1) {
-        queueBackward();
-      } else if(orientation == 1) {
-        queueForward();
-      }
-    });
+    // orientEvent.on('value', function (snapshot) {
+    //   let orientation = snapshot.val();
+    //   if (orientation == -1) {
+    //     queueBackward();
+    //   } else if (orientation == 1) {
+    //     queueForward();
+    //   }
+    // });
 
-    motionEvent.on('value', function (snapshot) {
-      let orientation = snapshot.val();
-      if (orientation == 1) {
-      queueForward();
-      }
-    });
+    // motionEvent.on('value', function (snapshot) {
+    //   let orientation = snapshot.val();
+    //   if (orientation == 1) {
+    //     queueForward();
+    //   }
+    // });
 
     // on left keypress slide left
     listen(boundaries, 'keydown').filter(e => e.keyCode == '37').start(() => {
@@ -225,14 +228,14 @@
     qr.make();
     document.getElementById('placeHolder').innerHTML = qr.createImgTag(3);
 
-    // var a = document.createElement('a');
-    // var linkText = document.createTextNode("my title text");
-    // a.appendChild(linkText);
-    // a.title = "temporary link";
-    // a.href = 'http://192.168.2.1:8081/client.html?-MCrSsyELs8M8FlTDw1S';
-    // document.body.appendChild(a);
-    // console.log('https://touchless.valtech.engineering/qr/client.html?' + uid);
-    // console.log('http://localhost:8081/client.html?' + uid);
+    var a = document.createElement('a');
+    var linkText = document.createTextNode("my title text");
+    a.appendChild(linkText);
+    a.title = "temporary link";
+    a.href = 'http://192.168.2.1:8081/client.html?-MCrSsyELs8M8FlTDw1S';
+    document.body.appendChild(a);
+    console.log('https://touchless.valtech.engineering/qr/client.html?' + uid);
+    console.log('http://localhost:8081/client.html?' + uid);
 
     //queue next planet
     function queueForward() {

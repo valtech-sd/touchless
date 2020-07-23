@@ -188,3 +188,23 @@ model-viewer {
 
 
 }
+
+#button-left{
+  position: absolute;
+  left:1em;
+  justify-content:left;
+  height:100%;
+  transform: rotate(180deg);
+}
+#button-right{
+  position: absolute;
+  right:1em;
+  justify-content:right;
+  height:100%;
+}
+button{
+  color:white;
+  background:rgb(255,255,255,0.1);
+  height:100%;
+  border:none;
+}

@@ -4,6 +4,7 @@ const { styler, spring, listen, multitouch, value } = window.popmotion;
 const queryUIDString = window.location.search.substr(1);
 console.log(queryUIDString);
 let colorCount = 0;
+let buttonPress = 0;
 // Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyDNzSRFhlT_Nch6TTB3UZTpFfvW0m8sa1Q",
@@ -67,7 +68,15 @@ multitouch().start(({ touches, scale, rotate }) => {
 
 // touchRotation().start((rotate) =>   firebase.database().ref(queryUIDString + '/rotation/y/').set(touches[0].x));
 
+function moveLeft(){
+  firebase.database().ref(queryUIDString + '/navigate/left').set(buttonPress);
+  buttonPress++; // number value doesn't matter, just needs to be new value to trigger action
+}
 
+function moveRight(){
+  firebase.database().ref(queryUIDString + '/navigate/right').set(buttonPress);
+  buttonPress++; // number value doesn't matter, just needs to be new value to trigger action
+}
 // queue planet when device tilts
 function handleOrientation(event) {
   if (event.alpha < 150) {
