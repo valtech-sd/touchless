@@ -1,0 +1,14 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "The landing page for touchless POCs and links.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Harrington, Valtech SD",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "2.0.5"
+  }
+}
