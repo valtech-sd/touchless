@@ -4,19 +4,25 @@
 }
 
 body {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   font-size: 1.6em;
+  line-height: 1.4;
   background-color: black;
   color: white;
   margin: auto;
   min-width: 1160px;
 }
 
+li {
+  margin-bottom: 15px;
+}
+
 #img-container {
   margin: 30px 30px 40px 30px;
   display: flex;
-  height: 30em;
+  height: 60vh;
   align-items: center;
   object-fit: contain;
   background-image: url("/images/airport.jpg");
@@ -34,30 +40,42 @@ body {
   padding: 50px 00px 50px 0px;
 }
 
-#page-container{
-width:100%;
+#page-container {
+  width: 100%;
 }
 
 .flex-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 60px 120px;
   background: white;
   color: black;
 }
 
-#flex-list {
+#poc-container {
   display: flex;
-  justify-content: center;
-  font-size: 1.1em;
-  background: #F1F1F1;
-  padding: 0em 10em 0em 10em;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 120px;
+  background: #f1f1f1;
+  color: black;
+
+}
+
+.poc-title {
+  color: black;
+  font-size: 42px;
+  margin: 30px 0px 10px 0px;
+}
+
+.poc-description {
+  color: black;
+  margin: 10px 0px;
 }
 
 .text-box {
-  font-size: 24px;
-  padding: 50px 0px
-  /* TODO: Put font styling here */
+  padding: 50px 0px;
 }
 
 .text-image-container {
@@ -68,8 +86,20 @@ width:100%;
   padding-right: 120px;
 }
 
+.content-image-container {
+  display: flex;
+  align-items: center;
+}
+
 a {
-  /* color: #66fcf1; */
+  color: #00B0BA;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #00B0BA;
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -80,36 +110,29 @@ a {
   letter-spacing: 0.05em;
   border: white 10px solid;
   margin: auto auto auto 85px;
-  /* position: relative;
-  top: -6em;
-  left: 2em; */
   width: fit-content;
-  padding: 25px 85px;
+  padding: 20px 85px;
 }
 
-.flex-item {
-  display: block;
-  padding: 1em 1em;
-  margin: 50px 0px 110px 0px;
+.poc-item {
+  display: flex;
+  justify-content: flex-start;
+  margin: 40px 0px;
 }
 
-.flex-item p {
-  color: black;
-  font-size: 42px;
-  font-family: "Merriweather-Light";
+.poc-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-right: 150px;
 }
 
-.flex-item video {
+.poc-video-wrapper video {
   border: black 1px solid;
 }
 
 #flex-sublist {
   flex-direction: column;
   text-align: center;
-}
-
-a {
-  display: block;
 }
 
 .embed-image {
@@ -123,7 +146,8 @@ a {
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding-top: 56.25%;
+  padding-top: 61.25%;
+  margin-top: 3em;
 }
 
 #vid-display {
@@ -156,23 +180,45 @@ a {
     padding-right: 0px;
   }
 
-  #flex-list {
+  #poc-container {
     flex-direction: column;
     padding-bottom: 30px;
   }
 
-  .flex-item {
-    padding: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  .poc-item {
+    flex-direction: column;
+    align-items: center;
   }
+
+  .poc-text-wrapper {
+    order: 2;
+    margin-right: 0px;
+  }
+
+  .poc-video-wrapper {
+    order: 1;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;  
+  }
+
+  .poc-video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+    
 }
 
-
-/* Custom image settings for phones */
-@media only screen and (min-width: 1800px) {
+/* Custom image settings for large screens */
+@media only screen and (min-width: 2000px) {
   .flex-container {
-    padding: 7em 12em;
+    padding: 3em 17em;
   }
 
   .links-container {
@@ -181,5 +227,9 @@ a {
     padding: 2em 12em;
     background: white;
     color: black;
+  }
+
+  #poc-container {
+    padding: 3em 17em;
   }
 }
