@@ -75,6 +75,8 @@
       </model-viewer>
     </div>
   </div>
+  <div id="link-debug"></div>
+
   <div id="qr-container">
     <div id="qr-title">Scan QR to begin</div>
     <div id="placeHolder"> </div>
@@ -150,6 +152,14 @@
     // checking for and adding cookies to prevent repeated additions to the db
     let previousSession = Cookies.get('touchlessqr-cookie'); // => 'value'
 
+    let pageLoaded = false;
+
+    // this is to prevent firebase triggering functions on page load. there may be a better way to do this
+    setTimeout(function () {
+      pageLoaded=true;
+    }, 2000);
+
+
     if (typeof previousSession === 'undefined') {
       previousSession = null;
     }
@@ -174,30 +184,36 @@
     var rotY = firebase.database().ref(uid + '/rotation/y/');
     var buttonRight = firebase.database().ref(uid + '/navigate/right/');
     var buttonLeft = firebase.database().ref(uid + '/navigate/left/');
+
     rotX.on('value', function (snapshot) {
       let x = snapshot.val();
+      console.log("x: " + x);
       modelViewer.cameraOrbit = -x.toString() + 'deg auto auto';
 
     });
 
     buttonRight.on('value', function (snapshot) {
-      queueForward();
+      if (pageLoaded) {
+        queueForward();
+      }
     });
 
     buttonLeft.on('value', function (snapshot) {
-      queueBackward();
+      if (pageLoaded) {
+        queueBackward();
+      }
     });
 
 
     // on left keypress slide left
-    listen(boundaries, 'keydown').filter(e => e.keyCode == '37').start(() => {
-      queueBackward();
-    });
+    // listen(boundaries, 'keydown').filter(e => e.keyCode == '37').start(() => {
+    //   queueBackward();
+    // });
 
-    // on right keypress slide right
-    listen(boundaries, 'keydown').filter(e => e.keyCode == '39').start(() => {
-      queueForward();
-    });
+    // // on right keypress slide right
+    // listen(boundaries, 'keydown').filter(e => e.keyCode == '39').start(() => {
+    //   queueForward();
+    // });
 
     //generate qr based on uid
     var typeNumber = 4;
@@ -207,14 +223,14 @@
     qr.make();
     document.getElementById('placeHolder').innerHTML = qr.createImgTag(3);
 
-    // var a = document.createElement('a');
-    // var linkText = document.createTextNode("my title text");
-    // a.appendChild(linkText);
-    // a.title = "temporary link";
-    // a.href = 'http://192.168.2.1:8081/client.html?-MCrSsyELs8M8FlTDw1S';
-    // document.body.appendChild(a);
-    // console.log('https://touchless.valtech.engineering/qr/client.html?' + uid);
-    // console.log('http://localhost:8081/client.html?' + uid);
+    var a = document.createElement('a');
+    var linkText = document.createTextNode("my title text");
+    a.appendChild(linkText);
+    a.title = "temporary link";
+    a.href = 'http://192.168.2.1:8081/client.html?-MCwgyXr5yB7ZCZfXG1L';
+    document.getElementById('qr-container').appendChild(a);
+    console.log('https://touchless.valtech.engineering/qr/client.html?' + uid);
+    console.log('http://localhost:8081/client.html?' + uid);
 
     //queue next planet
     function queueForward() {

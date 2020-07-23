@@ -14,25 +14,35 @@ body {
   overflow: hidden;
   --poster-color: transparent
 }
-#annotation{
+
+#annotation {
   height: 50%;
-  font-size:2.5em;
+  font-size: 2.5em;
   transform: translate(10px, 50%);
   padding: 0px 0px 100px 100px;
 }
+
 #flex-container {
   display: flex;
+  font-size: 1.5em;
   flex-direction: column;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  margin-top:0.25em;
   justify-content: center;
   width: 100%;
 }
 
+#link-debug {
+  background-color: rgba(255, 255, 255, 0.5);
+  position: flex;
+  z-index: 1000;
+}
+
 #qr-title {
   font-size: 0.8em;
-  font-family:"Merriweather-Regular";
+  font-family: "Merriweather-Regular";
   display: flex;
   justify-content: center;
   padding: 20px 0px 0px 0px;
@@ -42,11 +52,10 @@ body {
   border: 2px solid;
   position: absolute;
   bottom: 2em;
-  left:2em;
+  left: 2em;
 }
 
 #placeHolder {
-
   display: flex;
   align-content: bottom;
   align-self: center;
@@ -103,7 +112,7 @@ model-viewer {
 
 .carousel .item {
   height: 100%;
-  width:100%;
+  width: 100%;
   flex: 0 0 100%;
   border-radius: 5px;
   margin-right: 15px;
@@ -185,26 +194,53 @@ model-viewer {
   margin: auto;
   justify-content: center;
   padding: 305px 00px 50px 0px;
-
-
 }
 
-#button-left{
+#button-left {
+  overflow:hidden;
+  background-image: url(../images/chevron.svg);
+  background-repeat:no-repeat;
+  background-size:contain;
   position: absolute;
-  left:1em;
-  justify-content:left;
-  height:100%;
+  left: 1em;
+  top: 50%;
+  width:1em;
+  justify-content: left;
   transform: rotate(180deg);
 }
-#button-right{
+
+#button-right {
+  background-image: url(../images/chevron.svg);
+  background-repeat:no-repeat;
+
   position: absolute;
-  right:1em;
-  justify-content:right;
-  height:100%;
+  right: 1em;
+  top: 50%;
+  width:1em;
+  justify-content: right;
 }
-button{
-  color:white;
-  background:rgb(255,255,255,0.1);
-  height:100%;
-  border:none;
+#ui-container{
+  padding: 0;
+  margin: 0;
+  position:absolute;
+  top:50%;
+  left:50%;
+  align-items: center;
+  justify-content: center;
+}
+#ui-graphic {
+  background-image: url(../images/touch.svg);
+  background-repeat:no-repeat;
+  height: 3em;
+  width:3em;
+ }
+
+button {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+  width: 1em;
+  height: 1em;
+    border: none;
 }
