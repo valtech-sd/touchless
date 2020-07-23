@@ -2,287 +2,289 @@
  * The default reveal.js config object.
  */
 export default {
-  // The "normal" size of the presentation, aspect ratio will be preserved
-  // when the presentation is scaled to fit different resolutions
-  width: 960,
-  height: 700,
 
-  // Factor of the display size that should remain empty around the content
-  margin: 0.04,
+	// The "normal" size of the presentation, aspect ratio will be preserved
+	// when the presentation is scaled to fit different resolutions
+	width: 960,
+	height: 700,
 
-  // Bounds for smallest/largest possible scale to apply to content
-  minScale: 0.2,
-  maxScale: 2.0,
+	// Factor of the display size that should remain empty around the content
+	margin: 0.04,
 
-  // Display presentation control arrows
-  controls: true,
+	// Bounds for smallest/largest possible scale to apply to content
+	minScale: 0.2,
+	maxScale: 2.0,
 
-  // Help the user learn the controls by providing hints, for example by
-  // bouncing the down arrow when they first encounter a vertical slide
-  controlsTutorial: true,
+	// Display presentation control arrows
+	controls: true,
 
-  // Determines where controls appear, "edges" or "bottom-right"
-  controlsLayout: "bottom-right",
+	// Help the user learn the controls by providing hints, for example by
+	// bouncing the down arrow when they first encounter a vertical slide
+	controlsTutorial: true,
 
-  // Visibility rule for backwards navigation arrows; "faded", "hidden"
-  // or "visible"
-  controlsBackArrows: "faded",
+	// Determines where controls appear, "edges" or "bottom-right"
+	controlsLayout: 'bottom-right',
 
-  // Display a presentation progress bar
-  progress: true,
+	// Visibility rule for backwards navigation arrows; "faded", "hidden"
+	// or "visible"
+	controlsBackArrows: 'faded',
 
-  // Display the page number of the current slide
-  // - true:    Show slide number
-  // - false:   Hide slide number
-  //
-  // Can optionally be set as a string that specifies the number formatting:
-  // - "h.v":	  Horizontal . vertical slide number (default)
-  // - "h/v":	  Horizontal / vertical slide number
-  // - "c":	  Flattened slide number
-  // - "c/t":	  Flattened slide number / total slides
-  //
-  // Alternatively, you can provide a function that returns the slide
-  // number for the current slide. The function should take in a slide
-  // object and return an array with one string [slideNumber] or
-  // three strings [n1,delimiter,n2]. See #formatSlideNumber().
-  slideNumber: false,
+	// Display a presentation progress bar
+	progress: true,
 
-  // Can be used to limit the contexts in which the slide number appears
-  // - "all":      Always show the slide number
-  // - "print":    Only when printing to PDF
-  // - "speaker":  Only in the speaker view
-  showSlideNumber: "all",
+	// Display the page number of the current slide
+	// - true:    Show slide number
+	// - false:   Hide slide number
+	//
+	// Can optionally be set as a string that specifies the number formatting:
+	// - "h.v":	  Horizontal . vertical slide number (default)
+	// - "h/v":	  Horizontal / vertical slide number
+	// - "c":	  Flattened slide number
+	// - "c/t":	  Flattened slide number / total slides
+	//
+	// Alternatively, you can provide a function that returns the slide
+	// number for the current slide. The function should take in a slide
+	// object and return an array with one string [slideNumber] or
+	// three strings [n1,delimiter,n2]. See #formatSlideNumber().
+	slideNumber: false,
 
-  // Use 1 based indexing for # links to match slide number (default is zero
-  // based)
-  hashOneBasedIndex: false,
+	// Can be used to limit the contexts in which the slide number appears
+	// - "all":      Always show the slide number
+	// - "print":    Only when printing to PDF
+	// - "speaker":  Only in the speaker view
+	showSlideNumber: 'all',
 
-  // Add the current slide number to the URL hash so that reloading the
-  // page/copying the URL will return you to the same slide
-  hash: false,
+	// Use 1 based indexing for # links to match slide number (default is zero
+	// based)
+	hashOneBasedIndex: false,
 
-  // Flags if we should monitor the hash and change slides accordingly
-  respondToHashChanges: true,
+	// Add the current slide number to the URL hash so that reloading the
+	// page/copying the URL will return you to the same slide
+	hash: false,
 
-  // Push each slide change to the browser history.  Implies `hash: true`
-  history: false,
+	// Flags if we should monitor the hash and change slides accordingly
+	respondToHashChanges: true,
 
-  // Enable keyboard shortcuts for navigation
-  keyboard: true,
+	// Push each slide change to the browser history.  Implies `hash: true`
+	history: false,
 
-  // Optional function that blocks keyboard events when retuning false
-  //
-  // If you set this to 'foucsed', we will only capture keyboard events
-  // for embdedded decks when they are in focus
-  keyboardCondition: null,
+	// Enable keyboard shortcuts for navigation
+	keyboard: true,
 
-  // Disables the default reveal.js slide layout (scaling and centering)
-  // so that you can use custom CSS layout
-  disableLayout: false,
+	// Optional function that blocks keyboard events when retuning false
+	//
+	// If you set this to 'foucsed', we will only capture keyboard events
+	// for embdedded decks when they are in focus
+	keyboardCondition: null,
 
-  // Enable the slide overview mode
-  overview: true,
+	// Disables the default reveal.js slide layout (scaling and centering)
+	// so that you can use custom CSS layout
+	disableLayout: false,
 
-  // Vertical centering of slides
-  center: true,
+	// Enable the slide overview mode
+	overview: true,
 
-  // Enables touch navigation on devices with touch input
-  touch: true,
+	// Vertical centering of slides
+	center: true,
 
-  // Loop the presentation
-  loop: false,
+	// Enables touch navigation on devices with touch input
+	touch: true,
 
-  // Change the presentation direction to be RTL
-  rtl: false,
+	// Loop the presentation
+	loop: false,
 
-  // Changes the behavior of our navigation directions.
-  //
-  // "default"
-  // Left/right arrow keys step between horizontal slides, up/down
-  // arrow keys step between vertical slides. Space key steps through
-  // all slides (both horizontal and vertical).
-  //
-  // "linear"
-  // Removes the up/down arrows. Left/right arrows step through all
-  // slides (both horizontal and vertical).
-  //
-  // "grid"
-  // When this is enabled, stepping left/right from a vertical stack
-  // to an adjacent vertical stack will land you at the same vertical
-  // index.
-  //
-  // Consider a deck with six slides ordered in two vertical stacks:
-  // 1.1    2.1
-  // 1.2    2.2
-  // 1.3    2.3
-  //
-  // If you're on slide 1.3 and navigate right, you will normally move
-  // from 1.3 -> 2.1. If "grid" is used, the same navigation takes you
-  // from 1.3 -> 2.3.
-  navigationMode: "default",
+	// Change the presentation direction to be RTL
+	rtl: false,
 
-  // Randomizes the order of slides each time the presentation loads
-  shuffle: false,
+	// Changes the behavior of our navigation directions.
+	//
+	// "default"
+	// Left/right arrow keys step between horizontal slides, up/down
+	// arrow keys step between vertical slides. Space key steps through
+	// all slides (both horizontal and vertical).
+	//
+	// "linear"
+	// Removes the up/down arrows. Left/right arrows step through all
+	// slides (both horizontal and vertical).
+	//
+	// "grid"
+	// When this is enabled, stepping left/right from a vertical stack
+	// to an adjacent vertical stack will land you at the same vertical
+	// index.
+	//
+	// Consider a deck with six slides ordered in two vertical stacks:
+	// 1.1    2.1
+	// 1.2    2.2
+	// 1.3    2.3
+	//
+	// If you're on slide 1.3 and navigate right, you will normally move
+	// from 1.3 -> 2.1. If "grid" is used, the same navigation takes you
+	// from 1.3 -> 2.3.
+	navigationMode: 'default',
 
-  // Turns fragments on and off globally
-  fragments: true,
+	// Randomizes the order of slides each time the presentation loads
+	shuffle: false,
 
-  // Flags whether to include the current fragment in the URL,
-  // so that reloading brings you to the same fragment position
-  fragmentInURL: true,
+	// Turns fragments on and off globally
+	fragments: true,
 
-  // Flags if the presentation is running in an embedded mode,
-  // i.e. contained within a limited portion of the screen
-  embedded: false,
+	// Flags whether to include the current fragment in the URL,
+	// so that reloading brings you to the same fragment position
+	fragmentInURL: true,
 
-  // Flags if we should show a help overlay when the question-mark
-  // key is pressed
-  help: true,
+	// Flags if the presentation is running in an embedded mode,
+	// i.e. contained within a limited portion of the screen
+	embedded: false,
 
-  // Flags if it should be possible to pause the presentation (blackout)
-  pause: true,
+	// Flags if we should show a help overlay when the question-mark
+	// key is pressed
+	help: true,
 
-  // Flags if speaker notes should be visible to all viewers
-  showNotes: false,
+	// Flags if it should be possible to pause the presentation (blackout)
+	pause: true,
 
-  // Global override for autolaying embedded media (video/audio/iframe)
-  // - null:   Media will only autoplay if data-autoplay is present
-  // - true:   All media will autoplay, regardless of individual setting
-  // - false:  No media will autoplay, regardless of individual setting
-  autoPlayMedia: null,
+	// Flags if speaker notes should be visible to all viewers
+	showNotes: false,
 
-  // Global override for preloading lazy-loaded iframes
-  // - null:   Iframes with data-src AND data-preload will be loaded when within
-  //           the viewDistance, iframes with only data-src will be loaded when visible
-  // - true:   All iframes with data-src will be loaded when within the viewDistance
-  // - false:  All iframes with data-src will be loaded only when visible
-  preloadIframes: null,
+	// Global override for autolaying embedded media (video/audio/iframe)
+	// - null:   Media will only autoplay if data-autoplay is present
+	// - true:   All media will autoplay, regardless of individual setting
+	// - false:  No media will autoplay, regardless of individual setting
+	autoPlayMedia: null,
 
-  // Can be used to globally disable auto-animation
-  autoAnimate: true,
+	// Global override for preloading lazy-loaded iframes
+	// - null:   Iframes with data-src AND data-preload will be loaded when within
+	//           the viewDistance, iframes with only data-src will be loaded when visible
+	// - true:   All iframes with data-src will be loaded when within the viewDistance
+	// - false:  All iframes with data-src will be loaded only when visible
+	preloadIframes: null,
 
-  // Optionally provide a custom element matcher that will be
-  // used to dictate which elements we can animate between.
-  autoAnimateMatcher: null,
+	// Can be used to globally disable auto-animation
+	autoAnimate: true,
 
-  // Default settings for our auto-animate transitions, can be
-  // overridden per-slide or per-element via data arguments
-  autoAnimateEasing: "ease",
-  autoAnimateDuration: 1.0,
-  autoAnimateUnmatched: true,
+	// Optionally provide a custom element matcher that will be
+	// used to dictate which elements we can animate between.
+	autoAnimateMatcher: null,
 
-  // CSS properties that can be auto-animated. Position & scale
-  // is matched separately so there's no need to include styles
-  // like top/right/bottom/left, width/height or margin.
-  autoAnimateStyles: [
-    "opacity",
-    "color",
-    "background-color",
-    "padding",
-    "font-size",
-    "line-height",
-    "letter-spacing",
-    "border-width",
-    "border-color",
-    "border-radius",
-    "outline",
-    "outline-offset",
-  ],
+	// Default settings for our auto-animate transitions, can be
+	// overridden per-slide or per-element via data arguments
+	autoAnimateEasing: 'ease',
+	autoAnimateDuration: 1.0,
+	autoAnimateUnmatched: true,
 
-  // Controls automatic progression to the next slide
-  // - 0:      Auto-sliding only happens if the data-autoslide HTML attribute
-  //           is present on the current slide or fragment
-  // - 1+:     All slides will progress automatically at the given interval
-  // - false:  No auto-sliding, even if data-autoslide is present
-  autoSlide: 0,
+	// CSS properties that can be auto-animated. Position & scale
+	// is matched separately so there's no need to include styles
+	// like top/right/bottom/left, width/height or margin.
+	autoAnimateStyles: [
+		'opacity',
+		'color',
+		'background-color',
+		'padding',
+		'font-size',
+		'line-height',
+		'letter-spacing',
+		'border-width',
+		'border-color',
+		'border-radius',
+		'outline',
+		'outline-offset'
+	],
 
-  // Stop auto-sliding after user input
-  autoSlideStoppable: true,
+	// Controls automatic progression to the next slide
+	// - 0:      Auto-sliding only happens if the data-autoslide HTML attribute
+	//           is present on the current slide or fragment
+	// - 1+:     All slides will progress automatically at the given interval
+	// - false:  No auto-sliding, even if data-autoslide is present
+	autoSlide: 0,
 
-  // Use this method for navigation when auto-sliding (defaults to navigateNext)
-  autoSlideMethod: null,
+	// Stop auto-sliding after user input
+	autoSlideStoppable: true,
 
-  // Specify the average time in seconds that you think you will spend
-  // presenting each slide. This is used to show a pacing timer in the
-  // speaker view
-  defaultTiming: null,
+	// Use this method for navigation when auto-sliding (defaults to navigateNext)
+	autoSlideMethod: null,
 
-  // Enable slide navigation via mouse wheel
-  mouseWheel: false,
+	// Specify the average time in seconds that you think you will spend
+	// presenting each slide. This is used to show a pacing timer in the
+	// speaker view
+	defaultTiming: null,
 
-  // Opens links in an iframe preview overlay
-  // Add `data-preview-link` and `data-preview-link="false"` to customise each link
-  // individually
-  previewLinks: false,
+	// Enable slide navigation via mouse wheel
+	mouseWheel: false,
 
-  // Exposes the reveal.js API through window.postMessage
-  postMessage: true,
+	// Opens links in an iframe preview overlay
+	// Add `data-preview-link` and `data-preview-link="false"` to customise each link
+	// individually
+	previewLinks: false,
 
-  // Dispatches all reveal.js events to the parent window through postMessage
-  postMessageEvents: false,
+	// Exposes the reveal.js API through window.postMessage
+	postMessage: true,
 
-  // Focuses body when page changes visibility to ensure keyboard shortcuts work
-  focusBodyOnPageVisibilityChange: true,
+	// Dispatches all reveal.js events to the parent window through postMessage
+	postMessageEvents: false,
 
-  // Transition style
-  transition: "slide", // none/fade/slide/convex/concave/zoom
+	// Focuses body when page changes visibility to ensure keyboard shortcuts work
+	focusBodyOnPageVisibilityChange: true,
 
-  // Transition speed
-  transitionSpeed: "default", // default/fast/slow
+	// Transition style
+	transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-  // Transition style for full page slide backgrounds
-  backgroundTransition: "fade", // none/fade/slide/convex/concave/zoom
+	// Transition speed
+	transitionSpeed: 'default', // default/fast/slow
 
-  // Parallax background image
-  parallaxBackgroundImage: "", // CSS syntax, e.g. "a.jpg"
+	// Transition style for full page slide backgrounds
+	backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
 
-  // Parallax background size
-  parallaxBackgroundSize: "", // CSS syntax, e.g. "3000px 2000px"
+	// Parallax background image
+	parallaxBackgroundImage: '', // CSS syntax, e.g. "a.jpg"
 
-  // Parallax background repeat
-  parallaxBackgroundRepeat: "", // repeat/repeat-x/repeat-y/no-repeat/initial/inherit
+	// Parallax background size
+	parallaxBackgroundSize: '', // CSS syntax, e.g. "3000px 2000px"
 
-  // Parallax background position
-  parallaxBackgroundPosition: "", // CSS syntax, e.g. "top left"
+	// Parallax background repeat
+	parallaxBackgroundRepeat: '', // repeat/repeat-x/repeat-y/no-repeat/initial/inherit
 
-  // Amount of pixels to move the parallax background per slide step
-  parallaxBackgroundHorizontal: null,
-  parallaxBackgroundVertical: null,
+	// Parallax background position
+	parallaxBackgroundPosition: '', // CSS syntax, e.g. "top left"
 
-  // The maximum number of pages a single slide can expand onto when printing
-  // to PDF, unlimited by default
-  pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+	// Amount of pixels to move the parallax background per slide step
+	parallaxBackgroundHorizontal: null,
+	parallaxBackgroundVertical: null,
 
-  // Prints each fragment on a separate slide
-  pdfSeparateFragments: true,
+	// The maximum number of pages a single slide can expand onto when printing
+	// to PDF, unlimited by default
+	pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
 
-  // Offset used to reduce the height of content within exported PDF pages.
-  // This exists to account for environment differences based on how you
-  // print to PDF. CLI printing options, like phantomjs and wkpdf, can end
-  // on precisely the total height of the document whereas in-browser
-  // printing has to end one pixel before.
-  pdfPageHeightOffset: -1,
+	// Prints each fragment on a separate slide
+	pdfSeparateFragments: true,
 
-  // Number of slides away from the current that are visible
-  viewDistance: 3,
+	// Offset used to reduce the height of content within exported PDF pages.
+	// This exists to account for environment differences based on how you
+	// print to PDF. CLI printing options, like phantomjs and wkpdf, can end
+	// on precisely the total height of the document whereas in-browser
+	// printing has to end one pixel before.
+	pdfPageHeightOffset: -1,
 
-  // Number of slides away from the current that are visible on mobile
-  // devices. It is advisable to set this to a lower number than
-  // viewDistance in order to save resources.
-  mobileViewDistance: 2,
+	// Number of slides away from the current that are visible
+	viewDistance: 3,
 
-  // The display mode that will be used to show slides
-  display: "block",
+	// Number of slides away from the current that are visible on mobile
+	// devices. It is advisable to set this to a lower number than
+	// viewDistance in order to save resources.
+	mobileViewDistance: 2,
 
-  // Hide cursor if inactive
-  hideInactiveCursor: true,
+	// The display mode that will be used to show slides
+	display: 'block',
 
-  // Time before the cursor is hidden (in ms)
-  hideCursorTime: 5000,
+	// Hide cursor if inactive
+	hideInactiveCursor: true,
 
-  // Script dependencies to load
-  dependencies: [],
+	// Time before the cursor is hidden (in ms)
+	hideCursorTime: 5000,
 
-  // Plugin objects to register and use for this presentation
-  plugins: [],
-};
+	// Script dependencies to load
+	dependencies: [],
+
+	// Plugin objects to register and use for this presentation
+	plugins: []
+
+}

@@ -2,76 +2,95 @@
  * Creates a visual progress bar for the presentation.
  */
 export default class Progress {
-  constructor(Reveal) {
-    this.Reveal = Reveal;
 
-    this.onProgressClicked = this.onProgressClicked.bind(this);
-  }
+	constructor( Reveal ) {
 
-  render() {
-    this.element = document.createElement("div");
-    this.element.className = "progress";
-    this.Reveal.getRevealElement().appendChild(this.element);
+		this.Reveal = Reveal;
 
-    this.bar = document.createElement("span");
-    this.element.appendChild(this.bar);
-  }
+		this.onProgressClicked = this.onProgressClicked.bind( this );
 
-  /**
-   * Called when the reveal.js config is updated.
-   */
-  configure(config, oldConfig) {
-    this.element.style.display = config.progress ? "block" : "none";
-  }
+	}
 
-  bind() {
-    if (this.Reveal.getConfig().progress && this.element) {
-      this.element.addEventListener("click", this.onProgressClicked, false);
-    }
-  }
+	render() {
 
-  unbind() {
-    if (this.Reveal.getConfig().progress && this.element) {
-      this.element.removeEventListener("click", this.onProgressClicked, false);
-    }
-  }
+		this.element = document.createElement( 'div' );
+		this.element.className = 'progress';
+		this.Reveal.getRevealElement().appendChild( this.element );
 
-  /**
-   * Updates the progress bar to reflect the current slide.
-   */
-  update() {
-    // Update progress if enabled
-    if (this.Reveal.getConfig().progress && this.bar) {
-      this.bar.style.transform = "scaleX(" + this.Reveal.getProgress() + ")";
-    }
-  }
+		this.bar = document.createElement( 'span' );
+		this.element.appendChild( this.bar );
 
-  getMaxWidth() {
-    return this.Reveal.getRevealElement().offsetWidth;
-  }
+	}
 
-  /**
-   * Clicking on the progress bar results in a navigation to the
-   * closest approximate horizontal slide using this equation:
-   *
-   * ( clickX / presentationWidth ) * numberOfSlides
-   *
-   * @param {object} event
-   */
-  onProgressClicked(event) {
-    this.Reveal.onUserInput(event);
+	/**
+	 * Called when the reveal.js config is updated.
+	 */
+	configure( config, oldConfig ) {
 
-    event.preventDefault();
+		this.element.style.display = config.progress ? 'block' : 'none';
 
-    let slidesTotal = this.Reveal.getHorizontalSlides().length;
-    let slideIndex = Math.floor(
-      (event.clientX / this.getMaxWidth()) * slidesTotal
-    );
+	}
 
-    if (this.Reveal.getConfig().rtl) {
-      slideIndex = slidesTotal - slideIndex;
-    }
+	bind() {
 
-    this.Reveal.slide(slideIndex);
-  }
+		if( this.Reveal.getConfig().progress && this.element ) {
+			this.element.addEventListener( 'click', this.onProgressClicked, false );
+		}
+
+	}
+
+	unbind() {
+
+		if ( this.Reveal.getConfig().progress && this.element ) {
+			this.element.removeEventListener( 'click', this.onProgressClicked, false );
+		}
+
+	}
+
+	/**
+	 * Updates the progress bar to reflect the current slide.
+	 */
+	update() {
+
+		// Update progress if enabled
+		if( this.Reveal.getConfig().progress && this.bar ) {
+
+			this.bar.style.transform = 'scaleX('+ this.Reveal.getProgress() +')';
+
+		}
+
+	}
+
+	getMaxWidth() {
+
+		return this.Reveal.getRevealElement().offsetWidth;
+
+	}
+
+	/**
+	 * Clicking on the progress bar results in a navigation to the
+	 * closest approximate horizontal slide using this equation:
+	 *
+	 * ( clickX / presentationWidth ) * numberOfSlides
+	 *
+	 * @param {object} event
+	 */
+	onProgressClicked( event ) {
+
+		this.Reveal.onUserInput( event );
+
+		event.preventDefault();
+
+		let slidesTotal = this.Reveal.getHorizontalSlides().length;
+		let slideIndex = Math.floor( ( event.clientX / this.getMaxWidth() ) * slidesTotal );
+
+		if( this.Reveal.getConfig().rtl ) {
+			slideIndex = slidesTotal - slideIndex;
+		}
+
+		this.Reveal.slide( slideIndex );
+
+	}
+
+
 }

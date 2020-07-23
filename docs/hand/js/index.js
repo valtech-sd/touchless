@@ -4,21 +4,11 @@
 // const Markdown = require('../node_modules/reveal.js/plugin/markdown/markdown.esm.js');
 // const {Reveal, Markdown}
 
-const {
-  styler,
-  inertia,
-  listen,
-  pointer,
-  value,
-  calc,
-  tween,
-  easing,
-} = window.popmotion;
-const boundaries = document.querySelector(".carousel");
-const box = document.querySelector(".item");
-const boxes = document.querySelectorAll(".item");
-const getBoundariesWidth = () =>
-  boundaries.getBoundingClientRect().width - box.getBoundingClientRect().width;
+const { styler, inertia, listen, pointer, value, calc, tween, easing } = window.popmotion;
+const boundaries = document.querySelector('.carousel');
+const box = document.querySelector('.item');
+const boxes = document.querySelectorAll('.item');
+const getBoundariesWidth = () => boundaries.getBoundingClientRect().width - box.getBoundingClientRect().width;
 const divStylers = [];
 let detectable = true;
 let swipeIndex = 3;
@@ -30,24 +20,25 @@ let middleIndex = swipeIndex;
 // deck.initialize();
 
 const config = {
-  video: { width: 320, height: 240, fps: 30 },
+  video: { width: 320, height: 240, fps: 30 }
 };
 
 const landmarkColors = {
-  thumb: "red",
-  indexFinger: "blue",
-  middleFinger: "yellow",
-  ringFinger: "green",
-  pinky: "pink",
-  palmBase: "white",
+  thumb: 'red',
+  indexFinger: 'blue',
+  middleFinger: 'yellow',
+  ringFinger: 'green',
+  pinky: 'pink',
+  palmBase: 'white'
 };
 
 const gestureStrings = {
-  thumbs_up: "👍",
-  victory: "✌🏻",
+  'thumbs_up': '👍',
+  'victory': '✌🏻'
 };
 
 async function main() {
+
   const video = document.querySelector("#pose-video");
   const canvas = document.querySelector("#pose-canvas");
   const ctx = canvas.getContext("2d");
@@ -57,7 +48,7 @@ async function main() {
   // add "✌🏻" and "👍" as sample gestures
   const knownGestures = [
     fp.Gestures.VictoryGesture,
-    fp.Gestures.ThumbsUpGesture,
+    fp.Gestures.ThumbsUpGesture
   ];
   const GE = new fp.GestureEstimator(knownGestures);
 
@@ -67,9 +58,10 @@ async function main() {
 
   // main estimation loop
   const estimateHands = async () => {
+
     // clear canvas overlay
     ctx.clearRect(0, 0, config.video.width, config.video.height);
-    resultLayer.innerText = "";
+    resultLayer.innerText = '';
 
     // get hand landmarks from video
     // Note: Handpose currently only detects one hand at a time
@@ -77,6 +69,7 @@ async function main() {
     const predictions = await model.estimateHands(video, true);
 
     for (let i = 0; i < predictions.length; i++) {
+
       // draw colored dots at each predicted joint position
       // for (let part in predictions[i].annotations) {
       //   for (let point of predictions[i].annotations[part]) {
@@ -90,21 +83,22 @@ async function main() {
       let distance = 1000;
 
       if (est.gestures.length > 0) {
+
         // find gesture with highest confidence
         let result = est.gestures.reduce((p, c) => {
-          return p.confidence > c.confidence ? p : c;
+          return (p.confidence > c.confidence) ? p : c;
         });
 
         // resultLayer.innerText = gestureStrings[result.name];
-        if (result.name == "thumbs_up" && detectable) {
+        if (result.name == 'thumbs_up' && detectable ) {
           detectable = false;
-          console.log("👍");
+          console.log('👍')
           swipeIndex++;
           Reveal.next();
           setTimeout(activateDetection, 500);
-        } else if (result.name == "victory" && detectable) {
+        } else if (result.name == 'victory' && detectable) {
           detectable = false;
-          console.log("✌🏻");
+          console.log('✌🏻')
           Reveal.prev();
           setTimeout(activateDetection, 500);
           swipeIndex--;
@@ -113,24 +107,24 @@ async function main() {
     }
 
     // ...and so on
-    setTimeout(() => {
-      estimateHands();
-    }, 1000 / config.video.fps);
+    setTimeout(() => { estimateHands(); }, 1000 / config.video.fps);
   };
 
   estimateHands().then(hideLoadingOverlay());
   console.log("Starting predictions");
+  
 }
 
 async function initCamera(width, height, fps) {
+
   const constraints = {
     audio: false,
     video: {
       facingMode: "user",
       width: width,
       height: height,
-      frameRate: { max: fps },
-    },
+      frameRate: { max: fps }
+    }
   };
 
   const video = document.querySelector("#pose-video");
@@ -141,10 +135,8 @@ async function initCamera(width, height, fps) {
   const stream = await navigator.mediaDevices.getUserMedia(constraints);
   video.srcObject = stream;
 
-  return new Promise((resolve) => {
-    video.onloadedmetadata = () => {
-      resolve(video);
-    };
+  return new Promise(resolve => {
+    video.onloadedmetadata = () => { resolve(video) };
   });
 }
 
@@ -159,21 +151,22 @@ function activateDetection() {
   detectable = true;
 }
 
-function hideLoadingOverlay() {
+function hideLoadingOverlay(){
   console.log("hide loading page");
-  document.querySelector("#loading").style.display = "none";
+  document.querySelector("#loading").style.display = 'none';
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  initCamera(config.video.width, config.video.height, config.video.fps).then(
-    (video) => {
-      video.play();
-      video.addEventListener("loadeddata", (event) => {
-        console.log("Camera is ready");
-        main();
-      });
-    }
-  );
+
+  initCamera(
+    config.video.width, config.video.height, config.video.fps
+  ).then(video => {
+    video.play();
+    video.addEventListener("loadeddata", event => {
+      console.log("Camera is ready");
+      main();
+    });
+  });
 
   const canvas = document.querySelector("#pose-canvas");
   canvas.width = config.video.width;

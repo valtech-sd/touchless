@@ -5,34 +5,42 @@
  * @param {function} callback Method to invoke when the script
  * has loaded and executed
  */
-export const loadScript = (url, callback) => {
-  const script = document.createElement("script");
-  script.type = "text/javascript";
-  script.async = false;
-  script.defer = false;
-  script.src = url;
+export const loadScript = ( url, callback ) => {
 
-  if (typeof callback === "function") {
-    // Success callback
-    script.onload = script.onreadystatechange = (event) => {
-      if (event.type === "load" || /loaded|complete/.test(script.readyState)) {
-        // Kill event listeners
-        script.onload = script.onreadystatechange = script.onerror = null;
+	const script = document.createElement( 'script' );
+	script.type = 'text/javascript';
+	script.async = false;
+	script.defer = false;
+	script.src = url;
 
-        callback();
-      }
-    };
+	if( typeof callback === 'function' ) {
 
-    // Error callback
-    script.onerror = (err) => {
-      // Kill event listeners
-      script.onload = script.onreadystatechange = script.onerror = null;
+		// Success callback
+		script.onload = script.onreadystatechange = event => {
+			if( event.type === 'load' || /loaded|complete/.test( script.readyState ) ) {
 
-      callback(new Error("Failed loading script: " + script.src + "\n" + err));
-    };
-  }
+				// Kill event listeners
+				script.onload = script.onreadystatechange = script.onerror = null;
 
-  // Append the script at the end of <head>
-  const head = document.querySelector("head");
-  head.insertBefore(script, head.lastChild);
-};
+				callback();
+
+			}
+		};
+
+		// Error callback
+		script.onerror = err => {
+
+			// Kill event listeners
+			script.onload = script.onreadystatechange = script.onerror = null;
+
+			callback( new Error( 'Failed loading script: ' + script.src + '\n' + err ) );
+
+		};
+
+	}
+
+	// Append the script at the end of <head>
+	const head = document.querySelector( 'head' );
+	head.insertBefore( script, head.lastChild );
+
+}
