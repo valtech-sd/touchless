@@ -3,149 +3,163 @@
  * playback via play/pause.
  */
 export default class Playback {
-  /**
-   * @param {HTMLElement} container The component will append
-   * itself to this
-   * @param {function} progressCheck A method which will be
-   * called frequently to get the current playback progress on
-   * a range of 0-1
-   */
-  constructor(container, progressCheck) {
-    // Cosmetics
-    this.diameter = 100;
-    this.diameter2 = this.diameter / 2;
-    this.thickness = 6;
 
-    // Flags if we are currently playing
-    this.playing = false;
+	/**
+	 * @param {HTMLElement} container The component will append
+	 * itself to this
+	 * @param {function} progressCheck A method which will be
+	 * called frequently to get the current playback progress on
+	 * a range of 0-1
+	 */
+	constructor( container, progressCheck ) {
 
-    // Current progress on a 0-1 range
-    this.progress = 0;
+		// Cosmetics
+		this.diameter = 100;
+		this.diameter2 = this.diameter/2;
+		this.thickness = 6;
 
-    // Used to loop the animation smoothly
-    this.progressOffset = 1;
+		// Flags if we are currently playing
+		this.playing = false;
 
-    this.container = container;
-    this.progressCheck = progressCheck;
+		// Current progress on a 0-1 range
+		this.progress = 0;
 
-    this.canvas = document.createElement("canvas");
-    this.canvas.className = "playback";
-    this.canvas.width = this.diameter;
-    this.canvas.height = this.diameter;
-    this.canvas.style.width = this.diameter2 + "px";
-    this.canvas.style.height = this.diameter2 + "px";
-    this.context = this.canvas.getContext("2d");
+		// Used to loop the animation smoothly
+		this.progressOffset = 1;
 
-    this.container.appendChild(this.canvas);
+		this.container = container;
+		this.progressCheck = progressCheck;
 
-    this.render();
-  }
+		this.canvas = document.createElement( 'canvas' );
+		this.canvas.className = 'playback';
+		this.canvas.width = this.diameter;
+		this.canvas.height = this.diameter;
+		this.canvas.style.width = this.diameter2 + 'px';
+		this.canvas.style.height = this.diameter2 + 'px';
+		this.context = this.canvas.getContext( '2d' );
 
-  setPlaying(value) {
-    const wasPlaying = this.playing;
+		this.container.appendChild( this.canvas );
 
-    this.playing = value;
+		this.render();
 
-    // Start repainting if we weren't already
-    if (!wasPlaying && this.playing) {
-      this.animate();
-    } else {
-      this.render();
-    }
-  }
+	}
 
-  animate() {
-    const progressBefore = this.progress;
+	setPlaying( value ) {
 
-    this.progress = this.progressCheck();
+		const wasPlaying = this.playing;
 
-    // When we loop, offset the progress so that it eases
-    // smoothly rather than immediately resetting
-    if (progressBefore > 0.8 && this.progress < 0.2) {
-      this.progressOffset = this.progress;
-    }
+		this.playing = value;
 
-    this.render();
+		// Start repainting if we weren't already
+		if( !wasPlaying && this.playing ) {
+			this.animate();
+		}
+		else {
+			this.render();
+		}
 
-    if (this.playing) {
-      requestAnimationFrame(this.animate.bind(this));
-    }
-  }
+	}
 
-  /**
-   * Renders the current progress and playback state.
-   */
-  render() {
-    let progress = this.playing ? this.progress : 0,
-      radius = this.diameter2 - this.thickness,
-      x = this.diameter2,
-      y = this.diameter2,
-      iconSize = 28;
+	animate() {
 
-    // Ease towards 1
-    this.progressOffset += (1 - this.progressOffset) * 0.1;
+		const progressBefore = this.progress;
 
-    const endAngle = -Math.PI / 2 + progress * (Math.PI * 2);
-    const startAngle = -Math.PI / 2 + this.progressOffset * (Math.PI * 2);
+		this.progress = this.progressCheck();
 
-    this.context.save();
-    this.context.clearRect(0, 0, this.diameter, this.diameter);
+		// When we loop, offset the progress so that it eases
+		// smoothly rather than immediately resetting
+		if( progressBefore > 0.8 && this.progress < 0.2 ) {
+			this.progressOffset = this.progress;
+		}
 
-    // Solid background color
-    this.context.beginPath();
-    this.context.arc(x, y, radius + 4, 0, Math.PI * 2, false);
-    this.context.fillStyle = "rgba( 0, 0, 0, 0.4 )";
-    this.context.fill();
+		this.render();
 
-    // Draw progress track
-    this.context.beginPath();
-    this.context.arc(x, y, radius, 0, Math.PI * 2, false);
-    this.context.lineWidth = this.thickness;
-    this.context.strokeStyle = "rgba( 255, 255, 255, 0.2 )";
-    this.context.stroke();
+		if( this.playing ) {
+			requestAnimationFrame( this.animate.bind( this ) );
+		}
 
-    if (this.playing) {
-      // Draw progress on top of track
-      this.context.beginPath();
-      this.context.arc(x, y, radius, startAngle, endAngle, false);
-      this.context.lineWidth = this.thickness;
-      this.context.strokeStyle = "#fff";
-      this.context.stroke();
-    }
+	}
 
-    this.context.translate(x - iconSize / 2, y - iconSize / 2);
+	/**
+	 * Renders the current progress and playback state.
+	 */
+	render() {
 
-    // Draw play/pause icons
-    if (this.playing) {
-      this.context.fillStyle = "#fff";
-      this.context.fillRect(0, 0, iconSize / 2 - 4, iconSize);
-      this.context.fillRect(iconSize / 2 + 4, 0, iconSize / 2 - 4, iconSize);
-    } else {
-      this.context.beginPath();
-      this.context.translate(4, 0);
-      this.context.moveTo(0, 0);
-      this.context.lineTo(iconSize - 4, iconSize / 2);
-      this.context.lineTo(0, iconSize);
-      this.context.fillStyle = "#fff";
-      this.context.fill();
-    }
+		let progress = this.playing ? this.progress : 0,
+			radius = ( this.diameter2 ) - this.thickness,
+			x = this.diameter2,
+			y = this.diameter2,
+			iconSize = 28;
 
-    this.context.restore();
-  }
+		// Ease towards 1
+		this.progressOffset += ( 1 - this.progressOffset ) * 0.1;
 
-  on(type, listener) {
-    this.canvas.addEventListener(type, listener, false);
-  }
+		const endAngle = ( - Math.PI / 2 ) + ( progress * ( Math.PI * 2 ) );
+		const startAngle = ( - Math.PI / 2 ) + ( this.progressOffset * ( Math.PI * 2 ) );
 
-  off(type, listener) {
-    this.canvas.removeEventListener(type, listener, false);
-  }
+		this.context.save();
+		this.context.clearRect( 0, 0, this.diameter, this.diameter );
 
-  destroy() {
-    this.playing = false;
+		// Solid background color
+		this.context.beginPath();
+		this.context.arc( x, y, radius + 4, 0, Math.PI * 2, false );
+		this.context.fillStyle = 'rgba( 0, 0, 0, 0.4 )';
+		this.context.fill();
 
-    if (this.canvas.parentNode) {
-      this.container.removeChild(this.canvas);
-    }
-  }
+		// Draw progress track
+		this.context.beginPath();
+		this.context.arc( x, y, radius, 0, Math.PI * 2, false );
+		this.context.lineWidth = this.thickness;
+		this.context.strokeStyle = 'rgba( 255, 255, 255, 0.2 )';
+		this.context.stroke();
+
+		if( this.playing ) {
+			// Draw progress on top of track
+			this.context.beginPath();
+			this.context.arc( x, y, radius, startAngle, endAngle, false );
+			this.context.lineWidth = this.thickness;
+			this.context.strokeStyle = '#fff';
+			this.context.stroke();
+		}
+
+		this.context.translate( x - ( iconSize / 2 ), y - ( iconSize / 2 ) );
+
+		// Draw play/pause icons
+		if( this.playing ) {
+			this.context.fillStyle = '#fff';
+			this.context.fillRect( 0, 0, iconSize / 2 - 4, iconSize );
+			this.context.fillRect( iconSize / 2 + 4, 0, iconSize / 2 - 4, iconSize );
+		}
+		else {
+			this.context.beginPath();
+			this.context.translate( 4, 0 );
+			this.context.moveTo( 0, 0 );
+			this.context.lineTo( iconSize - 4, iconSize / 2 );
+			this.context.lineTo( 0, iconSize );
+			this.context.fillStyle = '#fff';
+			this.context.fill();
+		}
+
+		this.context.restore();
+
+	}
+
+	on( type, listener ) {
+		this.canvas.addEventListener( type, listener, false );
+	}
+
+	off( type, listener ) {
+		this.canvas.removeEventListener( type, listener, false );
+	}
+
+	destroy() {
+
+		this.playing = false;
+
+		if( this.canvas.parentNode ) {
+			this.container.removeChild( this.canvas );
+		}
+
+	}
+
 }
