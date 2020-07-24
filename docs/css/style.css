@@ -80,6 +80,7 @@ li {
 
 .text-image-container {
   display: flex;
+  flex-direction: row;
 }
 
 .text-image-container .text-box {
