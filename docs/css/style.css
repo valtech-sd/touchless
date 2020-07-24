@@ -117,7 +117,7 @@ a:focus {
   outline: none;
 }
 
-a:hover {
+#citations-container a:hover {
   background: #dcdcdc;
 }
 
@@ -147,7 +147,7 @@ a:hover {
 }
 
 .poc-video-wrapper video {
-  border: black 1px solid;
+  /* border: black 1px solid; */
 }
 
 #flex-sublist {
