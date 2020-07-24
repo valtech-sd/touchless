@@ -28,10 +28,10 @@ body {
 }
 #annotation-details {
   float: right;
-  width:30%;
+  width:32.5%;
   font-size: 0.8em;
   height:100%;
-  transform:translateY(-30%);
+  transform:translateY(10%);
 
 }
 
@@ -78,15 +78,17 @@ body {
   position: absolute;
   bottom: 2em;
   left: 2em;
+  width:8em;
+  height:10em;
 }
 
 #placeHolder {
   display: flex;
   align-content: bottom;
   align-self: center;
-  padding: 30px 10px 10px 10px;
-  width: 6em;
-  height: 5em;
+  padding: 20% 0 0 0;
+  width: 100%;
+  height: 100%;
   justify-content: center;
 }
 
@@ -121,11 +123,15 @@ body {
 }
 
 model-viewer {
-  width: 100%;
-  height: 50%;
+  width: 100% !important;
+  height: 100%;
   background-color: #000000;
   overflow:hidden;
   position:absolute;
+}
+model-viewer .container{
+  width: 100% !important;
+  height: 100% !important;
 }
 
 
