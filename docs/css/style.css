@@ -74,6 +74,15 @@ li {
   margin: 10px 0px;
 }
 
+#citations-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 120px;
+  background: white;
+  color: black;
+}
+
 .text-box {
   /* padding: 50px 0px; */
 }
@@ -233,6 +242,10 @@ a:visited {
   }
 
   #poc-container {
+    padding: 3em 17em;
+  }
+
+  #citations-container {
     padding: 3em 17em;
   }
 }
