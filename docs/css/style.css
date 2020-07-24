@@ -48,7 +48,7 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 120px;
+  padding: 2em 6em;
   background: white;
   color: black;
 }
@@ -78,13 +78,13 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 120px;
+  padding: 2em 6em;
   background: white;
   color: black;
 }
 
 .text-box {
-  /* padding: 50px 0px; */
+  padding-bottom: 0.5em;
 }
 
 .text-image-container {
@@ -111,6 +111,14 @@ a:visited {
   color: #00B0BA;
   font-weight: bold;
   text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+a:hover {
+  background: #dcdcdc;
 }
 
 #title-text {
@@ -175,13 +183,13 @@ a:visited {
 .links-container {
   display: flex;
   align-items: center;
-  padding: 60px 120px;
+  padding: 2em 6em;
   background: white;
   color: black;
 }
 
-/* Custom image settings for phones */
-@media only screen and (max-width: 600px) {
+/* Custom settings for screens smaller than 1440px */
+@media only screen and (max-width: 1440px) {
   .text-image-container {
     flex-direction: column;
     justify-content: center;
