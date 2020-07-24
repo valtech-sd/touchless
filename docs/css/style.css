@@ -22,7 +22,7 @@ li {
 #img-container {
   margin: 30px 30px 40px 30px;
   display: flex;
-  height: 60vh;
+  height: 40vh;
   align-items: center;
   object-fit: contain;
   background-image: url("/images/airport.jpg");
@@ -67,6 +67,7 @@ li {
   color: black;
   font-size: 42px;
   margin: 30px 0px 10px 0px;
+  font-weight: 600;
 }
 
 .poc-description {
@@ -146,6 +147,10 @@ a:focus {
   margin-right: 150px;
 }
 
+.poc-video-wrapper {
+  width: 50%;
+}
+
 .poc-video-wrapper video {
   /* border: black 1px solid; */
 }
@@ -189,7 +194,11 @@ a:focus {
 }
 
 /* Custom settings for screens smaller than 1440px */
-@media only screen and (max-width: 1440px) {
+@media only screen and (max-width: 1440px) { 
+  body {
+    font-size: 1.8em;
+  }
+
   .text-image-container {
     flex-direction: column;
     justify-content: center;
@@ -211,12 +220,13 @@ a:focus {
   }
 
   .poc-text-wrapper {
-    order: 2;
+    /* order: 2; */
     margin-right: 0px;
+    margin-bottom: 20px;
   }
 
   .poc-video-wrapper {
-    order: 1;
+    /* order: 1; */
     position: relative;
     overflow: hidden;
     width: 100%;
