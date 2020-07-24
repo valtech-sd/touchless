@@ -15,12 +15,37 @@ body {
   --poster-color: transparent
 }
 
-#annotation {
+#annotation-name {
   height: 50%;
   font-size: 2.5em;
   transform: translate(10px, 50%);
   padding: 0px 0px 100px 100px;
 }
+
+#details-title{
+  font-size: 1.5em;
+  padding:0em 0em 2em 0em;
+}
+#annotation-details {
+  float: right;
+  width:30%;
+  font-size: 0.8em;
+  height:100%;
+  transform:translateY(-30%);
+
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+} 
 
 #flex-container {
   display: flex;
@@ -88,34 +113,37 @@ body {
   height: 100%;
 }
 
+#model-container{
+  height:100%;
+  width:100%;
+  display: flex;
+  align-items: center;
+}
 
 model-viewer {
   width: 100%;
-  height: 400px;
+  height: 50%;
   background-color: #000000;
+  overflow:hidden;
+  position:absolute;
 }
 
 
 .carousel {
-  display: flex;
+  position: absolute;
+  display:flex;
   background: #000000;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 400px;
-  position: relative;
+  height: 100%;
   width: 100%;
-  border-radius: 5px;
-  transform: translate(50%, 50%);
-
+  transform:translateX(-300%);
 }
 
 .carousel .item {
   height: 100%;
   width: 100%;
   flex: 0 0 100%;
-  border-radius: 5px;
-  margin-right: 15px;
+  /* border-radius: 5px; */
+  /* margin-right: 15px; */
   background-repeat: no-repeat;
   background-position: center center;
 
