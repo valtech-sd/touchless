@@ -25,54 +25,233 @@
 <body>
   <div class="carousel">
     <div class="item">
-      <model-viewer src="models/sun.glb" id="sun" auto-rotate camera-controls>
-        <div id="annotation">SUN</div>
-      </model-viewer>
+      <div id="model-container">
+        <model-viewer src="models/sun.glb" id="sun" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          <div id="annotation-name">SUN</div>
+          <div id="annotation-details">
+            <div id="details-title"> SUN FACTS</div>
+            <div class="row">
+              <div class="column">Average Speed From Galactic Center:</div>
+              <div class="column">136.2 miles per second</div>
+              <div class="column">Diameter:</div>
+              <div class="column">865,370 miles</div>
+              <div class="column">Chemical composition:</div>
+              <div class="column">Hydrogen, helium, oxygen, carbon, neon, nitrogen, magnesium, iron and silicon</div>
+              <div class="column">Temperature:</div>
+              <div class="column">11,000 F - 7470 F</div>
+            </div>
+          </div>
+        </model-viewer>
+      </div>
     </div>
     <div class="item">
-      <model-viewer src="models/mercury.glb" id="mercury" auto-rotate camera-controls>
-        <div id="annotation">MERCURY</div>
-      </model-viewer>
+      <div id="model-container">
+        <model-viewer src="models/mercury.glb" id="mercury" auto-rotate camera-controls
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          <div id="annotation-name">MERCURY</div>
+          <div id="annotation-details">
+            <div id="details-title"> MERCURY FACTS</div>
+            <div class="row">
+              <div class="column">Average Distance from Sun:</div>
+              <div class="column">32.743 million miles</div>
+              <div class="column">Average Speed Orbiting Sun:</div>
+              <div class="column">29.2 miles per second</div>
+              <div class="column">Diameter:</div>
+              <div class="column">3,031.9 miles</div>
+              <div class="column">Tilt of Axis:</div>
+              <div class="column">2 degrees</div>
+              <div class="column">Length of Year:</div>
+              <div class="column">88 days Earth Days</div>
+            </div>
+          </div>
+        </model-viewer>
+      </div>
     </div>
     <div class="item">
-      <model-viewer src="models/venus.glb" id="venus" auto-rotate camera-controls>
-        <div id="annotation">VENUS</div>
-      </model-viewer>
+      <div id="model-container">
+        <model-viewer src="models/venus.glb" id="venus" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          <div id="annotation-name">VENUS</div>
+          <div id="annotation-details">
+            <div id="details-title"> VENUS FACTS</div>
+            <div class="row">
+              <div class="column">Average Distance from Sun:</div>
+              <div class="column">67.662 million miles</div>
+              <div class="column">Average Speed Orbiting Sun:</div>
+              <div class="column">21.75 miles per second</div>
+              <div class="column">Diameter:</div>
+              <div class="column">7,520.8 miles</div>
+              <div class="column">Tilt of Axis:</div>
+              <div class="column">3 degrees</div>
+              <div class="column">Length of Year:</div>
+              <div class="column">225 days Earth Days</div>
+            </div>
+          </div>
+
+        </model-viewer>
+      </div>
     </div>
     <div class="item">
-      <model-viewer src="models/earth.glb" id="earth" auto-rotate camera-controls>
-        <div id="annotation">EARTH</div>
-      </model-viewer>
+      <div id="model-container">
+        <model-viewer src="models/earth.glb" id="earth" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          <div id="annotation-name">EARTH</div>
+          <div id="annotation-details">
+            <div id="details-title"> EARTH FACTS</div>
+            <div class="row">
+              <div class="column">Average Distance from Sun:</div>
+              <div class="column">93 million miles</div>
+              <div class="column">Average Speed Orbiting Sun:</div>
+              <div class="column">18.5 miles per second</div>
+              <div class="column">Diameter:</div>
+              <div class="column">7,926 miles</div>
+              <div class="column">Tilt of Axis:</div>
+              <div class="column">23.5 degrees</div>
+              <div class="column">Length of Year:</div>
+              <div class="column">365.25 Days</div>
+            </div>
+          </div>
+        </model-viewer>
+      </div>
     </div>
     <div class="item">
-      <model-viewer src="models/mars.glb" id="mars" auto-rotate camera-controls>
-        <div id="annotation">MARS</div>
-      </model-viewer>
+      <div id="model-container">
+        <model-viewer src="models/mars.glb" id="mars" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          <div id="annotation-name">MARS</div>
+          <div id="annotation-details">
+            <div id="details-title"> MARS FACTS</div>
+            <div class="row">
+              <div class="column">Average Distance from Sun:</div>
+              <div class="column">142 million miles</div>
+              <div class="column">Average Speed Orbiting Sun:</div>
+              <div class="column">14.5 miles per second</div>
+              <div class="column">Diameter:</div>
+              <div class="column">4,220 miles</div>
+              <div class="column">Tilt of Axis:</div>
+              <div class="column">25 degrees</div>
+              <div class="column">Length of Year:</div>
+              <div class="column">687 Earth Days</div>
+            </div>
+          </div>
+        </model-viewer>
+      </div>
     </div>
     <div class="item">
-      <model-viewer src="models/jupiter.glb" id="jupiter" auto-rotate camera-controls>
-        <div id="annotation">JUPITER</div>
-      </model-viewer>
+      <div id="model-container">
+        <model-viewer src="models/jupiter.glb" id="jupiter" auto-rotate camera-controls
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          <div id="annotation-name">JUPITER</div>
+          <div id="annotation-details">
+            <div id="details-title"> JUPITER FACTS</div>
+            <div class="row">
+              <div class="column">Average Distance from Sun:</div>
+              <div class="column">479 million miles</div>
+              <div class="column">Average Speed Orbiting Sun:</div>
+              <div class="column">8.12 miles per second</div>
+              <div class="column">Diameter:</div>
+              <div class="column">86,881 miles</div>
+              <div class="column">Tilt of Axis:</div>
+              <div class="column">3.13 degrees</div>
+              <div class="column">Length of Year:</div>
+              <div class="column">4,333 Earth Days</div>
+            </div>
+          </div>
+        </model-viewer>
+      </div>
     </div>
     <div class="item">
-      <model-viewer src="models/saturn.glb" id="saturn" auto-rotate camera-controls>
-        <div id="annotation">SATURN</div>
-      </model-viewer>
+      <div id="model-container">
+        <model-viewer src="models/saturn.glb" id="saturn" auto-rotate camera-controls max-camera-orbit='auto auto 3000m'
+          min-camera-orbit='auto auto 3000m' camera-orbit='auto auto 3000m'>
+          <div id="annotation-name">SATURN</div>
+          <div id="annotation-details">
+            <div id="details-title"> SATURN FACTS</div>
+            <div class="row">
+              <div class="column">Average Distance from Sun:</div>
+              <div class="column">928.78 million miles</div>
+              <div class="column">Average Speed Orbiting Sun:</div>
+              <div class="column">6.01 miles per second</div>
+              <div class="column">Diameter:</div>
+              <div class="column">72,367 miles</div>
+              <div class="column">Tilt of Axis:</div>
+              <div class="column">26.73 degrees</div>
+              <div class="column">Length of Year:</div>
+              <div class="column">10,756 Earth Days</div>
+            </div>
+          </div>
+        </model-viewer>
+      </div>
     </div>
     <div class="item">
-      <model-viewer src="models/uranus.glb" id="uranus" auto-rotate camera-controls>
-        <div id="annotation">URANUS</div>
-      </model-viewer>
+      <div id="model-container">
+        <model-viewer src="models/uranus.glb" id="uranus" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          <div id="annotation-name">URANUS</div>
+          <div id="annotation-details">
+            <div id="details-title"> URANUS FACTS</div>
+            <div class="row">
+              <div class="column">Average Distance from Sun:</div>
+              <div class="column">1.8398 billion miles</div>
+              <div class="column">Average Speed Orbiting Sun:</div>
+              <div class="column">3.37 miles per second</div>
+              <div class="column">Diameter:</div>
+              <div class="column">30,599 miles</div>
+              <div class="column">Tilt of Axis:</div>
+              <div class="column">97.77 degrees</div>
+              <div class="column">Length of Year:</div>
+              <div class="column">30,687 Earth Days</div>
+            </div>
+          </div>
+        </model-viewer>
+      </div>
     </div>
     <div class="item">
-      <model-viewer src="models/neptune.glb" id="neptune" auto-rotate camera-controls>
-        <div id="annotation">NEPTUNE</div>
-      </model-viewer>
+      <div id="model-container">
+        <model-viewer src="models/neptune.glb" id="neptune" auto-rotate camera-controls
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          <div id="annotation-name">NEPTUNE</div>
+          <div id="annotation-details">
+            <div id="details-title"> NEPTUNE FACTS</div>
+            <div class="row">
+              <div class="column">Average Distance from Sun:</div>
+              <div class="column">2.7816 billion miles</div>
+              <div class="column">Average Speed Orbiting Sun:</div>
+              <div class="column">8.12 miles per second</div>
+              <div class="column">Diameter:</div>
+              <div class="column">31,518 miles</div>
+              <div class="column">Tilt of Axis:</div>
+              <div class="column">28 degrees</div>
+              <div class="column">Length of Year:</div>
+              <div class="column">60,190 Earth Days</div>
+            </div>
+          </div>
+        </model-viewer>
+      </div>
     </div>
     <div class="item">
-      <model-viewer src="models/pluto.glb" id="pluto" auto-rotate camera-controls>
-        <div id="annotation">PLUTO</div>
-      </model-viewer>
+      <div id="model-container">
+        <model-viewer src="models/pluto.glb" id="pluto" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          <div id="annotation-name">PLUTO</div>
+          <div id="annotation-details">
+            <div id="details-title"> PLUTO FACTS</div>
+            <div class="row">
+              <div class="column">Average Distance from Sun:</div>
+              <div class="column">3.7 billion miles</div>
+              <div class="column">Average Speed Orbiting Sun:</div>
+              <div class="column">2.95 miles per second</div>
+              <div class="column">Diameter:</div>
+              <div class="column">1,476.8 miles</div>
+              <div class="column">Tilt of Axis:</div>
+              <div class="column">119.5 degrees</div>
+              <div class="column">Length of Year:</div>
+              <div class="column">90,560 Earth Days</div>
+            </div>
+          </div>
+        </model-viewer>
+      </div>
     </div>
   </div>
   <div id="link-debug"></div>
@@ -82,8 +261,8 @@
     <div id="placeHolder"> </div>
   </div>
   <!--google model viewer-->
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+  <script type="module"
+    src="https://modelviewer.dev/node_modules/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
@@ -138,8 +317,8 @@
     const divStylers = [];
 
     let distance = screen.width;
-    let planetIndex = 5; // begin at mars
-    let elementId = 'mars';
+    let planetIndex = 4; // begin at mars
+    let elementId = 'earth';
     [].forEach.call(boxes, function (div) {
       // do whatever
       divStylers.push(styler(div));
@@ -156,7 +335,7 @@
 
     // this is to prevent firebase triggering functions on page load. there may be a better way to do this
     setTimeout(function () {
-      pageLoaded=true;
+      pageLoaded = true;
     }, 2000);
 
 
@@ -188,7 +367,7 @@
     rotX.on('value', function (snapshot) {
       let x = snapshot.val();
       console.log("x: " + x);
-      modelViewer.cameraOrbit = -x.toString() + 'deg auto auto';
+      modelViewer.cameraOrbit = -x.toString() + 'deg auto 1000m';
 
     });
 
@@ -206,23 +385,30 @@
 
 
     // on left keypress slide left
-    // listen(boundaries, 'keydown').filter(e => e.keyCode == '37').start(() => {
-    //   queueBackward();
-    // });
+    listen(boundaries, 'keydown').filter(e => e.keyCode == '37').start(() => {
+      queueBackward();
+    });
 
-    // // on right keypress slide right
-    // listen(boundaries, 'keydown').filter(e => e.keyCode == '39').start(() => {
-    //   queueForward();
-    // });
+    // on right keypress slide right
+    listen(boundaries, 'keydown').filter(e => e.keyCode == '39').start(() => {
+      queueForward();
+    });
 
     //generate qr based on uid
+    let qrSize = 3;
+    console.log(screen.width);
+    // increase qr size on fullsize screens
+    if (screen.width > 2000) {
+      qrSize = 5;
+      document.getElementById("qr-container").style.width = "11em";
+      document.getElementById("qr-container").style.height = "14em";
+    }
     var typeNumber = 4;
     var errorCorrectionLevel = 'L';
     var qr = qrcode(typeNumber, errorCorrectionLevel);
     qr.addData('https://touchless.valtech.engineering/qr/client.html?' + uid);
     qr.make();
-    document.getElementById('placeHolder').innerHTML = qr.createImgTag(3);
-
+    document.getElementById('placeHolder').innerHTML = qr.createSvgTag(qrSize);
     // var a = document.createElement('a');
     // var linkText = document.createTextNode("my title text");
     // a.appendChild(linkText);
@@ -234,6 +420,9 @@
 
     //queue next planet
     function queueForward() {
+      if (planetIndex == 10) {
+        window.location.href = "http://touchless.valtech.engineering/"
+      }
       divStylers.forEach(element =>
         tween({
           from: element.get('x'),
@@ -251,6 +440,9 @@
 
     //queue prev planet
     function queueBackward() {
+      if (planetIndex == 1) {
+        window.location.href = "http://touchless.valtech.engineering/"
+      }
       divStylers.forEach(element =>
         tween({
           from: element.get('x'),
@@ -261,6 +453,7 @@
           start(element.set)
       );
       planetIndex--;
+
       getElementName();
       modelViewer = document.getElementById(elementId);
       console.log("queueing planet: " + elementId);
