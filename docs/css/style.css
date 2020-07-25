@@ -70,10 +70,6 @@ li {
   text-decoration: underline;
 }
 
-.poc-title:hover {
-  transform: translateX(1000px);
-}
-
 .poc-description {
   color: black;
   margin: 10px 0px;
