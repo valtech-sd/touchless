@@ -157,6 +157,21 @@ a:focus {
   /* border: black 1px solid; */
 }
 
+.tags-container {
+  display: flex;
+}
+
+.poc-tag {
+  margin-top: 2em;
+  margin-right: 0.7em;
+    background: #BEF07F;
+    padding: 0.4em;
+}
+
+.poc-tag:hover {
+  text-decoration: underline;
+}
+
 .poc-try-btn {
   border: none;
     background: #00b0ba;
@@ -257,6 +272,10 @@ a:focus {
     overflow: hidden;
     width: 100%;
     padding-top: 68.25%;
+  }
+
+  .tags-container {
+    justify-content: space-between;
   }
 
   .poc-try-btn {
