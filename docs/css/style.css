@@ -22,7 +22,7 @@ li {
 #img-container {
   margin: 30px 30px 40px 30px;
   display: flex;
-  height: 60vh;
+  height: 40vh;
   align-items: center;
   object-fit: contain;
   background-image: url("/images/airport.jpg");
@@ -48,7 +48,7 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 120px;
+  padding: 2em 6em;
   background: white;
   color: black;
 }
@@ -60,13 +60,14 @@ li {
   padding: 20px 120px;
   background: #f1f1f1;
   color: black;
-
 }
 
 .poc-title {
   color: black;
   font-size: 42px;
   margin: 30px 0px 10px 0px;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .poc-description {
@@ -74,12 +75,22 @@ li {
   margin: 10px 0px;
 }
 
+#citations-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em 6em;
+  background: white;
+  color: black;
+}
+
 .text-box {
-  padding: 50px 0px;
+  padding-bottom: 0.5em;
 }
 
 .text-image-container {
   display: flex;
+  flex-direction: row;
 }
 
 .text-image-container .text-box {
@@ -92,26 +103,36 @@ li {
 }
 
 a {
-  color: #00B0BA;
+  color: #00b0ba;
   font-weight: bold;
   text-decoration: none;
 }
 
 a:visited {
-  color: #00B0BA;
+  color: #00b0ba;
   font-weight: bold;
   text-decoration: none;
 }
 
+a:focus {
+  outline: none;
+}
+
+#citations-container a:hover {
+  background: #dcdcdc;
+}
+
 #title-text {
   overflow: hidden;
-  font-family: "Merriweather-Regular";
   font-size: 3.5em;
   letter-spacing: 0.05em;
   border: white 10px solid;
-  margin: auto auto auto 85px;
+  margin: auto auto auto 375px;
   width: fit-content;
-  padding: 20px 85px;
+  padding: 0.65em 0.9em 0.65em 0.9em;
+  font-weight: 600;
+  line-height: 1.05em;
+  background: #00000060;
 }
 
 .poc-item {
@@ -126,8 +147,44 @@ a:visited {
   margin-right: 150px;
 }
 
+.poc-video-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .poc-video-wrapper video {
-  border: black 1px solid;
+  /* border: black 1px solid; */
+}
+
+.tags-container {
+  display: flex;
+}
+
+.poc-tag {
+  margin-top: 5em;
+  margin-right: 1em;
+  background: #bef07f;
+  padding: 0.4em;
+  border-radius: 10px;
+}
+
+.poc-tag:hover {
+  text-decoration: underline;
+  box-shadow: #6d6d6d42 8px 7px 10px;
+  transform: scale(1.1);
+}
+
+.poc-try-btn {
+  border: none;
+  background: #00b0ba;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 20px;
+  color: white;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.4px;
 }
 
 #flex-sublist {
@@ -163,13 +220,29 @@ a:visited {
 .links-container {
   display: flex;
   align-items: center;
-  padding: 60px 120px;
+  padding: 2em 6em;
   background: white;
   color: black;
 }
 
-/* Custom image settings for phones */
-@media only screen and (max-width: 600px) {
+/* Custom settings for screens smaller than 1440px */
+@media only screen and (max-width: 1440px) {
+  body {
+    font-size: 1.8em;
+  }
+
+  #title-text {
+    overflow: hidden;
+    font-size: 2.2em;
+    letter-spacing: 0.05em;
+    border: white 8px solid;
+    margin: auto auto auto 85px;
+    width: fit-content;
+    padding: 0.85em;
+    line-height: 1.05em;
+    background: #00000060;
+  }
+
   .text-image-container {
     flex-direction: column;
     justify-content: center;
@@ -191,16 +264,34 @@ a:visited {
   }
 
   .poc-text-wrapper {
-    order: 2;
+    /* order: 2; */
     margin-right: 0px;
+    margin-bottom: 20px;
   }
 
   .poc-video-wrapper {
-    order: 1;
+    /* order: 1; */
     position: relative;
     overflow: hidden;
     width: 100%;
-    padding-top: 56.25%;  
+    padding-top: 68.25%;
+  }
+
+  .tags-container {
+    justify-content: space-between;
+  }
+
+  .poc-try-btn {
+    border: none;
+    background: #00b0ba;
+    padding: 30px;
+    border-radius: 5px;
+    margin-top: 60px;
+    color: white;
+    font-weight: 600;
+    /* font-family: inherit; */
+    font-size: 0.8em;
+    letter-spacing: 0.4px;
   }
 
   .poc-video-wrapper video {
@@ -212,7 +303,6 @@ a:visited {
     width: 100%;
     height: 100%;
   }
-    
 }
 
 /* Custom image settings for large screens */
@@ -230,6 +320,10 @@ a:visited {
   }
 
   #poc-container {
+    padding: 3em 17em;
+  }
+
+  #citations-container {
     padding: 3em 17em;
   }
 }
