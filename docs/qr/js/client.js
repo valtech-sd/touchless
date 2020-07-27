@@ -5,6 +5,7 @@ const queryUIDString = window.location.search.substr(1);
 console.log(queryUIDString);
 let colorCount = 0;
 let buttonPress = 0;
+let cooldown = false;
 // Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyDNzSRFhlT_Nch6TTB3UZTpFfvW0m8sa1Q",
@@ -60,7 +61,6 @@ function changeColor() {
 
 multitouch().start(({ touches, scale, rotate }) => {
   firebase.database().ref(queryUIDString + '/rotation/x/').set(touches[0].x);
-
 });
 
 // const touchRotation = (initialRotate = 0) => multitouch({ rotate: initialRotate })
@@ -68,14 +68,22 @@ multitouch().start(({ touches, scale, rotate }) => {
 
 // touchRotation().start((rotate) =>   firebase.database().ref(queryUIDString + '/rotation/y/').set(touches[0].x));
 
-function moveLeft(){
-  firebase.database().ref(queryUIDString + '/navigate/left').set(buttonPress);
-  buttonPress++; // number value doesn't matter, just needs to be new value to trigger action
+function moveLeft() {
+  if (!cooldown) {
+    firebase.database().ref(queryUIDString + '/navigate/left').set(buttonPress);
+    buttonPress++; // number value doesn't matter, just needs to be new value to trigger action
+    setTimeout(activatePage, 1000);
+    cooldown = true;
+  }
 }
 
-function moveRight(){
-  firebase.database().ref(queryUIDString + '/navigate/right').set(buttonPress);
-  buttonPress++; // number value doesn't matter, just needs to be new value to trigger action
+function moveRight() {
+  if (!cooldown) {
+    firebase.database().ref(queryUIDString + '/navigate/right').set(buttonPress);
+    buttonPress++; // number value doesn't matter, just needs to be new value to trigger action
+    setTimeout(activatePage, 1000);
+    cooldown = true;
+  }
 }
 // queue planet when device tilts
 function handleOrientation(event) {
@@ -89,4 +97,8 @@ function handleOrientation(event) {
 // queue planet when device is shaken
 function handleMotionEvent() {
   firebase.database().ref(queryUIDString + '/orient/').set(1);
+}
+
+function activatePage() {
+  cooldown = false;
 }

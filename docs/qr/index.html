@@ -26,7 +26,7 @@
   <div class="carousel">
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/sun.glb" id="sun" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+        <model-viewer src="models/sun.glb" id="sun" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
           min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">SUN</div>
           <div id="annotation-details">
@@ -47,7 +47,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/mercury.glb" id="mercury" auto-rotate camera-controls
+        <model-viewer src="models/mercury.glb" id="mercury" auto-rotate camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">MERCURY</div>
           <div id="annotation-details">
@@ -70,7 +70,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/venus.glb" id="venus" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+        <model-viewer src="models/venus.glb" id="venus" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
           min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">VENUS</div>
           <div id="annotation-details">
@@ -94,7 +94,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/earth.glb" id="earth" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+        <model-viewer src="models/earth.glb" id="earth" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
           min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">EARTH</div>
           <div id="annotation-details">
@@ -117,7 +117,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/mars.glb" id="mars" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+        <model-viewer src="models/mars.glb" id="mars" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
           min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">MARS</div>
           <div id="annotation-details">
@@ -140,7 +140,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/jupiter.glb" id="jupiter" auto-rotate camera-controls
+        <model-viewer src="models/jupiter.glb" id="jupiter" auto-rotate camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">JUPITER</div>
           <div id="annotation-details">
@@ -163,7 +163,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/saturn.glb" id="saturn" auto-rotate camera-controls max-camera-orbit='auto auto 3000m'
+        <model-viewer src="models/saturn.glb" id="saturn" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 3000m'
           min-camera-orbit='auto auto 3000m' camera-orbit='auto auto 3000m'>
           <div id="annotation-name">SATURN</div>
           <div id="annotation-details">
@@ -186,7 +186,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/uranus.glb" id="uranus" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+        <model-viewer src="models/uranus.glb" id="uranus" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
           min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">URANUS</div>
           <div id="annotation-details">
@@ -209,7 +209,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/neptune.glb" id="neptune" auto-rotate camera-controls
+        <model-viewer src="models/neptune.glb" id="neptune" auto-rotate camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">NEPTUNE</div>
           <div id="annotation-details">
@@ -232,7 +232,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/pluto.glb" id="pluto" auto-rotate camera-controls max-camera-orbit='auto auto 2000m'
+        <model-viewer src="models/pluto.glb" id="pluto" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
           min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">PLUTO</div>
           <div id="annotation-details">
@@ -338,6 +338,8 @@
       pageLoaded = true;
     }, 2000);
 
+    //check if ipad
+    isDeviceiPad();
 
     if (typeof previousSession === 'undefined') {
       previousSession = null;
@@ -507,6 +509,14 @@
           elementId = 'pluto';
           break;
       }
+    }
+
+    function isDeviceiPad() {
+      const iPad = (navigator.userAgent.match(/(iPad)/) /* iOS pre 13 */ ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) /* iPad OS 13 */);
+        if(iPad)
+        distance = screen.height; // account for rotated ipad screen
+      return iPad;
     }
   </script>
 </body>
