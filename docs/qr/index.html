@@ -26,8 +26,8 @@
   <div class="carousel">
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/sun.glb" id="sun" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
-          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+        <model-viewer src="models/sun.glb" id="sun" auto-rotate camera-controls interaction-prompt
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">SUN</div>
           <div id="annotation-details">
             <div id="details-title"> SUN FACTS</div>
@@ -70,8 +70,8 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/venus.glb" id="venus" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
-          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+        <model-viewer src="models/venus.glb" id="venus" auto-rotate camera-controls interaction-prompt
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">VENUS</div>
           <div id="annotation-details">
             <div id="details-title"> VENUS FACTS</div>
@@ -94,8 +94,8 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/earth.glb" id="earth" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
-          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+        <model-viewer src="models/earth.glb" id="earth" auto-rotate camera-controls interaction-prompt
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">EARTH</div>
           <div id="annotation-details">
             <div id="details-title"> EARTH FACTS</div>
@@ -117,8 +117,8 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/mars.glb" id="mars" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
-          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+        <model-viewer src="models/mars.glb" id="mars" auto-rotate camera-controls interaction-prompt
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">MARS</div>
           <div id="annotation-details">
             <div id="details-title"> MARS FACTS</div>
@@ -163,8 +163,8 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/saturn.glb" id="saturn" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 3000m'
-          min-camera-orbit='auto auto 3000m' camera-orbit='auto auto 3000m'>
+        <model-viewer src="models/saturn.glb" id="saturn" auto-rotate camera-controls interaction-prompt
+          max-camera-orbit='auto auto 3000m' min-camera-orbit='auto auto 3000m' camera-orbit='auto auto 3000m'>
           <div id="annotation-name">SATURN</div>
           <div id="annotation-details">
             <div id="details-title"> SATURN FACTS</div>
@@ -186,8 +186,8 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/uranus.glb" id="uranus" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
-          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+        <model-viewer src="models/uranus.glb" id="uranus" auto-rotate camera-controls interaction-prompt
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">URANUS</div>
           <div id="annotation-details">
             <div id="details-title"> URANUS FACTS</div>
@@ -232,8 +232,8 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/pluto.glb" id="pluto" auto-rotate camera-controls interaction-prompt max-camera-orbit='auto auto 2000m'
-          min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+        <model-viewer src="models/pluto.glb" id="pluto" auto-rotate camera-controls interaction-prompt
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
           <div id="annotation-name">PLUTO</div>
           <div id="annotation-details">
             <div id="details-title"> PLUTO FACTS</div>
@@ -315,7 +315,7 @@
     const boxes = document.querySelectorAll('.item');
     const getBoundariesWidth = () => boundaries.getBoundingClientRect().width - box.getBoundingClientRect().width;
     const divStylers = [];
-
+    let valX, valY = 0 ;
     let distance = screen.width;
     let planetIndex = 4; // begin at mars
     let elementId = 'earth';
@@ -365,16 +365,15 @@
     var rotY = firebase.database().ref(uid + '/rotation/y/');
     var buttonRight = firebase.database().ref(uid + '/navigate/right/');
     var buttonLeft = firebase.database().ref(uid + '/navigate/left/');
-
     rotX.on('value', function (snapshot) {
-      let x = snapshot.val();
-      modelViewer.cameraOrbit = -x.toString() + 'deg auto auto';
+      valX = snapshot.val();
+      modelViewer.cameraOrbit = -valX.toString() + 'deg ' + -valY.toString() + 'deg auto';
 
     });
 
     rotY.on('value', function (snapshot) {
-      let y = snapshot.val();
-      modelViewer.cameraOrbit = 'auto ' + -y.toString() + 'deg auto';
+      valY = snapshot.val();
+      modelViewer.cameraOrbit = -valX.toString() + 'deg ' + -valY.toString() + 'deg auto';
 
     });
 
@@ -410,6 +409,24 @@
       document.getElementById("qr-container").style.width = "11em";
       document.getElementById("qr-container").style.height = "14em";
     }
+    var modelViewers = document.getElementsByTagName("model-viewer");
+
+    console.log('num modelViewers: ' + modelViewers.length);
+    setTimeout(function () {
+      console.log('num childNodes: ' + modelViewers[0].childNodes.length);
+
+      let nodes = modelViewers[3].childNodes;
+        nodes[0].childNodes[1].style.left = "50%";
+        nodes[0].childNodes[1].style.transform = "translateX(-50%)";
+      // for (i = 0; i < modelViewers.length; i++) {
+      //   const container = document.getElementsByTagName("model-viewer.container");
+      //   console.log(container);
+      //   // container.style.left = "50%";
+      //   // container.style.transform = "translateX(-50%)";
+      // }
+    }, 4000);
+
+
     var typeNumber = 4;
     var errorCorrectionLevel = 'L';
     var qr = qrcode(typeNumber, errorCorrectionLevel);
@@ -519,7 +536,7 @@
     function isDeviceiPad() {
       const iPad = (navigator.userAgent.match(/(iPad)/) /* iOS pre 13 */ ||
         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) /* iPad OS 13 */);
-        if(iPad)
+      if (iPad)
         distance = screen.height; // account for rotated ipad screen
       return iPad;
     }

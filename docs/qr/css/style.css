@@ -129,9 +129,12 @@ model-viewer {
   overflow:hidden;
   position:absolute;
 }
-model-viewer .container{
+
+div.container * {
   width: 100% !important;
   height: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 
 
