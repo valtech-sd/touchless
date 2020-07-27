@@ -61,6 +61,7 @@ function changeColor() {
 
 multitouch().start(({ touches, scale, rotate }) => {
   firebase.database().ref(queryUIDString + '/rotation/x/').set(touches[0].x);
+  firebase.database().ref(queryUIDString + '/rotation/y/').set(touches[0].y);
 });
 
 // const touchRotation = (initialRotate = 0) => multitouch({ rotate: initialRotate })

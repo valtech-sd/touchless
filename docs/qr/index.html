@@ -368,8 +368,13 @@
 
     rotX.on('value', function (snapshot) {
       let x = snapshot.val();
-      console.log("x: " + x);
-      modelViewer.cameraOrbit = -x.toString() + 'deg auto 1000m';
+      modelViewer.cameraOrbit = -x.toString() + 'deg auto auto';
+
+    });
+
+    rotY.on('value', function (snapshot) {
+      let y = snapshot.val();
+      modelViewer.cameraOrbit = 'auto ' + -y.toString() + 'deg auto';
 
     });
 
