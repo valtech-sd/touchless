@@ -409,22 +409,22 @@
       document.getElementById("qr-container").style.width = "11em";
       document.getElementById("qr-container").style.height = "14em";
     }
-    var modelViewers = document.getElementsByTagName("model-viewer");
+    // var modelViewers = document.getElementsByTagName("model-viewer");
 
-    console.log('num modelViewers: ' + modelViewers.length);
-    setTimeout(function () {
-      console.log('num childNodes: ' + modelViewers[0].childNodes.length);
+    // console.log('num modelViewers: ' + modelViewers.length);
+    // setTimeout(function () {
+    //   console.log('num childNodes: ' + modelViewers[0].childNodes.length);
 
-      let nodes = modelViewers[3].childNodes;
-        nodes[0].childNodes[1].style.left = "50%";
-        nodes[0].childNodes[1].style.transform = "translateX(-50%)";
-      // for (i = 0; i < modelViewers.length; i++) {
-      //   const container = document.getElementsByTagName("model-viewer.container");
-      //   console.log(container);
-      //   // container.style.left = "50%";
-      //   // container.style.transform = "translateX(-50%)";
-      // }
-    }, 4000);
+    //   let nodes = modelViewers[3].childNodes;
+    //     nodes[0].childNodes[1].style.left = "50%";
+    //     nodes[0].childNodes[1].style.transform = "translateX(-50%)";
+    //   // for (i = 0; i < modelViewers.length; i++) {
+    //   //   const container = document.getElementsByTagName("model-viewer.container");
+    //   //   console.log(container);
+    //   //   // container.style.left = "50%";
+    //   //   // container.style.transform = "translateX(-50%)";
+    //   // }
+    // }, 4000);
 
 
     var typeNumber = 4;
