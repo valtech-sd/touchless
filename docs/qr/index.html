@@ -367,14 +367,14 @@
     var buttonLeft = firebase.database().ref(uid + '/navigate/left/');
     rotX.on('value', function (snapshot) {
       valX = snapshot.val();
-      modelViewer.cameraOrbit = -valX.toString() + 'deg ' + -valY.toString() + 'deg auto';
+      modelViewer.cameraOrbit = -valX.toString() + 'deg ' + valY.toString() + 'deg auto';
 
     });
 
     rotY.on('value', function (snapshot) {
       valY = snapshot.val();
       console.log(valY);
-      modelViewer.cameraOrbit = -valX.toString() + 'deg ' + -valY.toString() + 'deg auto';
+      modelViewer.cameraOrbit = -valX.toString() + 'deg ' + valY.toString() + 'deg auto';
 
     });
 
