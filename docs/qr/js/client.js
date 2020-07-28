@@ -60,8 +60,10 @@ function changeColor() {
 // modelViewer.cameraOrbit = 'auto auto 10%;
 
 multitouch().start(({ touches, scale, rotate }) => {
-  firebase.database().ref(queryUIDString + '/rotation/x/').set(touches[0].x);
-  firebase.database().ref(queryUIDString + '/rotation/y/').set(touches[0].y);
+  let mapX = touches[0].x.mapRange(0,window.width,0,360);
+  let mapY = touches[0].y.mapRange(0,window.height,0,360s);
+  firebase.database().ref(queryUIDString + '/rotation/x/').set(mapX);
+  firebase.database().ref(queryUIDString + '/rotation/y/').set(mapY);
 });
 
 // const touchRotation = (initialRotate = 0) => multitouch({ rotate: initialRotate })
@@ -103,3 +105,12 @@ function handleMotionEvent() {
 function activatePage() {
   cooldown = false;
 }
+
+
+// map values to a given range
+Number.prototype.mapRange = function (in_min, in_max, out_min, out_max) {
+  return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+
+
