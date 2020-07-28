@@ -22,12 +22,19 @@ li {
 #img-container {
   margin: 30px 30px 40px 30px;
   display: flex;
+  flex-direction: column;
   height: 40vh;
   align-items: center;
   object-fit: contain;
   background-image: url("/images/airport.jpg");
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.cta-button a {
+  color: white;
+  /* font-family: "HelveticaNeue-Light"; */
+  text-decoration: underline;
 }
 
 #footer {
@@ -102,19 +109,19 @@ li {
   align-items: center;
 }
 
-a {
+.blue-link a {
   color: #00b0ba;
   font-weight: bold;
   text-decoration: none;
 }
 
-a:visited {
+.blue-link a:visited {
   color: #00b0ba;
   font-weight: bold;
   text-decoration: none;
 }
 
-a:focus {
+.blue-link a:focus {
   outline: none;
 }
 
@@ -133,6 +140,8 @@ a:focus {
   font-weight: 600;
   line-height: 1.05em;
   background: #00000060;
+  display: flex;
+  flex-direction: column;
 }
 
 .poc-item {
