@@ -315,7 +315,7 @@
     const boxes = document.querySelectorAll('.item');
     const getBoundariesWidth = () => boundaries.getBoundingClientRect().width - box.getBoundingClientRect().width;
     const divStylers = [];
-    let valX, valY = 0 ;
+    let valX, valY = 0;
     let distance = screen.width;
     let planetIndex = 4; // begin at mars
     let elementId = 'earth';
@@ -367,13 +367,14 @@
     var buttonLeft = firebase.database().ref(uid + '/navigate/left/');
     rotX.on('value', function (snapshot) {
       valX = snapshot.val();
-      modelViewer.cameraOrbit = -valX.toString() + 'deg ' + -valY.toString() + 'deg auto';
+      modelViewer.cameraOrbit = -valX.toString() + 'deg ' + valY.toString() + 'deg auto';
 
     });
 
     rotY.on('value', function (snapshot) {
       valY = snapshot.val();
-      modelViewer.cameraOrbit = -valX.toString() + 'deg ' + -valY.toString() + 'deg auto';
+      console.log(valY);
+      modelViewer.cameraOrbit = -valX.toString() + 'deg ' + valY.toString() + 'deg auto';
 
     });
 
@@ -409,22 +410,22 @@
       document.getElementById("qr-container").style.width = "11em";
       document.getElementById("qr-container").style.height = "14em";
     }
-    // var modelViewers = document.getElementsByTagName("model-viewer");
+    var modelViewers = document.getElementsByTagName("model-viewer");
 
-    // console.log('num modelViewers: ' + modelViewers.length);
+    console.log('num modelViewers: ' + modelViewers.length);
     // setTimeout(function () {
     //   console.log('num childNodes: ' + modelViewers[0].childNodes.length);
 
     //   let nodes = modelViewers[3].childNodes;
-    //     nodes[0].childNodes[1].style.left = "50%";
-    //     nodes[0].childNodes[1].style.transform = "translateX(-50%)";
+    //   nodes[3].style.left = "50%";
+    //   nodes[3].style.transform = "translateX(-50%)";
     //   // for (i = 0; i < modelViewers.length; i++) {
     //   //   const container = document.getElementsByTagName("model-viewer.container");
     //   //   console.log(container);
     //   //   // container.style.left = "50%";
     //   //   // container.style.transform = "translateX(-50%)";
     //   // }
-    // }, 4000);
+    // }, 3000);
 
 
     var typeNumber = 4;

@@ -115,26 +115,19 @@ body {
   height: 100%;
 }
 
-#model-container{
+#model-container {
   height:100%;
   width:100%;
   display: flex;
   align-items: center;
+
 }
 
 model-viewer {
   width: 100% !important;
   height: 100%;
   background-color: #000000;
-  overflow:hidden;
-  position:absolute;
-}
-
-div.container * {
-  width: 100% !important;
-  height: 100% !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+  position:relative;
 }
 
 
