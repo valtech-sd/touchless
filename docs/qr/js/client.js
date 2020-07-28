@@ -58,10 +58,11 @@ function changeColor() {
 
 // const modelViewer = document.querySelector('model-viewer');
 // modelViewer.cameraOrbit = 'auto auto 10%;
-
 multitouch().start(({ touches, scale, rotate }) => {
-  let mapX = touches[0].x.mapRange(0,window.width,0,360);
-  let mapY = touches[0].y.mapRange(0,window.height,0,360);
+  let x = touches[0].x;
+  let y = touches[0].y;  
+  let mapX = x.mapRange(0,screen.width,0,360);
+  let mapY = y.mapRange(0,screen.height,0,360);
   firebase.database().ref(queryUIDString + '/rotation/x/').set(mapX);
   firebase.database().ref(queryUIDString + '/rotation/y/').set(mapY);
 });
