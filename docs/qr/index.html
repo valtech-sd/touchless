@@ -319,6 +319,7 @@
     let distance = screen.width;
     let planetIndex = 4; // begin at mars
     let elementId = 'earth';
+    let startX = 0;
     [].forEach.call(boxes, function (div) {
       // do whatever
       divStylers.push(styler(div));
@@ -327,6 +328,7 @@
     function resetMovement() {
       movements = [];
     }
+    console.log("screen.width: " + distance);
     let uid = null;
     // checking for and adding cookies to prevent repeated additions to the db
     let previousSession = Cookies.get('touchlessqr-cookie'); // => 'value'
@@ -450,13 +452,14 @@
       }
       divStylers.forEach(element =>
         tween({
-          from: element.get('x'),
-          to: { x: element.get('x') - distance },
+          from: startX,
+          to: { x: startX - distance },
           duration: 1000,
           ease: easing.anticipate
         }).
-          start(element.set)
+        start(element.set, console.log(distance + " " + element.get('x')))
       );
+      startX -= distance;
       planetIndex++;
       getElementName();
       modelViewer = document.getElementById(elementId);
@@ -470,13 +473,14 @@
       }
       divStylers.forEach(element =>
         tween({
-          from: element.get('x'),
-          to: { x: element.get('x') + distance },
+          from: startX,
+          to: { x: startX + distance },
           duration: 1000,
           ease: easing.anticipate
         }).
-          start(element.set)
+          start(element.set, console.log(distance + " " + element.get('x')))
       );
+      startX += distance;
       planetIndex--;
 
       getElementName();
