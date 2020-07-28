@@ -306,6 +306,17 @@ a:focus {
     width: 100%;
     height: 100%;
   }
+
+  .poc-video-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+
 }
 
 /* Custom image settings for large screens */
