@@ -316,7 +316,7 @@
     const getBoundariesWidth = () => boundaries.getBoundingClientRect().width - box.getBoundingClientRect().width;
     const divStylers = [];
     let valX, valY = 0;
-    let distance = screen.width;
+    let distance = window.innerWidth;
     let planetIndex = 4; // begin at mars
     let elementId = 'earth';
     let startX = 0;
@@ -405,9 +405,9 @@
 
     //generate qr based on uid
     let qrSize = 3;
-    console.log(screen.width);
+    console.log(window.innerWidth);
     // increase qr size on fullsize screens
-    if (screen.width > 2000) {
+    if (window.innerWidth > 2000) {
       qrSize = 5;
       document.getElementById("qr-container").style.width = "11em";
       document.getElementById("qr-container").style.height = "14em";
@@ -546,6 +546,7 @@
       return iPad;
     }
   </script>
+  
 </body>
 
 </html>
