@@ -316,9 +316,10 @@
     const getBoundariesWidth = () => boundaries.getBoundingClientRect().width - box.getBoundingClientRect().width;
     const divStylers = [];
     let valX, valY = 0;
-    let distance = screen.width;
+    let distance = window.innerWidth;
     let planetIndex = 4; // begin at mars
     let elementId = 'earth';
+    let startX = 0;
     [].forEach.call(boxes, function (div) {
       // do whatever
       divStylers.push(styler(div));
@@ -327,6 +328,7 @@
     function resetMovement() {
       movements = [];
     }
+    console.log("screen.width: " + distance);
     let uid = null;
     // checking for and adding cookies to prevent repeated additions to the db
     let previousSession = Cookies.get('touchlessqr-cookie'); // => 'value'
@@ -403,9 +405,9 @@
 
     //generate qr based on uid
     let qrSize = 3;
-    console.log(screen.width);
+    console.log(window.innerWidth);
     // increase qr size on fullsize screens
-    if (screen.width > 2000) {
+    if (window.innerWidth > 2000) {
       qrSize = 5;
       document.getElementById("qr-container").style.width = "11em";
       document.getElementById("qr-container").style.height = "14em";
@@ -450,13 +452,14 @@
       }
       divStylers.forEach(element =>
         tween({
-          from: element.get('x'),
-          to: { x: element.get('x') - distance },
+          from: startX,
+          to: { x: startX - distance },
           duration: 1000,
           ease: easing.anticipate
         }).
-          start(element.set)
+        start(element.set, console.log(distance + " " + element.get('x')))
       );
+      startX -= distance;
       planetIndex++;
       getElementName();
       modelViewer = document.getElementById(elementId);
@@ -470,13 +473,14 @@
       }
       divStylers.forEach(element =>
         tween({
-          from: element.get('x'),
-          to: { x: element.get('x') + distance },
+          from: startX,
+          to: { x: startX + distance },
           duration: 1000,
           ease: easing.anticipate
         }).
-          start(element.set)
+          start(element.set, console.log(distance + " " + element.get('x')))
       );
+      startX += distance;
       planetIndex--;
 
       getElementName();
@@ -542,6 +546,7 @@
       return iPad;
     }
   </script>
+  
 </body>
 
 </html>
