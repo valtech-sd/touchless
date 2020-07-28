@@ -62,7 +62,7 @@ multitouch().start(({ touches, scale, rotate }) => {
   let x = touches[0].x;
   let y = touches[0].y;  
   let mapX = x.mapRange(0,screen.width,0,360);
-  let mapY = y.mapRange(0,screen.height,360,0);
+  let mapY = y.mapRange(0,screen.height,270,90);
   firebase.database().ref(queryUIDString + '/rotation/x/').set(mapX);
   firebase.database().ref(queryUIDString + '/rotation/y/').set(mapY);
 });
