@@ -129,6 +129,8 @@ a:focus {
 }
 
 #nav-logo {
+  position: relative;
+  top: 3px;
   height: 50px;
   width: 50px;
 }
