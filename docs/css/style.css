@@ -118,6 +118,7 @@ a:focus {
 .nav ul {
   list-style-type: none;
   margin-left: auto;
+  display: flex;
 }
 
 .nav ul li {
@@ -128,11 +129,11 @@ a:focus {
 }
 
 #nav-logo {
-  height: 75px;
-  width: 75px;
+  height: 50px;
+  width: 50px;
 }
 
-.nav-item {
+.nav-hide {
   display: none;
 }
 
@@ -354,6 +355,10 @@ a.demos-link {
 }
 
 @media screen and (min-width: 800px) {
+  .nav ul {
+    display: inherit;
+  }
+  
   .nav ul li {
     display: inline-block;
   }
