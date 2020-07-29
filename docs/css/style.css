@@ -21,6 +21,10 @@ html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,ifr
   --citations-title-color: #888888;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -80,6 +84,35 @@ a:focus {
   background: rgba(0,0,0,0.1);
 }
 
+/* nav */
+
+.nav {
+  padding: 0em 6em;
+  display: flex;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: black;
+  z-index: 100;
+  align-items: center;
+}
+
+.nav ul {
+  list-style-type: none;
+  margin-left: auto;
+}
+
+.nav ul li {
+  display: inline-block;
+  /* padding: 0px 10px; */
+  color: white;
+}
+
+#nav-logo {
+  height: 75px;
+  width: 75px;
+}
+
 /* header */
 
 #img-container {
@@ -124,7 +157,14 @@ a:focus {
   width: 100%;
 }
 
-#text-container {
+#about::before {
+  content: "";
+  display: block;
+  height: 3em;
+  margin: -30px 0 0;
+}
+
+#about {
   /* display: flex;
   flex-direction: column;
   align-items: center; */
@@ -134,7 +174,7 @@ a:focus {
   width: 100%;
   position: relative;
 }
-#text-container>div {
+#about>div {
   margin: 0 auto;
 }
 
@@ -143,7 +183,7 @@ a.demos-link {
   font-weight: normal;
 }
 
-#poc-container {
+#prototypes {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -170,7 +210,14 @@ a.demos-link {
   color: black;
 } */
 
-#citations-container {
+#resources::before {
+  content: "";
+  display: block;
+  height: 3em;
+  margin: -30px 0 0;
+}
+
+#resources {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -180,14 +227,14 @@ a.demos-link {
   color: black;
 }
 
-#citations-container h2 {
+#resources h2 {
   font-size: 1.5em;
   line-height: 2em;
   padding-bottom: 0.5em;
   color: var(--citations-title-color);
 }
 
-#citations-container a:hover {
+#resources a:hover {
   background: var(--citations-link-bg-hover-color);
 }
 
@@ -235,6 +282,13 @@ a.demos-link {
 
 /* prototypes */
 
+#prototypes::before {
+  content: "";
+  display: block;
+  height: 3em;
+  margin: -30px 0 0;
+}
+
 .poc-item {
   display: block;
   padding-bottom: 1em;
@@ -277,7 +331,7 @@ a.demos-link {
 }
 
 @media screen and (min-width: 1024px) {
-  #poc-container {
+  #prototypes {
     padding-top: 0;
     padding-bottom: 2.5em;
   }
@@ -436,7 +490,7 @@ a.demos-link {
     padding-right: 0px;
   }
 
-  #poc-container {
+  #prototypes {
     flex-direction: column;
     padding-bottom: 30px;
   }
@@ -514,11 +568,11 @@ a.demos-link {
     color: black;
   }
 
-  #poc-container {
+  #prototypes {
     padding: 3em 17em;
   }
 
-  #citations-container {
+  #resources {
     padding: 3em 17em;
   }
 } */
@@ -535,7 +589,7 @@ a.demos-link {
   background: transparent url('/images/slant-left.svg') scroll no-repeat center bottom;
   background-size: 100% 100%;
 }
-#text-container::after {
+#about::after {
   position: absolute;
   bottom: 0; 
   left: 0;
@@ -545,7 +599,7 @@ a.demos-link {
   background: transparent url('/images/slant-right.svg') scroll no-repeat center bottom;
   background-size: 100% 100%;
 }
-#poc-container::after {
+#prototypes::after {
   position: absolute;
   bottom: 0; 
   left: 0;
@@ -555,7 +609,7 @@ a.demos-link {
   background: transparent url('/images/slant-left.svg') scroll no-repeat center bottom;
   background-size: 100% 100%;
 }
-#citations-container::after {
+#resources::after {
   position: absolute;
   bottom: 0; 
   left: 0;
