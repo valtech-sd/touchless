@@ -13,6 +13,7 @@ body {
   margin: auto;
   overflow: hidden;
   --poster-color: transparent
+  touch-action: pan-y;
 }
 
 #annotation-name {
@@ -29,7 +30,7 @@ body {
 #annotation-details {
   float: right;
   width:32.5%;
-  font-size: 0.8em;
+  font-size: 0.65em;
   height:100%;
   transform:translateY(10%);
 
@@ -66,11 +67,12 @@ body {
 }
 
 #qr-title {
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-family: "Merriweather-Regular";
   display: flex;
   justify-content: center;
-  padding: 20px 0px 0px 0px;
+  padding: 20px 0.2em 0 0;
+  text-align: center;
 }
 
 #qr-container {
@@ -80,6 +82,30 @@ body {
   left: 2em;
   width:8em;
   height:10em;
+}
+
+#footer {
+  background-color: rgb(255,255,255,0.05);
+  border: 2px solid;
+  /* border-top: 2px solid;
+  border-left: 2px solid;
+  border-right: 2px solid; */
+  position: absolute;
+  bottom: 1px;
+  width:20%;
+  height:2em;
+  right:1%;
+}
+
+
+#footer-link {
+  font-size: 0.8em;
+  display: flex;
+  justify-content: center;
+  padding: 0.5em 0em 0em 0em;
+}
+#footer-link a {
+  color: white;
 }
 
 #placeHolder {
