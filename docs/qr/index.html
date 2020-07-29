@@ -441,9 +441,7 @@
 
     //queue next planet
     function queueForward() {
-      if (planetIndex == 10) {
-        window.location.href = "http://touchless.valtech.engineering/"
-      }
+      if (planetIndex < 10) {
       divStylers.forEach(element =>
         tween({
           from: startX,
@@ -458,13 +456,13 @@
       getElementName();
       modelViewer = document.getElementById(elementId);
       console.log("queueing planet: " + elementId);
+      }
     }
 
     //queue prev planet
     function queueBackward() {
-      if (planetIndex == 1) {
-        window.location.href = "http://touchless.valtech.engineering/"
-      }
+      if (planetIndex>1) {
+ 
       divStylers.forEach(element =>
         tween({
           from: startX,
@@ -480,7 +478,7 @@
       getElementName();
       modelViewer = document.getElementById(elementId);
       console.log("queueing planet: " + elementId);
-
+      }
     }
 
     // queue planet when device tilts
