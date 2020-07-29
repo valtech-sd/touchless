@@ -10,6 +10,7 @@ html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,ifr
 /* global styles */
 :root {
   /* colors! */
+  --nav-link: #ffffff;
   --link-color: #00b0ba;
   --link-visited: #00b0ba;
   --link-active: #00b0ba;
@@ -84,6 +85,23 @@ a:focus {
   background: rgba(0,0,0,0.1);
 }
 
+.nav a {
+  color: var(--nav-link);
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.nav a:visited {
+  color: var(--nav-link);
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.nav a:focus {
+  outline: none;
+  background: rgba(0,0,0,0.1);
+}
+
 /* nav */
 
 .nav {
@@ -105,7 +123,9 @@ a:focus {
 .nav ul li {
   display: inline-block;
   /* padding: 0px 10px; */
-  color: white;
+  list-style: none;
+  background: none;
+  background-size: 0em;
 }
 
 #nav-logo {
