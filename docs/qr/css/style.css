@@ -67,11 +67,12 @@ body {
 }
 
 #qr-title {
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-family: "Merriweather-Regular";
   display: flex;
   justify-content: center;
-  padding: 20px 0px 0px 0px;
+  padding: 20px 0.2em 0 0;
+  text-align: center;
 }
 
 #qr-container {
@@ -90,7 +91,7 @@ body {
   border-left: 2px solid;
   border-right: 2px solid; */
   position: absolute;
-  bottom: 0;
+  bottom: 1px;
   width:20%;
   height:2em;
   right:1%;
