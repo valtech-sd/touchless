@@ -27,12 +27,12 @@
     <div class="item">
       <div id="model-container">
         <model-viewer src="models/sun.glb" id="sun" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">SUN</div>
           <div id="annotation-details">
             <div id="details-title"> SUN FACTS</div>
             <div class="row">
-              <div class="column">Average Speed From Galactic Center:</div>
+              <div class="column">Distance From Galactic Center:</div>
               <div class="column">136.2 miles per second</div>
               <div class="column">Diameter:</div>
               <div class="column">865,370 miles</div>
@@ -48,7 +48,7 @@
     <div class="item">
       <div id="model-container">
         <model-viewer src="models/mercury.glb" id="mercury" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">MERCURY</div>
           <div id="annotation-details">
             <div id="details-title"> MERCURY FACTS</div>
@@ -71,7 +71,7 @@
     <div class="item">
       <div id="model-container">
         <model-viewer src="models/venus.glb" id="venus" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">VENUS</div>
           <div id="annotation-details">
             <div id="details-title"> VENUS FACTS</div>
@@ -95,7 +95,7 @@
     <div class="item">
       <div id="model-container">
         <model-viewer src="models/earth.glb" id="earth" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">EARTH</div>
           <div id="annotation-details">
             <div id="details-title"> EARTH FACTS</div>
@@ -118,7 +118,7 @@
     <div class="item">
       <div id="model-container">
         <model-viewer src="models/mars.glb" id="mars" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">MARS</div>
           <div id="annotation-details">
             <div id="details-title"> MARS FACTS</div>
@@ -141,7 +141,7 @@
     <div class="item">
       <div id="model-container">
         <model-viewer src="models/jupiter.glb" id="jupiter" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">JUPITER</div>
           <div id="annotation-details">
             <div id="details-title"> JUPITER FACTS</div>
@@ -187,7 +187,7 @@
     <div class="item">
       <div id="model-container">
         <model-viewer src="models/uranus.glb" id="uranus" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">URANUS</div>
           <div id="annotation-details">
             <div id="details-title"> URANUS FACTS</div>
@@ -210,7 +210,7 @@
     <div class="item">
       <div id="model-container">
         <model-viewer src="models/neptune.glb" id="neptune" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">NEPTUNE</div>
           <div id="annotation-details">
             <div id="details-title"> NEPTUNE FACTS</div>
@@ -233,7 +233,7 @@
     <div class="item">
       <div id="model-container">
         <model-viewer src="models/pluto.glb" id="pluto" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m'>
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">PLUTO</div>
           <div id="annotation-details">
             <div id="details-title"> PLUTO FACTS</div>
@@ -257,9 +257,11 @@
   <div id="link-debug"></div>
 
   <div id="qr-container">
-    <div id="qr-title">Scan QR to begin</div>
+    
+    <div id="qr-title">Scan QR to control with your phone</div>
     <div id="placeHolder"> </div>
   </div>
+  <div id="footer"><div id="footer-link"><a href="https://touchless.valtech.engineering"> Valtech Touchless Experiences</a></div></div>
   <!--google model viewer-->
   <script type="module"
     src="https://modelviewer.dev/node_modules/@google/model-viewer/dist/model-viewer.min.js"></script>
@@ -307,7 +309,7 @@
 
     }
 
-    const { styler, inertia, listen, pointer, value, calc, tween, easing } = window.popmotion;
+    const { easing, tween, styler, calc, listen } = window.popmotion;
     const mix = calc.getValueFromProgress;
 
     const boundaries = document.querySelector('.carousel');
@@ -436,14 +438,6 @@
     qr.addData('https://touchless.valtech.engineering/qr/client.html?' + uid);
     qr.make();
     document.getElementById('placeHolder').innerHTML = qr.createSvgTag(qrSize);
-    // var a = document.createElement('a');
-    // var linkText = document.createTextNode("my title text");
-    // a.appendChild(linkText);
-    // a.title = "temporary link";
-    // a.href = 'http://192.168.2.1:8081/client.html?-MCwgyXr5yB7ZCZfXG1L';
-    // document.getElementById('qr-container').appendChild(a);
-    // console.log('https://touchless.valtech.engineering/qr/client.html?' + uid);
-    // console.log('http://localhost:8081/client.html?' + uid);
 
     //queue next planet
     function queueForward() {
