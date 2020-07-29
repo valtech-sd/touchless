@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
-
+  
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width" initial-scale="1.0">
   <title>Valtech Touchless Experiences</title>
+  <link rel="stylesheet" href="css/style.css" id="theme">
 </head>
-<link rel="stylesheet" href="css/style.css" id="theme">
 
 <body>
-  <div id="img-container">
-    <div id="title-text">
-      Touchless<br />Experiences
-    </div>
-  </div>
+  <header id="img-container">
+    <h1 id="title-text">
+      <span>Touchless</span> <span>Experiences</span>
+    </h1>
+  </header>
 
-  <div class="flex-container">
-    <div class="text-image-container">
+  <section id="text-container">
+    <!-- <div class="text-image-container"> -->
       <div class="text-box">
         <p><b>No more business as usual.</b> In recent years, <a
             href="https://medium.com/worthix/are-experiences-becoming-americas-favorite-new-pastime-maybe-2ff6ad1fcc81">immersive</a>
@@ -50,8 +50,8 @@
           </ul>
         </div>
       </div>
-      <div><img src="/images/adidas.jpg" class="embed-image"></div>
-    </div>
+      <figure class="text-figure"><img src="/images/adidas.jpg" class="embed-image"></figure>
+    <!-- </div> -->
 
     <div class="text-box">
       <p>How do we avoid personal interactions and physical touchpoints in retail? We can build upon or replace
@@ -59,8 +59,8 @@
         experiences — at
         a safe distance.</p>
       <p>In addition to innovative technologies like voice control or gestural control, we might have another
-        solution in our pockets. Our smartphones can become a universal remote for digital/physical contexts, a
-        private touch that avoids the risks of shared surfaces.</p>
+        solution in our pockets. <b>Our smartphones can become a universal remote for digital/physical contexts,</b> a
+        private touchscreen that avoids the risks of shared surfaces.</p>
       <ul>
         <li><b>It's an interaction customers know.</b> Customers worldwide already use their phones to make
           contactless
@@ -102,162 +102,177 @@
       <p>Our approaches here are cross-platform and use off-the shelf technologies, so you can test them yourself with
         your computer's camera or your smartphone.</p>
     </div>
-  </div>
+  </section>
 
-  <div id="poc-container">
+  <section id="poc-container">
     <div class="poc-item">
-      <div class="poc-text-wrapper">
-        <p class="poc-title"><a href="swipe/">Swipe Prototype</a></p>
+      <article class="poc-text-wrapper">
+        <h1 class="poc-title"><a href="swipe/">Swipe Prototype</a></h1>
         <p class="poc-description">
           Navigate an image gallery with hand gestures, no touch required. Swipe left and right in the air to explore
           the
           collection of product photography.
         </p>
-        <div class="tags-container">
-          <p class="poc-tag"><a href="https://github.com/alvarotrigo/fullpage.js">Fullpage.js</a></p>
-          <p class="poc-tag"><a href="https://github.com/victordibia/handtrack.js">Handtrack.js</a></p>
-          <p class="poc-tag"><a href="https://github.com/popmotion/popmotion">Popmotion</a></p>
-          <p class="poc-tag"><a href="https://github.com/umanghome/swipe-listener">Swipe-Listener</a></p>
-        </div>
-      </div>
-      <div class="poc-video-wrapper">
+        <ul class="poc-tags">
+          <li><a href="https://github.com/alvarotrigo/fullpage.js">Fullpage.js</a></li>
+          <li><a href="https://github.com/victordibia/handtrack.js">Handtrack.js</a></li>
+          <li><a href="https://github.com/popmotion/popmotion">Popmotion</a></li>
+          <li><a href="https://github.com/umanghome/swipe-listener">Swipe-Listener</a></li>
+        </ul>
+      </article>
+      <figure class="poc-video-wrapper">
         <a href="swipe/">
-          <video width="480" height="270" loop src="videos/touchless-swipe.mp4" autoplay muted type="video/mp4">
+          <video width="100%" loop autoplay muted poster="/images/poster-swipe.png">
+            <source src="/videos/touchless-swipe.mp4" type="video/mp4">
+          </video>
         </a>
         <!-- <button class="poc-try-btn">
           TRY IT LIVE
         </button> -->
-      </div>
+      </figure>
     </div>
 
     <div class="poc-item">
-      <div class="poc-text-wrapper">
-        <p class="poc-title"><a href="hand/">Gestures Prototype</a></p>
+      <article class="poc-text-wrapper">
+        <h1 class="poc-title"><a href="hand/">Gestures Prototype</a></h1>
         <p class="poc-description">
           Use hand signs to navigate a sequence of slides. Give the camera a 👍 or a ✌️ to learn about touchless
           innovation.
         </p>
-        <div class="tags-container">
-          <p class="poc-tag"><a href="https://github.com/tensorflow/tfjs">Tensorflow.js</a></p>
-          <p class="poc-tag"><a href="https://github.com/andypotato/fingerpose">Fingerpose</a></p>
-          <p class="poc-tag"><a href="https://github.com/victordibia/handtrack.js">Handtrack.js</a></p>
-          <p class="poc-tag"><a href="https://github.com/hakimel/reveal.js">Reveal.js</a></p>
-        </div>
-      </div>
-      <div class="poc-video-wrapper">
+        <ul class="poc-tags">
+          <li><a href="https://github.com/tensorflow/tfjs">Tensorflow.js</a></li>
+          <li><a href="https://github.com/andypotato/fingerpose">Fingerpose</a></li>
+          <li><a href="https://github.com/victordibia/handtrack.js">Handtrack.js</a></li>
+          <li><a href="https://github.com/hakimel/reveal.js">Reveal.js</a></li>
+        </ul>
+      </article>
+      <figure class="poc-video-wrapper">
         <a href="hand/">
-          <video loop width="480" height="270" src="videos/touchless-hand.mp4" autoplay muted type="video/mp4">
+          <video width="100%" loop autoplay muted poster="/images/poster-hand.png">
+            <source src="/videos/touchless-hand.mp4" type="video/mp4">
+          </video>
         </a>
         <!-- <button class="poc-try-btn">
           TRY IT LIVE
         </button> -->
-      </div>
+      </figure>
     </div>
 
     <div class="poc-item">
-      <div class="poc-text-wrapper">
-        <p class="poc-title"><a href="qr/">Remote Manipulation Prototype</a></p>
+      <article class="poc-text-wrapper">
+        <h1 class="poc-title"><a href="qr/">Remote Manipulation Prototype</a></h1>
         <p class="poc-description">
           Scan a QR code to journey through the solar system. Control 3D models of the planets on a larger screen with
           your smartphone!
         </p>
-        <div class="tags-container">
-          <p class="poc-tag"><a href="https://github.com/popmotion/popmotion">Popmotion</a></p>
-        </div>
-      </div>
-      <div class="poc-video-wrapper">
+        <ul class="poc-tags">
+          <li><a href="https://github.com/popmotion/popmotion">Popmotion</a></li>
+        </ul>
+      </article>
+      <figure class="poc-video-wrapper">
         <a href="qr/">
-          <video loop width="480" height="270" src="videos/touchless-qr.mp4" autoplay muted type="video/mp4">
+          <video width="100%" loop autoplay muted>
+            <source src="/videos/touchless-qr.mp4" type="video/mp4" poster="/images/poster-qr.png">
+          </video>
         </a>
-      </div>
+      </figure>
     </div>
 
     <div class="poc-item">
-      <div class="poc-text-wrapper">
-        <p class="poc-title" style="text-decoration: none;">Voice Clienteling Prototype</p>
+      <article class="poc-text-wrapper">
+        <h1 class="poc-title" style="text-decoration: none;">Voice Clienteling Prototype</h1>
         <p class="poc-description">
           Equip your sales associates with a virtual assistant that captures verbal measurements or notifies them about
           inventory.
         </p>
-      </div>
-      <div class="poc-video-wrapper">
+        <ul class="poc-tags">
+          <li><a href="https://developers.google.com/web/updates/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API">Web Speech API</a></li>
+          <li><a href="https://github.com/NaturalNode/natural">Natural</a></li>
+          <li><a href="https://github.com/spencermountain/compromise">Compromise</a></li>
+        </ul>
+      </article>
+      <figure class="poc-video-wrapper">
         <!-- <a href="hand/"> -->
-          <img src="/images/coming-soon-bg.png" width="420" height="270">
+          <img src="/images/arriving-soon.svg" width="420" height="270">
         <!-- </a> -->
-      </div>
+      </figure>
     </div>
 
 
 
     <div class="poc-item">
-      <div class="poc-text-wrapper">
-        <p class="poc-title" style="text-decoration: none;">Gaze Tracking Prototype</p>
+      <article class="poc-text-wrapper">
+        <h1 class="poc-title" style="text-decoration: none;">Gaze Tracking Prototype</h1>
         <p class="poc-description">
           Use your eyes to control what is on the screen.
         </p>
-        <div class="tags-container">
-          <p class="poc-tag"><a href="https://github.com/brownhci/WebGazer">WebGazer.js</a></p>
-        </div>
-      </div>
-      <div class="poc-video-wrapper">
+        <ul class="poc-tags">
+          <li><a href="https://github.com/brownhci/WebGazer">WebGazer.js</a></li>
+        </ul>
+      </article>
+      <figure class="poc-video-wrapper">
         <!-- <a href="hand/"> -->
-          <img src="/images/coming-soon-bg.png" width="420" height="270">
+          <img src="/images/arriving-soon.svg" width="420" height="270">
         <!-- </a> -->
-      </div>
+        </figure>
     </div>
 
-  </div>
+  </section>
 
-  <div id="citations-container">
-    <p><b>Citations and Additional Resources</b></p>
+  <section id="citations-container">
+    <h2>Citations and Additional Resources</h2>
     <ol>
       <li>
         <a name="ref1"
           href="https://www.thekrogerco.com/wp-content/uploads/2020/04/Krogers-Blueprint-for-Businesses.pdf">Kroger's
           pandemic whitepaper "Blueprint for Business" encourages retailers to embrace contactless
-          payments and signatures in stores and warehouses</a>
+          payments and signatures in stores and warehouses</a><a class="fn-return" href="fn1"></a>
       </li>
       <li>
         <a name="ref2" href="https://newsroom.paypal-corp.com/covid-19-using-qr-codes-for-touchless-payments">PayPal
-          introduces QR codes for contactless payments for small businesses</a>
+          introduces QR codes for contactless payments for small businesses</a><a class="fn-return" href="fn1"></a>
       </li>
       <li>
         <a name="ref3" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3103751">Alipay and WeChat dominate
           $5.7
-          trillion mobile payments market in China, and beyond</a>
+          trillion mobile payments market in China, and beyond</a><a class="fn-return" href="fn1"></a>
       </li>
       <li>
         <a name="ref4" href="https://www.businessinsider.com/stores-with-curbside-pickup?op=1">Target, Wal-Mart, and
           other
-          retailers roll out contact-free curbside pickup through app</a>
+          retailers roll out contact-free curbside pickup through app</a><a class="fn-return" href="fn4"></a>
       </li>
       <li>
         <a name="ref5" href="https://www.mcdonalds.com/us/en-us/mobile-order-and-pay.html">McDonald's makes drive-thru
           more
-          contactless, allowing "Order &amp; Pay" through app</a>
+          contactless, allowing "Order &amp; Pay" through app</a><a class="fn-return" href="fn4"></a>
       </li>
-      <li><a name="ref6" href="https://smartech.gatech.edu/handle/1853/3242">
+      <li>
+        <a name="ref6" href="https://smartech.gatech.edu/handle/1853/3242">
           Georgia Tech human-computer interaction paper on "Opportunistic Annexing for Handheld Devices"
-        </a></li>
+        </a><a class="fn-return" href="fn6"></a>
+      </li>
       <li>
         <a name="ref7"
           href="https://finance.yahoo.com/news/coca-cola-just-invented-a-way-to-save-the-soda-machine-from-covid-19-120031011.html">Coca-Cola
-          using smart phones to control soda machines</a>
+          using smart phones to control soda machines</a><a class="fn-return" href="fn7"></a>
       </li>
       <li>
         <a name="ref8" href="https://touchless.design/news/press-release/">National Gallery of Art partners with Ideum
           for
-          Intel-funded effort to create touchfree visitor experience</a>
+          Intel-funded effort to create touchfree visitor experience</a><a class="fn-return" href="fn7"></a>
       </li>
-      <li><a name="ref9" href="http://rlmg.com/Covid/BringYourOwnPersonalDevice.pdf">Interactive installation agency
+      <li>
+        <a name="ref9" href="http://rlmg.com/Covid/BringYourOwnPersonalDevice.pdf">Interactive installation agency
           RLMG offers
-          guidance to museum clients for BYOD (bring your own device) experiences</a></li>
+          guidance to museum clients for BYOD (bring your own device) experiences</a><a class="fn-return" href="fn7"></a>
+      </li>
     </ol>
-  </div>
+  </section>
 
-  <div id="footer">
-    <img src="/images/v.png" widgh="100px" height="100px">
-  </div>
+  <footer id="footer">
+    <img src="/images/v.svg" widgh="100px" height="100px">
+  </footer>
 </body>
 
 </html>

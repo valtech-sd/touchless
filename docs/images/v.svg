@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="xMidYMid meet" width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>v</title>
+    <g id="v" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#000000" x="0" y="0" width="200" height="200"></rect>
+        <g id="Group">
+            <rect id="Rectangle" fill="#000000" x="0" y="0" width="200" height="200"></rect>
+            <rect id="Rectangle" fill="#FFFFFF" x="120" y="118" width="33" height="12"></rect>
+            <polygon id="v" fill="#FFFFFF" fill-rule="nonzero" points="99.0704902 130 120.345 67 103.203824 67 89.9528431 110.015474 89.7097059 110.015474 76.4587255 67 58.345 67 79.8626471 130"></polygon>
+        </g>
+    </g>
+</svg>
