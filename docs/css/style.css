@@ -128,7 +128,7 @@ a:focus {
   /* display: flex;
   flex-direction: column;
   align-items: center; */
-  padding: 2em 6em;
+  padding: 3em 6em 2em;
   background: white;
   color: black;
   width: 100%;
@@ -148,7 +148,7 @@ a.demos-link {
   position: relative;
   flex-direction: column;
   align-items: center;
-  padding: 20px 120px;
+  padding: 1.5em 6em 4em;
   background: #f1f1f1;
   color: black;
 }
@@ -175,7 +175,7 @@ a.demos-link {
   position: relative;
   flex-direction: column;
   align-items: center;
-  padding: 2em 6em;
+  padding: 2em 6em 4em;
   background: white;
   color: black;
 }
@@ -238,6 +238,7 @@ a.demos-link {
 .poc-item {
   display: block;
   padding-bottom: 1em;
+  min-width: 100%;
 }
 .poc-item article {
   width: 100%;
@@ -277,6 +278,7 @@ a.demos-link {
 
 @media screen and (min-width: 1024px) {
   #poc-container {
+    padding-top: 0;
     padding-bottom: 2.5em;
   }
   .poc-item {
