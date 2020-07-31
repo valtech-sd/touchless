@@ -87,9 +87,6 @@ body {
 #footer {
   background-color: rgb(255,255,255,0.05);
   border: 2px solid;
-  /* border-top: 2px solid;
-  border-left: 2px solid;
-  border-right: 2px solid; */
   position: absolute;
   bottom: 1px;
   width:20%;
@@ -170,8 +167,6 @@ model-viewer {
   height: 100%;
   width: 100%;
   flex: 0 0 100%;
-  /* border-radius: 5px; */
-  /* margin-right: 15px; */
   background-repeat: no-repeat;
   background-position: center center;
 

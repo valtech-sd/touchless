@@ -56,8 +56,6 @@ function changeColor() {
   firebase.database().ref('color/').set(newColor);
 }
 
-// const modelViewer = document.querySelector('model-viewer');
-// modelViewer.cameraOrbit = 'auto auto 10%;
 multitouch().start(({ touches, scale, rotate }) => {
   let x = touches[0].x;
   let y = touches[0].y;  
@@ -66,11 +64,6 @@ multitouch().start(({ touches, scale, rotate }) => {
   firebase.database().ref(queryUIDString + '/rotation/x/').set(mapX);
   firebase.database().ref(queryUIDString + '/rotation/y/').set(mapY);
 });
-
-// const touchRotation = (initialRotate = 0) => multitouch({ rotate: initialRotate })
-//   .pipe(({ rotate }) => rotate);
-
-// touchRotation().start((rotate) =>   firebase.database().ref(queryUIDString + '/rotation/y/').set(touches[0].x));
 
 function moveLeft() {
   if (!cooldown) {
