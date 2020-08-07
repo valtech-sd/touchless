@@ -27,5 +27,3 @@ Once you have generated the localhost.key and localhost.crt files in the project
 # Deployment
 
 All files in the `docs` directory will be served at [https://touchless.valtech.engineering](https://touchless.valtech.engineering). It's best to add the output of your `builds` to a subfolder in the `docs` directory. Then update the `index.html` file to link to it.
-
-
