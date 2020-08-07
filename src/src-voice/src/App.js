@@ -38,7 +38,7 @@ export default function App() {
                   style={{
                     backgroundColor: '#dfdfdf',
                     zIndex: 1000,
-                    marginTop: -48,
+                    marginTop: 0,
                   }}
                 >
                   <Grid
