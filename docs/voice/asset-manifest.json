@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "./static/css/main.d7faf660.chunk.css",
+    "main.js": "./static/js/main.ff985fd1.chunk.js",
+    "main.js.map": "./static/js/main.ff985fd1.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.1451e3c5.js",
+    "runtime-main.js.map": "./static/js/runtime-main.1451e3c5.js.map",
+    "static/js/2.5275be41.chunk.js": "./static/js/2.5275be41.chunk.js",
+    "static/js/2.5275be41.chunk.js.map": "./static/js/2.5275be41.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.b44fccb5e7e20dc477d89cd801b2fd66.js": "./precache-manifest.b44fccb5e7e20dc477d89cd801b2fd66.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.d7faf660.chunk.css.map": "./static/css/main.d7faf660.chunk.css.map",
+    "static/js/2.5275be41.chunk.js.LICENSE.txt": "./static/js/2.5275be41.chunk.js.LICENSE.txt",
+    "static/media/index.css": "./static/media/airport_background.7334578b.jpg",
+    "static/media/airportmap2.png": "./static/media/airportmap2.1d8daa80.png",
+    "static/media/valtech.svg": "./static/media/valtech.9dbcc64e.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1451e3c5.js",
+    "static/js/2.5275be41.chunk.js",
+    "static/css/main.d7faf660.chunk.css",
+    "static/js/main.ff985fd1.chunk.js"
+  ]
+}
