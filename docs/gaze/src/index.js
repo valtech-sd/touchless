@@ -18,12 +18,6 @@ function isMobile() {
   return isAndroid || isiOS;
 }
 
-function isFirefox() {
-  // Firefox has a different coordinate system than Chrome/Safari
-  const isFF = /Firefox/i.test(navigator.userAgent);
-  return isFF; 
-}
-
 function drawPath(ctx, points, closePath) {
   const region = new Path2D();
   region.moveTo(points[0][0], points[0][1]);
@@ -81,32 +75,6 @@ async function setupCamera() {
   });
 }
 
-// OLD FUNCTION moveCursor just mirrors your nose tip 
-// position in the window.
-const MAX_X = 215;
-const MIN_X = 145;
-const MAX_Y = 140;
-const MIN_Y = 130;
-
-function moveCursor(point) {
-
-  let x = point[0]; 
-  let y = point[1];
-  // console.log('Unfiltered x: ',x,', y: ',y);
-  // let z = point[2];
-  // constrain the points
-  if (x > MAX_X) x = MAX_X;
-  if (x < MIN_X) x = MIN_X;
-  if (y > MAX_Y) y = MAX_Y;
-  if (y < MIN_Y) y = MIN_Y;
-  const cursorX = (x - MIN_X) / (MAX_X - MIN_X);
-  const cursorY = (y - MIN_Y) / (MAX_Y - MIN_Y);
-  
-  hudCursor.style.right = `calc( ${cursorX*100}% - 10px)`;
-  hudCursor.style.top = `${cursorY*hud.clientHeight}px`;
-  // console.log(`x: ${x} or ${cursorX}, y: ${y} or ${cursorY}`);
-}
-
 function crossProduct(a,b) {
   return [
     a[1]*b[2] - a[2]*b[1],
@@ -115,7 +83,6 @@ function crossProduct(a,b) {
   ]
 }
 
-// New function: calculates angle of your face direction.
 const MAX_H = 25;
 const MIN_H = -25;
 const MAX_V = 15;
@@ -152,8 +119,6 @@ function moveCursorVector(M,L,R) {
   
   hudCursor.style.right = `calc( ${cursorX*100}% - 10px)`;
   hudCursor.style.top = `${cursorY*hud.clientHeight}px`;
-  
-
 }
 
 async function renderPrediction() {
@@ -187,13 +152,8 @@ async function renderPrediction() {
           ctx.fill();
         }
       }
-      // IMPLEMENT THE DUMBEST VERSION OF GAZE DETECTION
-      // each coordinate in keypoints is an array [x,y,z]
-      // keypoints[1] is roughly the tip of the nose
-      // for a person looking head-on: 
-      //  its x ranges from about 215-145 (±35), centered on 180
-      //  its y ranges from about 130-140 (±10)
-      // moveCursor(keypoints[1])
+
+      // Pass three points to figure out which way the face is pointing.
       moveCursorVector(
         prediction.annotations.midwayBetweenEyes[0],
         prediction.annotations.noseLeftCorner[0],
@@ -201,26 +161,6 @@ async function renderPrediction() {
       );
 
     });
-
-    // if (renderPointcloud && state.renderPointcloud && scatterGL != null) {
-    //   const pointsData = predictions.map(prediction => {
-    //     let scaledMesh = prediction.scaledMesh;
-    //     return scaledMesh.map(point => ([-point[0], -point[1], -point[2]]));
-    //   });
-
-    //   let flattenedPointsData = [];
-    //   for (let i = 0; i < pointsData.length; i++) {
-    //     flattenedPointsData = flattenedPointsData.concat(pointsData[i]);
-    //   }
-    //   const dataset = new ScatterGL.Dataset(flattenedPointsData);
-
-    //   if (!scatterGLHasInitialized) {
-    //     scatterGL.render(dataset);
-    //   } else {
-    //     scatterGL.updateDataset(dataset);
-    //   }
-    //   scatterGLHasInitialized = true;
-    // }
   }
   requestAnimationFrame(renderPrediction);
 };
@@ -245,7 +185,6 @@ document.addEventListener('click', (e) => {
 
 async function main() {
   await tf.setBackend(state.backend);
-  // setupDatGui();
 
   const backendSelect = document.querySelector('select#backend');
   backendSelect.addEventListener('change', async (event) => {
@@ -254,9 +193,6 @@ async function main() {
     await tf.setBackend(newSelection)
     state.backend = newSelection;
   });
-
-  //stats.showPanel(0);  // 0: fps, 1: ms, 2: mb, 3+: custom
-  //document.getElementById('main').appendChild(stats.dom);
 
   await setupCamera();
   video.play();
@@ -280,15 +216,6 @@ async function main() {
 
   model = await facemesh.load({maxFaces: state.maxFaces});
   renderPrediction();
-
-  // if (renderPointcloud) {
-  //   document.querySelector('#scatter-gl-container').style =
-  //       `width: ${VIDEO_SIZE}px; height: ${VIDEO_SIZE}px;`;
-
-  //   scatterGL = new ScatterGL(
-  //       document.querySelector('#scatter-gl-container'),
-  //       {'rotateOnStart': false, 'selectEnabled': false});
-  // }
 };
 
 main();
