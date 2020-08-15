@@ -7,8 +7,8 @@ To run it locally, we have to use a bundler that takes the node packages and com
 ## Installation
 
 1. Run `npm i` from within this directory to install the node modules.
-2. Run `npm dev` to build everything into the `./dist` folder and run a local server at `localhost:1234`.
-3. Run `npm build` to build it for production.
+2. Run `npm run dev` to build everything into the `./dev` folder and run a local server at `localhost:1234`.
+3. Run `npm run build` to build it into the `./dist` folder for production.
 
 ## How it works
 
