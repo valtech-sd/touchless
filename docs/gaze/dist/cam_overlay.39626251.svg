@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="352px" height="288px" viewBox="0 0 352 288" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>cam_overlay</title>
+    <g id="cam_overlay" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M352,0 L352,288 L0,288 L0,0 L352,0 Z M175.5,48 C134.354786,48 101,93.8908131 101,150.5 C101,207.109187 134.354786,253 175.5,253 C216.645214,253 250,207.109187 250,150.5 C250,93.8908131 216.645214,48 175.5,48 Z" id="Combined-Shape-Copy" fill-opacity="0.4" fill="#000000"></path>
+        <path d="M352,0 L352,288 L0,288 L0,0 L352,0 Z M175.5,38 C129.384223,38 92,88.3679656 92,150.5 C92,212.632034 129.384223,263 175.5,263 C221.615777,263 259,212.632034 259,150.5 C259,88.3679656 221.615777,38 175.5,38 Z" id="Combined-Shape-Copy-2" fill-opacity="0.4" fill="#000000"></path>
+        <path d="M352,0 L352,288 L0,288 L0,0 L352,0 Z M175.5,26 C124.413661,26 83,81.2928334 83,149.5 C83,217.707167 124.413661,273 175.5,273 C226.586339,273 268,217.707167 268,149.5 C268,81.2928334 226.586339,26 175.5,26 Z" id="Combined-Shape" fill-opacity="0.4" fill="#000000"></path>
+        <ellipse id="Oval" stroke="#00FFC7" stroke-width="0.9" cx="175.5" cy="149" rx="93.05" ry="123.55"></ellipse>
+        <ellipse id="Oval-Copy-6" stroke-opacity="0.5" stroke="#00FFC7" stroke-width="0.9" cx="176" cy="148.5" rx="97.55" ry="129.05"></ellipse>
+        <ellipse id="Oval-Copy-7" stroke-opacity="0.2" stroke="#00FFC7" stroke-width="0.9" cx="175.5" cy="149" rx="102.05" ry="135.55"></ellipse>
+    </g>
+</svg>
