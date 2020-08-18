@@ -34,7 +34,6 @@ function drawPath(ctx, points, closePath) {
 }
 
 let model, ctx, videoWidth, videoHeight, video, canvas;
-let predix = {};
 
 const VIDEO_SIZE = 240;
 const mobile = isMobile();
@@ -44,7 +43,11 @@ const renderPointcloud = mobile === false;
 const state = {
   backend: 'wasm', // or 'webgl' or 'cpu', set with `await tf.setBackend(backend)`
   maxFaces: 1, // up to 20, set with `await facemesh.load({maxFaces: val})`
-  triangulateMesh: false
+  triangulateMesh: false,
+  cursorX: 0,
+  cursorY: 0,
+  globalCursorX: 0,
+  globalCursorY: 0,
 };
 // const outputDiv = document.querySelector('#console');
 const stage = document.querySelector('svg#storefront');
@@ -179,9 +182,6 @@ async function renderPrediction() {
   if (predictions.length > 0) {
     predictions.forEach(prediction => {
       const keypoints = prediction.scaledMesh;
-      // *** for logging and debugging only:
-      predix = prediction;
-      // ***
 
       if (state.triangulateMesh) {
         for (let i = 0; i < TRIANGULATION.length / 3; i++) {
@@ -214,24 +214,6 @@ async function renderPrediction() {
   }
   requestAnimationFrame(renderPrediction);
 };
-
-// DEBUG MODE: log out the prediction to the console on click
-document.addEventListener('click', (e) => {
-  // console.log(JSON.stringify(predix,null,2));
-  console.log(predix.scaledMesh);
-  console.log(predix.annotations);
-  const numbers = {};
-  for (let group in predix.annotations) {
-    numbers[group] = [];
-    for (let i = 0; i < predix.annotations[group].length; i++) {
-      const point = predix.annotations[group][i];
-      numbers[group].push(predix.scaledMesh.findIndex(item => JSON.stringify(item) === JSON.stringify(point)));
-      console.log(`${group}[${i}] is ${point} which is equal to ${numbers[group][i]}: ${predix.scaledMesh[numbers[group][i]]}`)
-    }
-  }
-  console.log(numbers);
-  console.log(JSON.stringify(numbers));
-});
 
 async function main() {
   await tf.setBackend(state.backend);
