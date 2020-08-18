@@ -44,12 +44,10 @@ const renderPointcloud = mobile === false;
 const state = {
   backend: 'wasm', // or 'webgl' or 'cpu', set with `await tf.setBackend(backend)`
   maxFaces: 1, // up to 20, set with `await facemesh.load({maxFaces: val})`
-  triangulateMesh: false,
-  x: 0,
-  y: 0
+  triangulateMesh: false
 };
 // const outputDiv = document.querySelector('#console');
-const stage = document.querySelector('#stage');
+const stage = document.querySelector('svg#storefront');
 let stageCoords = {};
 function setStageCoords() {
   const rect = stage.getBoundingClientRect();
