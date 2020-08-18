@@ -3,6 +3,7 @@
  * https://github.com/tensorflow/tfjs-models/tree/master/facemesh/demo
  */
 
+import MovingCursor from './MovingCursor.js';
 import * as facemesh from '@tensorflow-models/facemesh';
 import * as tf from '@tensorflow/tfjs-core';
 import '@tensorflow/tfjs-backend-webgl';
@@ -43,11 +44,39 @@ const renderPointcloud = mobile === false;
 const state = {
   backend: 'wasm', // or 'webgl' or 'cpu', set with `await tf.setBackend(backend)`
   maxFaces: 1, // up to 20, set with `await facemesh.load({maxFaces: val})`
-  triangulateMesh: false
+  triangulateMesh: false,
+  x: 0,
+  y: 0
 };
-const outputDiv = document.querySelector('#console');
-const hud = document.querySelector('#hud');
-const hudCursor = document.querySelector('#cursor');
+// const outputDiv = document.querySelector('#console');
+const stage = document.querySelector('#stage');
+let stageCoords = {};
+function setStageCoords() {
+  const rect = stage.getBoundingClientRect();
+  stageCoords.top = rect.top,
+  stageCoords.left = 0;
+  stageCoords.right = rect.right;
+  stageCoords.height = rect.height;
+  stageCoords.bottom = rect.bottom;
+};
+setStageCoords();
+window.addEventListener('resize', setStageCoords);
+const hudCursor = new MovingCursor('#cursor', 0, 0, 20, 20);
+const stableCursor = new MovingCursor('#follower', 0, 0, 20, 20);
+const allProducts = document.querySelector('#highlights>path');
+let selectedProduct = '';
+const rolloverElements = [
+  'A','B','C','D','E','F','G','H','nav-left','nav-right'
+];
+
+// function translatedElementFromPoint(x,y) {
+//   const el = document.elementFromPoint((x/1920)*stageCoords.right, (y/1080)*stageCoords.height + stageCoords.top);
+//   if (el && el.id && rolloverElements.indexOf(el.id) > -1) {
+//     return el.id;
+//   } else {
+//     return ''
+//   }
+// }
 
 if (renderPointcloud) {
   state.renderPointcloud = true;
@@ -88,8 +117,10 @@ const MIN_H = -25;
 const MAX_V = 15;
 const MIN_V = -15;
 
+let count = 0; console.log(selectedProduct);
+
 function moveCursorVector(M,L,R) {
-  outputDiv.innerHTML = '';
+   // outputDiv.innerHTML = '';
   // M, L, R are all 3D points
   const ML = [L[0]-M[0], L[1]-M[1], L[2]-M[2]];
   const MR = [R[0]-M[0], R[1]-M[1], R[2]-M[2]];
@@ -103,11 +134,11 @@ function moveCursorVector(M,L,R) {
   const horizAngle = Math.atan2(unit[0],-1*unit[2]) * 180/Math.PI;
   const vertAngle  = Math.atan2(unit[1],-1*unit[2]) * 180/Math.PI;
   // Show the output of the angles (for debugging).
-  outputDiv.innerHTML += 'horiz: '+horizAngle+'\n';
-  outputDiv.innerHTML += 'vert: '+vertAngle+'\n';
+   // outputDiv.innerHTML += 'horiz: '+horizAngle+'\n';
+   // outputDiv.innerHTML += 'vert: '+vertAngle+'\n';
   // Move the cursor!
-  const totalWidth = hud.clientWidth;
-  const totalHeight = hud.clientHeight;
+  const totalWidth = stage.clientWidth;
+  const totalHeight = stage.clientHeight;
   let cursorX = horizAngle + MAX_H;
   if (cursorX < 0) cursorX = 0;
   if (cursorX > MAX_H*2) cursorX = MAX_H*2;
@@ -117,8 +148,29 @@ function moveCursorVector(M,L,R) {
   if (cursorY > MAX_V*2) cursorY = MAX_V*2;
   cursorY = cursorY / (MAX_V - MIN_V);
   
-  hudCursor.style.right = `calc( ${cursorX*100}% - 10px)`;
-  hudCursor.style.top = `${cursorY*hud.clientHeight}px`;
+  hudCursor.setLocation(1920-cursorX*1920, cursorY*1080);
+  // hudCursor.move();
+
+  stableCursor.follow(hudCursor.location);
+  stableCursor.move();
+
+  // // isItOverAnElement(stableCursor);
+  // count++;
+  // if (count > 100) {
+  //   count = 0;
+  // }
+  // const hoveredElement = translatedElementFromPoint(stableCursor.x, stableCursor.y);
+
+  // console.log(hoveredElement);
+  // if (selectedProduct !== hoveredElement) {
+  //   console.log(hoveredElement);
+  //   allProducts.forEach((item) => {
+  //     if (item.id === selectedProduct) item.classList.remove('selected');
+  //     if (item.id === hoveredElement) item.classList.add('selected');
+  //   });
+  //   selectedProduct = hoveredElement;
+  // }
+  
 }
 
 async function renderPrediction() {
