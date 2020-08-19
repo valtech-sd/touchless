@@ -51,6 +51,7 @@ const state = {
   globalCursorY: 0,
   hoveredElement: 0,
   selectedElement: 0,
+  hoverCounts: [0,0,0,0,0,0,0,0,0,0,0],
   hasNewHover: false,
   hasNewSelection: false,
 };
@@ -67,11 +68,22 @@ function setStageCoords() {
 };
 setStageCoords();
 window.addEventListener('resize', setStageCoords);
+const hoverDuration = 1000;
 const hudCursor = new MovingCursor('#cursor', 0, 0, 20, 20);
 const stableCursor = new MovingCursor('#follower', 0, 0, 20, 20);
-const allProducts = document.querySelector('#highlights>path');
-const rolloverElements = [
-  'A','B','C','D','E','F','G','H','nav-left','nav-right'
+// cache references to all the products
+const allHovers = [
+  null,
+  document.querySelector('#A'),
+  document.querySelector('#B'),
+  document.querySelector('#C'),
+  document.querySelector('#D'),
+  document.querySelector('#E'),
+  document.querySelector('#F'),
+  document.querySelector('#G'),
+  document.querySelector('#H'),
+  document.querySelector('#nav-left'),
+  document.querySelector('#nav-right'),
 ];
 
 if (renderPointcloud) {
@@ -154,6 +166,9 @@ async function moveCursorVector(M,L,R) {
   state.globalCursorX = (state.cursorX/1920)*stageCoords.right;
   state.globalCursorY = (state.cursorY/1080)*stageCoords.height + stageCoords.top;
   stableCursor.move();
+
+  // This section is ok for a demo but need to reimplement it...
+  // (document.elementFromPoint() was not working at all.)
   if (state.selectedElement === 0) {
     // nothing is selected
     const hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
@@ -164,20 +179,22 @@ async function moveCursorVector(M,L,R) {
         // toggle the highlights
         console.log(hoveredElement);
         state.hoveredElement = hoveredElement;
+        state.hasNewHover = true;
         // start the counter for selection
-        count++;
+        state.hoverCounts[hoveredElement] += 1;
       } else {
-        // if it's the same element and not 0
-        if (count > 0 && hoveredElement === 0) {
+        // if it's the same element and 0 make sure that it's not incrementing
+        if (hoveredElement === 0 && state.hoverCounts[0] > 0) {
           // reset the hover count
-          count = 0;
-        } else if (count > 0) {
-          count++;
-          if (count > 100) {
-            console.log('selected');
+          state.hoverCounts[0] = 0;
+        } else if (state.hoverCounts[hoveredElement] > 0) {
+          state.hoverCounts[hoveredElement] += 1;
+          if (state.hoverCounts[hoveredElement] > hoverDuration) {
+            console.log('selected ' + hoveredElement);
             state.selectedElement = state.hoveredElement;
+            state.hasNewSelection = true;
             state.hoveredElement = 0;
-            count = 0;
+            state.hoverCounts = [0,0,0,0,0,0,0,0,0,0,0];
           }
         }
       }
@@ -189,28 +206,58 @@ async function moveCursorVector(M,L,R) {
     if (state.hoveredElement !== hoveredElement) {
       console.log(hoveredElement);
       state.hoveredElement = hoveredElement;
-      count++;
+      state.hasNewHover = true;
+      state.hoverCounts[hoveredElement] += 1;
     } else {
-      if (count > 0 && hoveredElement === 0) {
-        count = 0;
-      } else if (count > 0) {
-        count++;
-        if (count > 100) {
+      if (hoveredElement === 0 && state.hoverCounts[0] > 0) {
+        state.hoverCounts[0] = 0;
+      } else if (state.hoverCounts[hoveredElement] > 0) {
+        state.hoverCounts[hoveredElement] += 1;
+        if (state.hoverCounts[hoveredElement] > hoverDuration) {
           console.log('selected '+hoveredElement);
-          state.selectedElement = 0;
+          state.selectedElement = state.hoveredElement;
+          state.hasNewSelection = true;
           state.hoveredElement = 0;
-          count = 0;
+          state.hoverCounts = [0,0,0,0,0,0,0,0,0,0,0];
         }
       }
     } 
   }
-
-  
 }
 
-async function updateDom() {
-  if (false) {
-    requestAnimationFrame(updateDom);
+function updateDom() {
+  // if there's a change in hover
+  if (state.hasNewHover) {
+    // if there's nothing selected
+    if (state.selectedElement === 0) {
+      for (let i = 1; i < 9; i++) {
+        if (i !== state.hoveredElement) {
+          allHovers[i].classList.remove('hovered');
+        } else {
+          allHovers[i].classList.add('hovered');
+          state.hasNewHover = false;
+        }
+        // state.hoverCounts[i] = 0;
+      }
+    } else {
+      for (let i = 9; i < allHovers.length; i++) {
+        if (i !== state.hoveredElement) {
+          allHovers[i].classList.remove('hovered');
+        } else {
+          allHovers[i].classList.add('hovered');
+          state.hasNewHover = false;
+        }
+      }
+    }
+  }
+  if (state.hasNewSelection) {
+    if (state.selectedElement === 0) {
+      
+    }
+    // unhover all
+    // unselect all
+    // if it's exit or add to cart, do that
+    // reset the var
   }
 }
 
@@ -251,6 +298,9 @@ async function renderPrediction() {
       );
       
     });
+  }
+  if (state.hasNewHover || state.hasNewSelection) {
+    updateDom();
   }
   requestAnimationFrame(renderPrediction);
 };

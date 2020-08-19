@@ -8,7 +8,7 @@ class MovingCursor {
     this.acceleration = new Vector(0,0);
     this.height = h || 20;
     this.width = w || 20;
-    this.rate = 0.3;
+    this.rate = 0.1;
     this.delta = new Vector(0,0);
   }
 
