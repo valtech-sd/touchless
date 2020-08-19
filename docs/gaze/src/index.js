@@ -45,6 +45,7 @@ const state = {
   backend: 'wasm', // or 'webgl' or 'cpu', set with `await tf.setBackend(backend)`
   maxFaces: 1, // up to 20, set with `await facemesh.load({maxFaces: val})`
   triangulateMesh: false,
+  isOnboarding: true,
   cursorX: 0,
   cursorY: 0,
   globalCursorX: 0,
@@ -56,6 +57,8 @@ const state = {
   hasNewSelection: false,
 };
 const canvasWrapper = document.querySelector('.canvas-wrapper');
+const onboarding = document.querySelector('#onboarding');
+const startButton = document.querySelector('#start_button');
 const stage = document.querySelector('svg#storefront');
 let stageCoords = {};
 function setStageCoords() {
@@ -183,155 +186,204 @@ async function moveCursorVector(M,L,R) {
   // This section is ok for a demo but need to reimplement it...
   // (document.elementFromPoint() was not working at all.)
   let hoveredElement;
-  if (state.selectedElement === 0) {
-    // nothing is selected
-    hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
-    // console.log(hoveredElement);
-    if (hoveredElement < 9) {
-      // if it's over a new hovered element
+  if (state.isOnboarding) {
+    // if isOnboarding, we don't hover anything except START button
+    hoveredElement = ( state.cursorX >= 1316 && state.cursorX <= 1573 && state.cursorY >= 764 && state.cursorY <= 1003 ) 
+      ? 1
+      : 0;
+    if (state.hoveredElement !== hoveredElement) {
+      state.hoveredElement = hoveredElement;
+      state.hasNewHover = true;
+      if (hoveredElement) {
+        state.hoverCounts[1] += 1;
+      } else {
+        state.hoverCounts[1] = 0;
+      }
+    }
+    // have they selected the START button?
+    if (!!hoveredElement) {
+      state.hoverCounts[1] += 1;
+      if (state.hoverCounts[1] > hoverDuration) {
+        debugger;
+        console.log('start selected')
+        onboarding.addEventListener('transitionend', (e) => {
+          console.log('removing onboarding element');
+          state.hoverCounts[1] = 0;
+          state.hoveredElement = 0;
+          onboarding.remove();
+          state.hasNewHover = false;
+          state.isOnboarding = false;
+        })
+        onboarding.classList.add('dismiss');
+      } 
+    }
+
+  } else {
+    if (state.selectedElement === 0) {
+      // nothing is selected
+      hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
+      // console.log(hoveredElement);
+      if (hoveredElement < 9) {
+        // if it's over a new hovered element
+        if (state.hoveredElement !== hoveredElement) {
+          // toggle the highlights
+          // console.log(hoveredElement);
+          state.hoveredElement = hoveredElement;
+          state.hasNewHover = true;
+          // start the counter for selection
+          state.hoverCounts[hoveredElement] += 1;
+        } else {
+          // if it's the same element and 0 make sure that it's not incrementing
+          if (hoveredElement === 0 && state.hoverCounts[0] > 0) {
+            // reset the hover count
+            state.hoverCounts[0] = 0;
+          } else if (state.hoverCounts[hoveredElement] > 0) {
+            state.hoverCounts[hoveredElement] += 1;
+            if (state.hoverCounts[hoveredElement] > hoverDuration) {
+              // console.log('selected ' + hoveredElement);
+              state.selectedElement = state.hoveredElement;
+              state.hasNewSelection = true;
+              state.hoveredElement = 0;
+              state.hoverCounts = [0,0,0,0,0,0,0,0,0,0,0];
+            }
+          }
+        }
+      }
+    } else {
+      // something is selected, only 9 and 10 are valid
+      hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
+      if (hoveredElement < 9) hoveredElement = 0;
       if (state.hoveredElement !== hoveredElement) {
-        // toggle the highlights
         // console.log(hoveredElement);
         state.hoveredElement = hoveredElement;
         state.hasNewHover = true;
-        // start the counter for selection
         state.hoverCounts[hoveredElement] += 1;
       } else {
-        // if it's the same element and 0 make sure that it's not incrementing
+        // count down until selection;
         if (hoveredElement === 0 && state.hoverCounts[0] > 0) {
-          // reset the hover count
           state.hoverCounts[0] = 0;
         } else if (state.hoverCounts[hoveredElement] > 0) {
           state.hoverCounts[hoveredElement] += 1;
           if (state.hoverCounts[hoveredElement] > hoverDuration) {
-            // console.log('selected ' + hoveredElement);
+            // console.log('selected '+hoveredElement);
             state.selectedElement = state.hoveredElement;
             state.hasNewSelection = true;
             state.hoveredElement = 0;
             state.hoverCounts = [0,0,0,0,0,0,0,0,0,0,0];
           }
         }
-      }
+      } 
     }
-  } else {
-    // something is selected, only 9 and 10 are valid
-    hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
-    if (hoveredElement < 9) hoveredElement = 0;
-    if (state.hoveredElement !== hoveredElement) {
-      // console.log(hoveredElement);
-      state.hoveredElement = hoveredElement;
-      state.hasNewHover = true;
-      state.hoverCounts[hoveredElement] += 1;
-    } else {
-      if (hoveredElement === 0 && state.hoverCounts[0] > 0) {
-        state.hoverCounts[0] = 0;
-      } else if (state.hoverCounts[hoveredElement] > 0) {
-        state.hoverCounts[hoveredElement] += 1;
-        if (state.hoverCounts[hoveredElement] > hoverDuration) {
-          // console.log('selected '+hoveredElement);
-          state.selectedElement = state.hoveredElement;
-          state.hasNewSelection = true;
-          state.hoveredElement = 0;
-          state.hoverCounts = [0,0,0,0,0,0,0,0,0,0,0];
-        }
-      }
-    } 
   }
 }
 
 function updateDom() {
-  // if there's a change in hover
-  if (state.hasNewHover) {
-    // if there's nothing selected
-    if (state.selectedElement === 0) {
-      for (let i = 1; i < 9; i++) {
-        if (i !== state.hoveredElement) {
-          allHovers[i].classList.remove('hovered');
-        } else {
-          allHovers[i].classList.add('hovered');
-          state.hasNewHover = false;
-        }
-        // state.hoverCounts[i] = 0;
+  if (state.isOnboarding) {
+    // if in onboarding, we won't update hovered elements
+    if (state.hasNewHover) {
+      if (!!state.hoveredElement) {
+        startButton.classList.add('hovered');
+        state.hasNewHover = 0;
+      } else {
+        startButton.classList.remove('hovered');
+        state.hasNewHover = 0;
       }
-    } else {
-      for (let i = 9; i < allHovers.length; i++) {
-        if (i !== state.hoveredElement) {
-          allHovers[i].classList.remove('hovered');
-        } else {
-          allHovers[i].classList.add('hovered');
-          state.hasNewHover = false;
+    }
+
+  } else {
+    // if there's a change in hover
+    if (state.hasNewHover) {
+      // if there's nothing selected
+      if (state.selectedElement === 0) {
+        for (let i = 1; i < 9; i++) {
+          if (i !== state.hoveredElement) {
+            allHovers[i].classList.remove('hovered');
+          } else {
+            allHovers[i].classList.add('hovered');
+            state.hasNewHover = false;
+          }
+          // state.hoverCounts[i] = 0;
+        }
+      } else {
+        for (let i = 9; i < allHovers.length; i++) {
+          if (i !== state.hoveredElement) {
+            allHovers[i].classList.remove('hovered');
+          } else {
+            allHovers[i].classList.add('hovered');
+            state.hasNewHover = false;
+          }
         }
       }
     }
-  }
-  // if there's a change in selection
-  if (state.hasNewSelection) {
-    console.log('new selection! '+ state.selectedElement);
-    if (state.selectedElement == 0) {
-      for (let i = 1; i < allHovers.length; i++) {
-        allHovers[i].classList.remove('selected');
-        if (i > 0 && i < 9) {
-          callouts[i].classList.remove('selected');
-        }
-      }
-      allHovers[9].classList.remove('visible');
-      allHovers[10].classList.remove('visible');
-      state.hasNewSelection = false;
-    } else if (state.selectedElement > 0 && state.selectedElement < 9) {
-      // in hover mode and switching to selected mode
-      for (let i = 1; i < allHovers.length; i++) {
-        if (i !== state.selectedElement) {
+    // if there's a change in selection
+    if (state.hasNewSelection) {
+      console.log('new selection! '+ state.selectedElement);
+      if (state.selectedElement == 0) {
+        for (let i = 1; i < allHovers.length; i++) {
           allHovers[i].classList.remove('selected');
           if (i > 0 && i < 9) {
             callouts[i].classList.remove('selected');
           }
-        } else {
-          allHovers[i].classList.remove('hovered');
-          allHovers[i].classList.add('selected');
-          if (i > 0 && i < 9) {
-            callouts[i].classList.add('selected');
-            allHovers[9].classList.add('visible');
-            allHovers[10].classList.add('visible');
+        }
+        allHovers[9].classList.remove('visible');
+        allHovers[10].classList.remove('visible');
+        state.hasNewSelection = false;
+      } else if (state.selectedElement > 0 && state.selectedElement < 9) {
+        // in hover mode and switching to selected mode
+        for (let i = 1; i < allHovers.length; i++) {
+          if (i !== state.selectedElement) {
+            allHovers[i].classList.remove('selected');
+            if (i > 0 && i < 9) {
+              callouts[i].classList.remove('selected');
+            }
+          } else {
+            allHovers[i].classList.remove('hovered');
+            allHovers[i].classList.add('selected');
+            if (i > 0 && i < 9) {
+              callouts[i].classList.add('selected');
+              allHovers[9].classList.add('visible');
+              allHovers[10].classList.add('visible');
+            }
+            state.hasNewSelection = false;
           }
+        }
+      } else {
+        // in selected mode 
+        if (state.selectedElement === 9) {
+          // selected EXIT
+          exitButton.addEventListener('animationend', (e) => {
+            state.selectedElement = 0;
+            state.hasNewSelection = true; // go back to main
+            exitButton.classList.remove('selected');
+          });
+          
+          allHovers[9].classList.add('selected');
+          exitButton.classList.add('selected');
           state.hasNewSelection = false;
+          // go back to main
+        } 
+        if (state.selectedElement === 10) {
+          // selected ADD TO CART
+          cartButton.addEventListener('animationend', (e) => {
+            state.selectedElement = 0;
+            state.hasNewSelection = true; // go back to main
+            cartButton.classList.remove('selected');
+          });
+          
+          allHovers[10].classList.add('selected');
+          cartButton.classList.add('selected');
+          state.hasNewSelection = false;
+          // go back to main
         }
-      }
-    } else {
-      // in selected mode 
-      if (state.selectedElement === 9) {
-        // selected EXIT
-        exitButton.addEventListener('animationend', (e) => {
-          state.selectedElement = 0;
-          state.hasNewSelection = true; // go back to main
-          exitButton.classList.remove('selected');
-        });
-        
-        allHovers[9].classList.add('selected');
-        exitButton.classList.add('selected');
-        state.hasNewSelection = false;
-        // go back to main
-      } 
-      if (state.selectedElement === 10) {
-        // selected ADD TO CART
-        cartButton.addEventListener('animationend', (e) => {
-          state.selectedElement = 0;
-          state.hasNewSelection = true; // go back to main
-          cartButton.classList.remove('selected');
-        });
-        
-        allHovers[10].classList.add('selected');
-        cartButton.classList.add('selected');
-        state.hasNewSelection = false;
-        // go back to main
-      }
-      // then remove all selections
-      for (let i = 1; i < allHovers.length; i++) {
-        allHovers[i].classList.remove('selected');
-        if (i > 0 && i < 9) {
-          callouts[i].classList.remove('selected');
+        // then remove all selections
+        for (let i = 1; i < allHovers.length; i++) {
+          allHovers[i].classList.remove('selected');
+          if (i > 0 && i < 9) {
+            callouts[i].classList.remove('selected');
+          }
         }
+        // state.hasNewSelection = false;
       }
-      // state.hasNewSelection = false;
     }
   }
 }

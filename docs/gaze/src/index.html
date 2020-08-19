@@ -115,6 +115,30 @@
     .callouts.selected {
       opacity: 1;
     }
+
+    #onboarding {
+      opacity: 1;
+      transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 1.5s;
+    }
+    #onboarding.dismiss {
+      opacity: 0;
+    }
+    #start_button rect {
+      transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 1000ms;
+      stroke: #000000;
+    }
+    #start_button.hovered rect {
+      stroke-width: 20px;
+      stroke: #00e3ff;
+    }
+    #start_button text {
+      transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 1000ms;
+      fill: #ffffff;
+    }
+    #start_button.hovered text {
+      fill: #00e3ff;
+    }
+
   </style>
 </head>
 <body>
@@ -350,6 +374,44 @@
             <line x1="175.5" y1="395.25" x2="0.75" y2="342.5" id="Line-2-Copy-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
             <line x1="175.5" y1="395.25" x2="0.75" y2="342.5" id="Line-2-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
             <line x1="175.125" y1="563.875" x2="54.75" y2="515.5" id="Line-2-Copy-4" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+          </g>
+          <g id="onboarding">
+            <rect id="modal-overlay" fill-opacity="0.850524476" fill="#000000" x="0" y="0" width="1920" height="1080"></rect>
+            <rect id="modal-window" fill="#F6F6F6" x="307" y="540" width="1303" height="498" rx="21"></rect>
+            <path d="M983.5,473.5 C998.631455,548.327571 1008.1805,623.652385 944.5,705.5" id="Line-4" stroke="#F6F6F6" stroke-width="5" stroke-linecap="round"></path>
+            <polyline id="Path" stroke="#F6F6F6" stroke-width="5" stroke-linecap="round" points="968.5 508.5 983 471.5 1011.5 502"></polyline>
+            <text id="Move-the-cursor-here" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="36" font-weight="bold" line-spacing="57.6" fill="#000000">
+              <tspan x="376" y="972">Move the cursor here to begin:</tspan>
+            </text>
+            <path d="M1112.35245,811.945522 C1119.22152,851.589545 1123.99395,944.480726 1106.03942,1109.544" id="Line-4" stroke="#ED07FF" stroke-width="5" stroke-linecap="round" transform="translate(1112.276622, 960.744762) rotate(85.000000) translate(-1112.276622, -960.744762) "></path>
+            <polyline id="Path" stroke="#ED07FF" stroke-width="5" stroke-linecap="round" transform="translate(1242.653154, 955.939240) rotate(85.000000) translate(-1242.653154, -955.939240) " points="1221.15315 974.43924 1235.65315 937.43924 1264.15315 967.93924"></polyline>
+            <text id="Let's-go-window-shop" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="54" font-weight="bold" letter-spacing="-0.9" fill="#000000">
+              <tspan x="624.312" y="630">Let's go window shopping!</tspan>
+            </text>
+            <text id="1.-Put-your-face-wit" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="36" font-weight="bold" line-spacing="57.6" fill="#000000">
+              <tspan x="376" y="707">1. </tspan>
+              <tspan x="416.032" y="707" font-family="HelveticaNeueLTStd-Lt, Helvetica Neue LT Std, Helvetica, Arial" font-weight="300">Put your face within the oval.</tspan>
+              <tspan x="376" y="764.6">2. </tspan>
+              <tspan x="416.032" y="764.6" font-family="HelveticaNeueLTStd-Lt, Helvetica Neue LT Std, Helvetica, Arial" font-weight="300">Turn your face to steer the cursor.</tspan>
+              <tspan x="376" y="822.2">3.</tspan>
+              <tspan x="416.032" y="822.2" font-family="HelveticaNeueLTStd-Lt, Helvetica Neue LT Std, Helvetica, Arial" font-weight="300"> Hold the cursor over a set of products to select it.</tspan>
+              <tspan x="376" y="879.8">4. </tspan>
+              <tspan x="416.032" y="879.8" font-family="HelveticaNeueLTStd-Lt, Helvetica Neue LT Std, Helvetica, Arial" font-weight="300">Add that set to your cart, or return to browsing.</tspan>
+            </text>
+            <g id="start_button" transform="translate(1316.000000, 764.000000)">
+              <rect id="button_back" stroke="#00E3FF" stroke-width="0" fill="#000000" x="10" y="10" width="237" height="219" rx="31"></rect>
+              <text id="start" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="60" font-weight="bold" fill="#FFFFFF">
+                <tspan x="62.38" y="132">start</tspan>
+              </text>
+              <polyline id="Path-2" stroke="#00E3FF" stroke-width="2" stroke-linecap="round" points="151 177 127.5 158 104 177"></polyline>
+              <polyline id="Path-2-Copy" stroke="#00E3FF" stroke-width="2" opacity="0.6" stroke-linecap="round" points="151 187 127.5 168 104 187"></polyline>
+              <polyline id="Path-2-Copy-2" stroke="#00E3FF" stroke-width="2" opacity="0.3" stroke-linecap="round" points="151 197 127.5 178 104 197"></polyline>
+              <polyline id="Path-2-Copy-3" stroke="#00E3FF" stroke-width="2" opacity="0.15108817" stroke-linecap="round" points="151 207 127.5 188 104 207"></polyline>
+              <polyline id="Path-2" stroke="#00E3FF" stroke-width="2" stroke-linecap="round" points="151 56 127.5 75 104 56"></polyline>
+              <polyline id="Path-2-Copy" stroke="#00E3FF" stroke-width="2" opacity="0.6" stroke-linecap="round" points="151 46 127.5 65 104 46"></polyline>
+              <polyline id="Path-2-Copy-2" stroke="#00E3FF" stroke-width="2" opacity="0.3" stroke-linecap="round" points="151 36 127.5 55 104 36"></polyline>
+              <polyline id="Path-2-Copy-3" stroke="#00E3FF" stroke-width="2" opacity="0.15108817" stroke-linecap="round" points="151 26 127.5 45 104 26"></polyline>
+            </g>
           </g>
           <circle id="cursor" fill="#00E3FF" stroke="none" opacity="0" cx="695" cy="160" r="10"></circle>
           <circle id="follower" fill="#00E3FF" stroke="none" cx="755" cy="160" r="10"></circle>
