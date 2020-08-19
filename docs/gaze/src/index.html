@@ -12,6 +12,7 @@
       background-color: black;
       position: relative;
       min-height: 99vh;
+      font-family: 'HelveticaNeueLTStd-Bd', 'Helvetica Neue LT Std', Helvetica, Arial, sans-serif;
     }
 
     main>div {
@@ -80,14 +81,54 @@
       opacity: 1;
       transition: all cubic-bezier(0.895, 0.03, 0.685, 0.22) 500ms;
     }
-    .nav.selected path#nav_left_bg {
+    .nav.selected #nav_left_bg {
       fill: #990000;
       transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 500ms;
     }
-    .nav.selected path#nav_right_bg {
-      fill: #009900;
-      transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 500ms;
+    #nav_right_bg.selected {
+      /* fill: #009900; */
+      animation: addtocart 0.25s ease-out;
     }
+    @keyframes addtocart {
+      from {
+        fill: #000000;
+      }
+      to {
+        fill: #009900;
+      }
+    }
+    #nav_left_bg.selected {
+      animation: exitselection 0.25s ease-out;
+    }
+    @keyframes exitselection {
+      from {
+        fill: #000000;
+      }
+      to {
+        fill: #990000;
+      }
+    }
+    /* #status_message {
+      visibility: collapse;
+      opacity: 0;
+      display: inline-block;
+      position: absolute;
+      bottom: 0.5em;
+      width: 50%;
+      font-weight: bold;
+      line-height: 1.2em;
+      margin: 0 auto;
+      padding: 0.5em 1em;
+      left: 25%;
+      background-color: rgba(255,255,255,0.45);
+      color: black;
+      transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 1s;
+    }
+    #status_message.visible {
+      visibility: visible;
+      opacity: 1;
+      content: 'ensemble added to cart!'
+    } */
   </style>
 </head>
 <body>
@@ -197,7 +238,7 @@
       </g>
   </svg>
   <!-- Image from https://unsplash.com/photos/DmlIrCRETWY by Daniel von Appen -->
-
+  <aside id="status_message">ensemble added to cart</aside>
   </main>
 </body>
 <script src="index.js"></script>

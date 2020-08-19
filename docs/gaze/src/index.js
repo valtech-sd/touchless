@@ -85,6 +85,8 @@ const allHovers = [
   document.querySelector('#nav-left'),
   document.querySelector('#nav-right'),
 ];
+const cartButton = document.querySelector('#nav_right_bg');
+const exitButton = document.querySelector('#nav_left_bg');
 
 if (renderPointcloud) {
   state.renderPointcloud = true;
@@ -283,17 +285,29 @@ function updateDom() {
       // in selected mode 
       if (state.selectedElement === 9) {
         // selected EXIT
+        exitButton.addEventListener('animationend', (e) => {
+          state.selectedElement = 0;
+          state.hasNewSelection = true; // go back to main
+          exitButton.classList.remove('selected');
+        });
+        
         allHovers[9].classList.add('selected');
-        // add animation to exit button
+        exitButton.classList.add('selected');
+        state.hasNewSelection = false;
         // go back to main
-        state.selectedElement = 0;
       } 
       if (state.selectedElement === 10) {
         // selected ADD TO CART
+        cartButton.addEventListener('animationend', (e) => {
+          state.selectedElement = 0;
+          state.hasNewSelection = true; // go back to main
+          cartButton.classList.remove('selected');
+        });
+        
         allHovers[10].classList.add('selected');
-        // add animation / message
+        cartButton.classList.add('selected');
+        state.hasNewSelection = false;
         // go back to main
-        state.selectedElement = 0
       }
       // then remove all selections
       for (let i = 1; i < allHovers.length; i++) {
