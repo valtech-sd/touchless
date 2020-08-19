@@ -4,6 +4,7 @@
  */
 
 import MovingCursor from './MovingCursor.js';
+import hitAreas from './hit-areas';
 import * as facemesh from '@tensorflow-models/facemesh';
 import * as tf from '@tensorflow/tfjs-core';
 import '@tensorflow/tfjs-backend-webgl';
@@ -48,8 +49,12 @@ const state = {
   cursorY: 0,
   globalCursorX: 0,
   globalCursorY: 0,
+  hoveredElement: 0,
+  selectedElement: 0,
+  hasNewHover: false,
+  hasNewSelection: false,
 };
-// const outputDiv = document.querySelector('#console');
+const canvasWrapper = document.querySelector('.canvas-wrapper');
 const stage = document.querySelector('svg#storefront');
 let stageCoords = {};
 function setStageCoords() {
@@ -65,19 +70,9 @@ window.addEventListener('resize', setStageCoords);
 const hudCursor = new MovingCursor('#cursor', 0, 0, 20, 20);
 const stableCursor = new MovingCursor('#follower', 0, 0, 20, 20);
 const allProducts = document.querySelector('#highlights>path');
-let selectedProduct = '';
 const rolloverElements = [
   'A','B','C','D','E','F','G','H','nav-left','nav-right'
 ];
-
-// function translatedElementFromPoint(x,y) {
-//   const el = document.elementFromPoint((x/1920)*stageCoords.right, (y/1080)*stageCoords.height + stageCoords.top);
-//   if (el && el.id && rolloverElements.indexOf(el.id) > -1) {
-//     return el.id;
-//   } else {
-//     return ''
-//   }
-// }
 
 if (renderPointcloud) {
   state.renderPointcloud = true;
@@ -100,6 +95,7 @@ async function setupCamera() {
 
   return new Promise((resolve) => {
     video.onloadedmetadata = () => {
+      canvasWrapper.classList.add('visible');
       resolve(video);
     };
   });
@@ -118,9 +114,9 @@ const MIN_H = -25;
 const MAX_V = 15;
 const MIN_V = -15;
 
-let count = 0; console.log(selectedProduct);
+let count = 0;
 
-function moveCursorVector(M,L,R) {
+async function moveCursorVector(M,L,R) {
    // outputDiv.innerHTML = '';
   // M, L, R are all 3D points
   const ML = [L[0]-M[0], L[1]-M[1], L[2]-M[2]];
@@ -150,28 +146,72 @@ function moveCursorVector(M,L,R) {
   cursorY = cursorY / (MAX_V - MIN_V);
   
   hudCursor.setLocation(1920-cursorX*1920, cursorY*1080);
-  // hudCursor.move();
+
 
   stableCursor.follow(hudCursor.location);
+  state.cursorX = stableCursor.x;
+  state.cursorY = stableCursor.y;
+  state.globalCursorX = (state.cursorX/1920)*stageCoords.right;
+  state.globalCursorY = (state.cursorY/1080)*stageCoords.height + stageCoords.top;
   stableCursor.move();
+  if (state.selectedElement === 0) {
+    // nothing is selected
+    const hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
+    // console.log(hoveredElement);
+    if (hoveredElement < 9) {
+      // if it's over a new hovered element
+      if (state.hoveredElement !== hoveredElement) {
+        // toggle the highlights
+        console.log(hoveredElement);
+        state.hoveredElement = hoveredElement;
+        // start the counter for selection
+        count++;
+      } else {
+        // if it's the same element and not 0
+        if (count > 0 && hoveredElement === 0) {
+          // reset the hover count
+          count = 0;
+        } else if (count > 0) {
+          count++;
+          if (count > 100) {
+            console.log('selected');
+            state.selectedElement = state.hoveredElement;
+            state.hoveredElement = 0;
+            count = 0;
+          }
+        }
+      }
+    }
+  } else {
+    // something is selected, only 9 and 10 are valid
+    const hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
+    if (hoveredElement < 9) hoveredElement = 0;
+    if (state.hoveredElement !== hoveredElement) {
+      console.log(hoveredElement);
+      state.hoveredElement = hoveredElement;
+      count++;
+    } else {
+      if (count > 0 && hoveredElement === 0) {
+        count = 0;
+      } else if (count > 0) {
+        count++;
+        if (count > 100) {
+          console.log('selected '+hoveredElement);
+          state.selectedElement = 0;
+          state.hoveredElement = 0;
+          count = 0;
+        }
+      }
+    } 
+  }
 
-  // // isItOverAnElement(stableCursor);
-  // count++;
-  // if (count > 100) {
-  //   count = 0;
-  // }
-  // const hoveredElement = translatedElementFromPoint(stableCursor.x, stableCursor.y);
-
-  // console.log(hoveredElement);
-  // if (selectedProduct !== hoveredElement) {
-  //   console.log(hoveredElement);
-  //   allProducts.forEach((item) => {
-  //     if (item.id === selectedProduct) item.classList.remove('selected');
-  //     if (item.id === hoveredElement) item.classList.add('selected');
-  //   });
-  //   selectedProduct = hoveredElement;
-  // }
   
+}
+
+async function updateDom() {
+  if (false) {
+    requestAnimationFrame(updateDom);
+  }
 }
 
 async function renderPrediction() {
@@ -209,7 +249,7 @@ async function renderPrediction() {
         prediction.annotations.noseLeftCorner[0],
         prediction.annotations.noseRightCorner[0]
       );
-
+      
     });
   }
   requestAnimationFrame(renderPrediction);
@@ -248,6 +288,7 @@ async function main() {
 
   model = await facemesh.load({maxFaces: state.maxFaces});
   renderPrediction();
+  updateDom();
 };
 
 main();
