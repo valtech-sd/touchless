@@ -76,10 +76,10 @@
     }
     .nav {
       opacity: 0;
+      transition: all cubic-bezier(0.895, 0.03, 0.685, 0.22) 500ms;
     }
     .nav.visible {
       opacity: 1;
-      transition: all cubic-bezier(0.895, 0.03, 0.685, 0.22) 500ms;
     }
     .nav.selected #nav_left_bg {
       fill: #990000;
@@ -108,27 +108,13 @@
         fill: #990000;
       }
     }
-    /* #status_message {
-      visibility: collapse;
+    .callouts {
       opacity: 0;
-      display: inline-block;
-      position: absolute;
-      bottom: 0.5em;
-      width: 50%;
-      font-weight: bold;
-      line-height: 1.2em;
-      margin: 0 auto;
-      padding: 0.5em 1em;
-      left: 25%;
-      background-color: rgba(255,255,255,0.45);
-      color: black;
-      transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 1s;
+      transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 500ms;
     }
-    #status_message.visible {
-      visibility: visible;
+    .callouts.selected {
       opacity: 1;
-      content: 'ensemble added to cart!'
-    } */
+    }
   </style>
 </head>
 <body>
@@ -198,47 +184,179 @@
               <path id="F" d="M1249.72831,210.5 L1258.23796,261.026008 L1273.29639,282.000251 L1265.12729,298.883043 L1270.48299,347.571205 L1276.86101,450.110045 L1277.32067,457.5 L1262.93058,457.5 L1249.64693,451.545261 L1232.91323,460.138245 L1215.54682,465.66392 L1213.677,443.606 L1214.87872,464.420418 L1199.10633,460.665086 L1181.37383,465.666559 L1179.04317,466.323927 L1170.95233,462.454397 L1159.74803,496.0673 L1150.99786,451.521007 L1127.90295,436.299359 L1150.5,329.476941 L1150.5,290.985823 L1155.76578,278.539437 L1148.28491,245.810624 L1147.55835,242.631914 L1172.04009,214.567477 L1185.89819,219.956737 L1200.83843,244.665608 L1195.62269,266.571724 L1201.056,292.607 L1204.71436,273.402679 L1216.94941,248.461984 L1212.11687,238.259955 L1233.26414,212.774788 L1235.15173,210.5 L1249.72831,210.5 Z M1405,201 C1407.56774,201 1411.59703,202.838991 1416.48321,209.189678 C1419.79311,213.491623 1423.83406,219.935538 1428.58064,228.544344 L1428.58064,228.544344 L1429.72678,230.627533 L1425.59529,254.38363 L1439.59326,317.615844 L1439.95185,319.235685 L1453.12071,467.780405 L1428.33185,460.788676 L1414.64863,466.577733 L1400.63919,458.443222 L1389.23355,472.129986 L1381.53608,435.567013 L1373.37455,430.286021 C1368.66443,417.335292 1365.63947,408.840953 1362.64305,407.642383 C1361.91344,407.350539 1360.94962,408.808487 1359.97105,409.485961 C1357.06425,411.498358 1353.50023,414.779893 1349.24307,419.286319 L1349.24307,419.286319 L1340.30745,439.97934 L1339.38777,442.109111 L1303.19274,461.0419 L1289.78646,455.176656 L1298.02835,326.397148 L1311.35533,252.073598 L1316.77939,246.649546 L1314.51535,239.857451 L1331.58546,212.325021 C1334.85508,209.069593 1337.61054,208.86495 1339.8816,209.366606 C1341.38601,209.698918 1342.82665,210.50092 1344.14138,211.752001 C1345.03376,212.601176 1345.88613,213.695451 1346.71857,214.80862 C1347.14904,215.384253 1347.57088,215.967427 1348.02326,216.449946 C1348.25183,216.693733 1348.50654,216.931392 1348.77313,217.167067 L1348.77313,217.167067 L1357.11701,244.121814 L1355.07328,257.406026 L1366.71141,318.021263 L1368.87374,321.144625 L1381.449,272.02 L1375.65994,266.23101 L1385.36871,241.19261 L1380.00329,233.591597 C1379.22124,227.915836 1385.81113,217.315915 1401.55831,202.373054 C1401.86875,202.078465 1402.17732,201.787342 1402.48417,201.501812 C1403.43058,201.147113 1404.27375,201 1405,201 Z" fill="#D80000"></path>
               <path id="H" d="M50,543.100614 L66.5,544.369844 L66.5,552.40098 L68.6702503,552.835031 L69.2330487,559.588612 L72.9589585,561.18543 L73.4378906,599.5 L85.1639111,599.5 L84.663,603.5 L89,603.5 L89,624.879853 L77.7170627,634.047239 L-4.5,631.869304 L-4.5,609.824081 L8.09000198,601.430747 L15.6406692,601.773959 L17.0954578,548.431711 C24.782749,545.206142 33.9335583,544.989716 44.569241,548.167143 L44.569241,548.167143 L43.669,598.554 L45,598.433927 L45,561.703019 L48.5,560.203019 L48.5,553.396204 L50,552.896204 L50,543.100614 Z"></path>
           </g>
-          <g id="callouts" transform="translate(823.750000, 306.000000)">
-              <rect id="Rectangle" x="176.25" y="0" width="503" height="134"></rect>
-              <rect id="Rectangle-Copy" x="176.25" y="160" width="503" height="134"></rect>
-              <rect id="Rectangle-Copy-2" x="176.25" y="330" width="503" height="134"></rect>
-              <rect id="Rectangle-Copy-3" fill-opacity="0.8" fill="#000000" x="176.25" y="490" width="503" height="134"></rect>
-              <text id="Red-Lumberman™-jacke" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
-                  <tspan x="208.25" y="60">Red Lumberman™ </tspan>
-                  <tspan x="208.25" y="108">jacket</tspan>
-              </text>
-              <text id="Tuck-Slim-Fit-collar" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
-                  <tspan x="208.25" y="220">Tuck Slim Fit collar </tspan>
-                  <tspan x="208.25" y="268">shirt</tspan>
-              </text>
-              <text id="Brown-belt" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
-                  <tspan x="208.25" y="395">Brown belt</tspan>
-              </text>
-              <text id="Performance-khakis" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
-                  <tspan x="208.25" y="550">Performance </tspan>
-                  <tspan x="208.25" y="598">khakis</tspan>
-              </text>
-              <line x1="175.75" y1="489.5" x2="175.75" y2="623.5" id="Line" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
-              <line x1="176.25" y1="330" x2="176.25" y2="464" id="Line-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
-              <line x1="176.25" y1="159" x2="176.25" y2="293" id="Line-Copy-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
-              <line x1="176.25" y1="7" x2="176.25" y2="141" id="Line-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
-              <line x1="175.75" y1="66.5" x2="54.75" y2="222.5" id="Line-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
-              <line x1="176.25" y1="207" x2="0.75" y2="281.5" id="Line-2-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
-              <line x1="175.5" y1="395.25" x2="0.75" y2="342.5" id="Line-2-Copy-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
-              <line x1="175.5" y1="395.25" x2="0.75" y2="342.5" id="Line-2-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
-              <line x1="175.125" y1="563.875" x2="54.75" y2="515.5" id="Line-2-Copy-4" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+          <g class="callouts" id="callouts8" transform="translate(191.000000, 589.000000)">
+            <rect id="Rectangle-Copy-2" fill-opacity="0.649448208" fill="#000000" x="174.25" y="1" width="503" height="134"></rect>
+            <rect id="Rectangle-Copy-3" fill-opacity="0.649448208" fill="#000000" x="174.25" y="161" width="503" height="134"></rect>
+            <text id="Denim-Wash-(24oz)" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="206.25" y="66">Denim Wash (24oz)</tspan>
+            </text>
+            <text id="Denim-Refresh-spray" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="206.25" y="221">Denim Refresh </tspan>
+                <tspan x="206.25" y="269">spray (24oz)</tspan>
+            </text>
+            <line x1="173.75" y1="160.5" x2="173.75" y2="294.5" id="Line" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="174.25" y1="1" x2="174.25" y2="135" id="Line-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="173.5" y1="66.25" x2="0.5" y2="351.5" id="Line-2-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="173.125" y1="234.875" x2="31.5" y2="372.5" id="Line-2-Copy-4" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
           </g>
-          <text id="out-of-stock" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
-              <tspan x="1394" y="702">out of </tspan>
-              <tspan x="1394" y="750">stock</tspan>
-          </text>
+          <g class="callouts" id="callouts7" transform="translate(721.000000, 629.000000)">
+            <polygon id="Rectangle" fill-opacity="0.649448208" fill="#000000" points="503 223 0 223 0 357 503 357"></polygon>
+            <text id="Camo-Slim-Fit-collar" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="26" y="283">Camo Slim Fit collar </tspan>
+                <tspan x="26" y="331">shirt</tspan>
+            </text>
+            <line x1="503" y1="223" x2="503" y2="357" id="Line-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="503.5" y1="289.5" x2="698.5" y2="243.5" id="Line-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <polygon id="Rectangle" fill-opacity="0.649448208" fill="#000000" points="559 1 56 1 56 135 559 135"></polygon>
+            <text id="Sewer-Surfin'-Turtle" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="82" y="61">Sewer Surfin' Turtle </tspan>
+                <tspan x="82" y="109">high-top sneakers</tspan>
+            </text>
+            <line x1="560" y1="0" x2="560" y2="134" id="Line-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="561.5" y1="67.5" x2="803.5" y2="199.5" id="Line-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+          </g>
+          <g class="callouts" id="callouts6" transform="translate(685.000000, 567.000000)">
+            <polygon id="Rectangle" fill-opacity="0.649448208" fill="#000000" points="503 0 0 0 0 134 503 134"></polygon>
+            <text id="4-Pack-of-Slim-Fit-c" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="26" y="60">4-Pack of Slim Fit </tspan>
+                <tspan x="26" y="108">collar shirts</tspan>
+            </text>
+            <line x1="503" y1="7" x2="503" y2="141" id="Line-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="503.5" y1="66.5" x2="648.5" y2="185.5" id="Line-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+          </g>
+          <g class="callouts" id="callouts5" transform="translate(487.000000, 331.000000)">
+            <polygon id="Rectangle" fill-opacity="0.649448208" fill="#000000" points="503 0 0 0 0 134 503 134"></polygon>
+            <polygon id="Rectangle-Copy" fill-opacity="0.649448208" fill="#000000" points="503 160 0 160 0 294 503 294"></polygon>
+            <polygon id="Rectangle-Copy-2" fill-opacity="0.649448208" fill="#000000" points="503 330 0 330 0 464 503 464"></polygon>
+            <polygon id="Rectangle-Copy-3" fill-opacity="0.649448208" fill="#000000" points="503 490 0 490 0 624 503 624"></polygon>
+            <text id="Midnight-Flare-Cuffs" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="26" y="60">Midnight Flare </tspan>
+                <tspan x="26" y="108">Cuffs™ jacket</tspan>
+            </text>
+            <text id="Autumn-Slim-Fit-coll" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="26" y="220">Autumn Slim Fit </tspan>
+                <tspan x="26" y="268">collar shirt</tspan>
+            </text>
+            <text id="Navy-belt" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="26" y="395">Navy belt</tspan>
+            </text>
+            <text id="Light-Wear-jeans" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="26" y="550">Light Wear jeans</tspan>
+            </text>
+            <line x1="503.5" y1="489.5" x2="503.5" y2="623.5" id="Line" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="503" y1="330" x2="503" y2="464" id="Line-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="503" y1="159" x2="503" y2="293" id="Line-Copy-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="503" y1="7" x2="503" y2="141" id="Line-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="503.5" y1="66.5" x2="648.5" y2="185.5" id="Line-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="503" y1="207" x2="716.5" y2="219.5" id="Line-2-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="503.75" y1="395.25" x2="716.5" y2="317.5" id="Line-2-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="504.125" y1="563.875" x2="678.5" y2="489.5" id="Line-2-Copy-4" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+          </g>
+          <g class="callouts" id="callouts4" transform="translate(823.750000, 306.000000)">
+            <rect id="Rectangle" fill-opacity="0.649448208" fill="#000000" x="176.25" y="0" width="503" height="134"></rect>
+            <rect id="Rectangle-Copy" fill-opacity="0.649448208" fill="#000000" x="176.25" y="160" width="503" height="134"></rect>
+            <rect id="Rectangle-Copy-2" fill-opacity="0.649448208" fill="#000000" x="176.25" y="330" width="503" height="134"></rect>
+            <rect id="Rectangle-Copy-3" fill-opacity="0.649448208" fill="#000000" x="176.25" y="490" width="503" height="134"></rect>
+            <text id="Red-Lumberman™-jacke" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="60">Red Lumberman™ </tspan>
+                <tspan x="208.25" y="108">jacket</tspan>
+            </text>
+            <text id="Tuck-Slim-Fit-collar" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="220">Tuck Slim Fit collar </tspan>
+                <tspan x="208.25" y="268">shirt</tspan>
+            </text>
+            <text id="Brown-belt" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="395">Brown belt</tspan>
+            </text>
+            <text id="Performance-khakis" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="550">Performance </tspan>
+                <tspan x="208.25" y="598">khakis</tspan>
+            </text>
+            <line x1="175.75" y1="489.5" x2="175.75" y2="623.5" id="Line" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="176.25" y1="330" x2="176.25" y2="464" id="Line-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="176.25" y1="159" x2="176.25" y2="293" id="Line-Copy-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="176.25" y1="7" x2="176.25" y2="141" id="Line-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.75" y1="66.5" x2="54.75" y2="222.5" id="Line-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="176.25" y1="207" x2="0.75" y2="281.5" id="Line-2-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.5" y1="395.25" x2="0.75" y2="342.5" id="Line-2-Copy-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.5" y1="395.25" x2="0.75" y2="342.5" id="Line-2-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.125" y1="563.875" x2="54.75" y2="515.5" id="Line-2-Copy-4" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+          </g>
+          <g class="callouts" id="callouts3" transform="translate(526.000000, 720.000000)">
+            <rect id="Rectangle-Copy-2" fill-opacity="0.649448208" fill="#000000" x="215.25" y="1" width="503" height="134"></rect>
+            <rect id="Rectangle-Copy-3" fill-opacity="0.649448208" fill="#000000" x="215.25" y="161" width="503" height="134"></rect>
+            <text id="Crimson-Tracksuit-ja" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="247.25" y="66">Crimson Tracksuit </tspan>
+                <tspan x="247.25" y="114">jacket</tspan>
+            </text>
+            <text id="Ember-Tracksuit-pant" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="247.25" y="221">Ember Tracksuit </tspan>
+                <tspan x="247.25" y="269">pants</tspan>
+            </text>
+            <line x1="214.75" y1="160.5" x2="214.75" y2="294.5" id="Line" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="215.25" y1="1" x2="215.25" y2="135" id="Line-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="214.5" y1="66.25" x2="0.5" y2="85.5" id="Line-2-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="214.125" y1="234.875" x2="93.75" y2="186.5" id="Line-2-Copy-4" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+          </g>
+          <g class="callouts" id="callouts2" transform="translate(530.000000, 239.000000)">
+            <rect id="Rectangle" fill-opacity="0.649448208" fill="#000000" x="176.25" y="1" width="523" height="134"></rect>
+            <rect id="Rectangle-Copy" fill-opacity="0.649448208" fill="#000000" x="176.25" y="161" width="523" height="134"></rect>
+            <rect id="Rectangle-Copy-3" fill-opacity="0.649448208" fill="#000000" x="176.25" y="491" width="523" height="134"></rect>
+            <text id="Denim-Flare-Cuffs™-j" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="61">Denim Flare Cuffs™ </tspan>
+                <tspan x="208.25" y="109">jacket</tspan>
+            </text>
+            <text id="Heather-Slim-Fit-col" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="221">Heather Slim Fit </tspan>
+                <tspan x="208.25" y="269">collar shirt</tspan>
+            </text>
+            <text id="Faded-Narrow-Fit-jea" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="551">Faded Narrow Fit </tspan>
+                <tspan x="208.25" y="599">jeans</tspan>
+            </text>
+            <line x1="175.75" y1="490.5" x2="175.75" y2="624.5" id="Line" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="176.25" y1="160" x2="176.25" y2="294" id="Line-Copy-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.5" y1="0.5" x2="176.5" y2="134.5" id="Line-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.75" y1="67.5" x2="54.75" y2="223.5" id="Line-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="176.25" y1="208" x2="0.75" y2="282.5" id="Line-2-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.125" y1="564.875" x2="54.75" y2="516.5" id="Line-2-Copy-4" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+          </g>
+          <g class="callouts" id="callouts1" transform="translate(345.000000, 313.000000)">
+            <rect id="Rectangle" fill-opacity="0.649448208" fill="#000000" x="176.25" y="0" width="503" height="134"></rect>
+            <rect id="Rectangle-Copy" fill-opacity="0.649448208" fill="#000000" x="176.25" y="160" width="503" height="134"></rect>
+            <rect id="Rectangle-Copy-2" fill-opacity="0.649448208" fill="#000000" x="176.25" y="330" width="503" height="134"></rect>
+            <rect id="Rectangle-Copy-3" fill-opacity="0.649448208" fill="#000000" x="176.25" y="490" width="503" height="134"></rect>
+            <text id="Navy-Flare-Cuffs™-ja" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="60">Navy Flare Cuffs™ </tspan>
+                <tspan x="208.25" y="108">jacket</tspan>
+            </text>
+            <text id="Angry-Antlers-fashio" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="220">Angry Antlers </tspan>
+                <tspan x="208.25" y="268">fashion tee</tspan>
+            </text>
+            <text id="Black-belt" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="395">Black belt</tspan>
+            </text>
+            <text id="Midnight-Denim™-jean" font-family="HelveticaNeueLTStd-Bd, Helvetica Neue LT Std, Helvetica, Arial" font-size="48" font-weight="bold" letter-spacing="-0.8" fill="#FFFFFF">
+                <tspan x="208.25" y="550">Midnight Denim™ </tspan>
+                <tspan x="208.25" y="598">jeans</tspan>
+            </text>
+            <line x1="175.75" y1="489.5" x2="175.75" y2="623.5" id="Line" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="176.25" y1="330" x2="176.25" y2="464" id="Line-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="176.25" y1="159" x2="176.25" y2="293" id="Line-Copy-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="176.25" y1="7" x2="176.25" y2="141" id="Line-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.75" y1="66.5" x2="54.75" y2="222.5" id="Line-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="176.25" y1="207" x2="0.75" y2="281.5" id="Line-2-Copy" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.5" y1="395.25" x2="0.75" y2="342.5" id="Line-2-Copy-2" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.5" y1="395.25" x2="0.75" y2="342.5" id="Line-2-Copy-3" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+            <line x1="175.125" y1="563.875" x2="54.75" y2="515.5" id="Line-2-Copy-4" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square"></line>
+          </g>
           <circle id="cursor" fill="#00E3FF" stroke="none" opacity="0" cx="695" cy="160" r="10"></circle>
           <circle id="follower" fill="#00E3FF" stroke="none" cx="755" cy="160" r="10"></circle>
           <line id="trail" stroke="#003FF" stroke-width="2" x1="0" y1="0" x2="0" y2="0" stroke-opacity="1" stroke-linecap="round"></line>
       </g>
   </svg>
   <!-- Image from https://unsplash.com/photos/DmlIrCRETWY by Daniel von Appen -->
-  <aside id="status_message">ensemble added to cart</aside>
   </main>
 </body>
 <script src="index.js"></script>

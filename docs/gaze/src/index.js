@@ -85,6 +85,17 @@ const allHovers = [
   document.querySelector('#nav-left'),
   document.querySelector('#nav-right'),
 ];
+const callouts = [
+  null,
+  document.querySelector('#callouts1'),
+  document.querySelector('#callouts2'),
+  document.querySelector('#callouts3'),
+  document.querySelector('#callouts4'),
+  document.querySelector('#callouts5'),
+  document.querySelector('#callouts6'),
+  document.querySelector('#callouts7'),
+  document.querySelector('#callouts8'),
+];
 const cartButton = document.querySelector('#nav_right_bg');
 const exitButton = document.querySelector('#nav_left_bg');
 
@@ -259,7 +270,9 @@ function updateDom() {
     if (state.selectedElement == 0) {
       for (let i = 1; i < allHovers.length; i++) {
         allHovers[i].classList.remove('selected');
-        // callouts[i].classList.remove('selected');
+        if (i > 0 && i < 9) {
+          callouts[i].classList.remove('selected');
+        }
       }
       allHovers[9].classList.remove('visible');
       allHovers[10].classList.remove('visible');
@@ -269,12 +282,14 @@ function updateDom() {
       for (let i = 1; i < allHovers.length; i++) {
         if (i !== state.selectedElement) {
           allHovers[i].classList.remove('selected');
-          // callouts[i].classList.remove('selected');
+          if (i > 0 && i < 9) {
+            callouts[i].classList.remove('selected');
+          }
         } else {
           allHovers[i].classList.remove('hovered');
           allHovers[i].classList.add('selected');
-          // callouts[i].classlist.add('selected');
           if (i > 0 && i < 9) {
+            callouts[i].classList.add('selected');
             allHovers[9].classList.add('visible');
             allHovers[10].classList.add('visible');
           }
@@ -312,7 +327,9 @@ function updateDom() {
       // then remove all selections
       for (let i = 1; i < allHovers.length; i++) {
         allHovers[i].classList.remove('selected');
-        // callouts[i].classList.remove('selected');
+        if (i > 0 && i < 9) {
+          callouts[i].classList.remove('selected');
+        }
       }
       // state.hasNewSelection = false;
     }
