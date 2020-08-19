@@ -12,6 +12,12 @@ To run it locally, we have to use a bundler that takes the node packages and com
 
 > **Note:** The build process creates hashed-suffix copies of the production files when they change, to get around caching. You'll need to delete the old files after each `npm run build` before you commit their new counterparts. 👍
 
+## Tweaking performance
+
+There are two variables in particular that will affect how this demo responds:
+- `src/index.js`: `hoverDuration` = the time (in animation frames?) that goes by before a hover becomes a selection.
+- `src/MovingCursor.js`: `this.rate` = the amount of smoothing to apply to the cursor (it's basically a `lerp` function). Lower numbers make it lag, but make it less jittery.
+
 ## How it works
 
 [Facemesh](https://github.com/tensorflow/tfjs-models/tree/master/facemesh) is a machine learning model that can look at an image or video and make a 3D mesh of a face (with 486 reference points). It runs entirely locally on the browser, using a TensorFlow model that has been created and optimized for TensorFlow.js by Google's team. 

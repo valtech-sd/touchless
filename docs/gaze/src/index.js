@@ -68,7 +68,7 @@ function setStageCoords() {
 };
 setStageCoords();
 window.addEventListener('resize', setStageCoords);
-const hoverDuration = 1000;
+const hoverDuration = 20;
 const hudCursor = new MovingCursor('#cursor', 0, 0, 20, 20);
 const stableCursor = new MovingCursor('#follower', 0, 0, 20, 20);
 // cache references to all the products
@@ -169,15 +169,16 @@ async function moveCursorVector(M,L,R) {
 
   // This section is ok for a demo but need to reimplement it...
   // (document.elementFromPoint() was not working at all.)
+  let hoveredElement;
   if (state.selectedElement === 0) {
     // nothing is selected
-    const hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
+    hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
     // console.log(hoveredElement);
     if (hoveredElement < 9) {
       // if it's over a new hovered element
       if (state.hoveredElement !== hoveredElement) {
         // toggle the highlights
-        console.log(hoveredElement);
+        // console.log(hoveredElement);
         state.hoveredElement = hoveredElement;
         state.hasNewHover = true;
         // start the counter for selection
@@ -190,7 +191,7 @@ async function moveCursorVector(M,L,R) {
         } else if (state.hoverCounts[hoveredElement] > 0) {
           state.hoverCounts[hoveredElement] += 1;
           if (state.hoverCounts[hoveredElement] > hoverDuration) {
-            console.log('selected ' + hoveredElement);
+            // console.log('selected ' + hoveredElement);
             state.selectedElement = state.hoveredElement;
             state.hasNewSelection = true;
             state.hoveredElement = 0;
@@ -201,10 +202,10 @@ async function moveCursorVector(M,L,R) {
     }
   } else {
     // something is selected, only 9 and 10 are valid
-    const hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
+    hoveredElement = hitAreas[Math.floor(state.cursorY/30)][Math.floor(state.cursorX/30)];
     if (hoveredElement < 9) hoveredElement = 0;
     if (state.hoveredElement !== hoveredElement) {
-      console.log(hoveredElement);
+      // console.log(hoveredElement);
       state.hoveredElement = hoveredElement;
       state.hasNewHover = true;
       state.hoverCounts[hoveredElement] += 1;
@@ -214,7 +215,7 @@ async function moveCursorVector(M,L,R) {
       } else if (state.hoverCounts[hoveredElement] > 0) {
         state.hoverCounts[hoveredElement] += 1;
         if (state.hoverCounts[hoveredElement] > hoverDuration) {
-          console.log('selected '+hoveredElement);
+          // console.log('selected '+hoveredElement);
           state.selectedElement = state.hoveredElement;
           state.hasNewSelection = true;
           state.hoveredElement = 0;
@@ -250,14 +251,57 @@ function updateDom() {
       }
     }
   }
+  // if there's a change in selection
   if (state.hasNewSelection) {
-    if (state.selectedElement === 0) {
-      
+    console.log('new selection! '+ state.selectedElement);
+    if (state.selectedElement == 0) {
+      for (let i = 1; i < allHovers.length; i++) {
+        allHovers[i].classList.remove('selected');
+        // callouts[i].classList.remove('selected');
+      }
+      allHovers[9].classList.remove('visible');
+      allHovers[10].classList.remove('visible');
+      state.hasNewSelection = false;
+    } else if (state.selectedElement > 0 && state.selectedElement < 9) {
+      // in hover mode and switching to selected mode
+      for (let i = 1; i < allHovers.length; i++) {
+        if (i !== state.selectedElement) {
+          allHovers[i].classList.remove('selected');
+          // callouts[i].classList.remove('selected');
+        } else {
+          allHovers[i].classList.remove('hovered');
+          allHovers[i].classList.add('selected');
+          // callouts[i].classlist.add('selected');
+          if (i > 0 && i < 9) {
+            allHovers[9].classList.add('visible');
+            allHovers[10].classList.add('visible');
+          }
+          state.hasNewSelection = false;
+        }
+      }
+    } else {
+      // in selected mode 
+      if (state.selectedElement === 9) {
+        // selected EXIT
+        allHovers[9].classList.add('selected');
+        // add animation to exit button
+        // go back to main
+        state.selectedElement = 0;
+      } 
+      if (state.selectedElement === 10) {
+        // selected ADD TO CART
+        allHovers[10].classList.add('selected');
+        // add animation / message
+        // go back to main
+        state.selectedElement = 0
+      }
+      // then remove all selections
+      for (let i = 1; i < allHovers.length; i++) {
+        allHovers[i].classList.remove('selected');
+        // callouts[i].classList.remove('selected');
+      }
+      // state.hasNewSelection = false;
     }
-    // unhover all
-    // unselect all
-    // if it's exit or add to cart, do that
-    // reset the var
   }
 }
 
@@ -340,5 +384,7 @@ async function main() {
   renderPrediction();
   updateDom();
 };
+
+window.addEventListener('click', (e) => {console.log(state)});
 
 main();
