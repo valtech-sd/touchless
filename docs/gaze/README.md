@@ -8,7 +8,9 @@ To run it locally, we have to use a bundler that takes the node packages and com
 
 1. Run `npm i` from within this directory to install the node modules.
 2. Run `npm run dev` to build everything into the `./dev` folder and run a local server at `localhost:1234`.
-3. Run `npm run build` to build it into the `./dist` folder for production.
+3. Run `npm run build` to build it into the `./` (root) folder for production. This is so that you'll see it when you go to `touchless.valtech.engineering/gaze`.
+
+> **Note:** The build process creates hashed-suffix copies of the production files when they change, to get around caching. You'll need to delete the old files after each `npm run build` before you commit their new counterparts. 👍
 
 ## How it works
 
