@@ -9,7 +9,7 @@ V_ is exploring various options for low-touch and touchless physical experiences
 
 Projects should be developed in the `/src` directory and promoted to the `/docs` directory (likely though a build script output).
 
->NOTE: There is NO CI for this project. Builds and deployments must be done manually.
+>NOTE: There is NO external CI for this project. Sub-projects with build steps such as the gaze and voice projects must be built manually locally before pushing to this repo.
 
 # Contributing
 
