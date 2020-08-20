@@ -9,6 +9,8 @@ V_ is exploring various options for low-touch and touchless physical experiences
 
 Projects should be developed in the `/src` directory and promoted to the `/docs` directory (likely though a build script output).
 
+>NOTE: There is NO CI for this project. Builds and deployments must be done manually.
+
 # Contributing
 
 This project is hosted on Github Pages and is using Jekyll to build the site. It is recommended that you use rbenv for your Ruby and GEM environment. Here is a decent [guide](https://jekyllrb.com/docs/installation/) if you need help setting up Ruby.
