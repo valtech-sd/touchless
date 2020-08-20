@@ -115,8 +115,8 @@ async function setupCamera() {
       facingMode: 'user',
       // Only setting the video to a specified size in order to accommodate a
       // point cloud, so on mobile devices accept the default size.
-      width: mobile ? undefined : VIDEO_SIZE,
-      height: mobile ? undefined : VIDEO_SIZE
+      width: mobile ? (VIDEO_SIZE/2) : VIDEO_SIZE,
+      height: mobile ? (VIDEO_SIZE/2) : VIDEO_SIZE
     },
   });
   video.srcObject = stream;
