@@ -1,0 +1,1 @@
+This app does not have a build stage so all the code will be found in the `/docs` directory.
