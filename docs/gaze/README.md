@@ -65,50 +65,26 @@ Listed below as _`annotationName` (number of points)_
      - `rightCheek` (1)
      - `leftCheek` (1)
 
-## Implementation approaches
-
-### Key mesh points to use
 ![Map of the 486 mesh points](mesh_map.jpg)
-- **Left eye edges:** 362 (inner), 263 (outer) / 386 (top), 374 (bottom)
-- **Right eye edges:** 133 (inner), 33 (outer) / 159 (top), 145 (bottom)
-- **Nose:** 1 (tip), 358 (left), 129 (right)
 
 Full list correlating these point indices and the coordinates for each feature in `annotations` is in [`annotations.json`](./annotations.json). (The `silhouette` will obviously change each frame, but the other numbered points should match.)
 
-### First approach
+## Implementation approaches
 
-Get point `1` of `scaledMesh` in `prediction`, which is roughly the tip of the nose. `x` is `180` when pointing straight ahead (on Firefox), so moving back and forth moves left and right. Process the `y` in a similar fashion to get the up and down.
+For the first approach, we captured the `x` and `y` position of the tip of the nose and used that to direct the cursor.
 
-> **Result:** 
-> - It's calibrated on Firefox, where the coordinate system is different from Chrome and Safari because the _video is sized differently_. 
-> - The only thing that matters is the position of the tip of your nose, so moving your head position cheats it.
-> - If a second face prediction is added (tracking two faces), the scaled mesh appears to be on a coordinate system for the bounding box of both faces.
+Next, we made a plane from the following three points 
 
-### Second approach
+- **M**: `midwayBetweenEyes` (point 168), 
+- **R**: `noseRightCorner` (point 98),
+- **L**: `noseLeftCorner` (point 327)
 
-- Add an overlay to coach the user where to put their head, in the center of the camera view.
+and calculated the vector orthogonal to that plane, and mapped the angle of horizontal and vertical rotation to the bounds of the screen. 
 
-- Calculate angles of the direction the face is pointing. _Yikes, it's linear algebra, all over again._
+After doing the above, we added guides to the camera preview to show you where to put your face for optimum results. We also converted everything to SVG, optimized the DOM refreshes to help performance.
 
-    - Get the following points from `annotations`: 
-
-        - **M**: `midwayBetweenEyes` (point 168), 
-        - **R**: `noseRightCorner` (point 98),
-        - **L**: `noseLeftCorner` (point 327)
-
-    - Make a plane to find an orthogonal unit vector. 
-
-        1. make vector MR [Rx-Mx,Ry-My,Rz-Mz] and vector ML (L-M, same way)
-        2. use right-hand rule: cross product MR x ML = vector pointing (hopefully) straight out from the face 
-
-                  cross(A,B) = [ (Ay*Bz - Az*By), (Az*Bx - Ax*Bz), (Ax*By - Ay*Bx)]
-
-        3. reduce this to a unit vector by 
-
-    - Calculate the angles _alpha_ (around the x axis, causing y up and down movement) and _beta_ (around the y axis, causing left and right movement) 
-
-### Future approaches
-- get position of face in camera frame, direction of face relative to the camera, direction of iris relative to face, and make a vector to figure out where the person is looking.
+### Future approaches?
+- Get position of face in camera frame, direction of face relative to the camera, direction of iris relative to face, and make a vector to figure out where the person is looking.
 
 ## Why not use Tracking.js / face-api.js / WebGazer.js?
 
