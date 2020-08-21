@@ -531,7 +531,7 @@ async function resetVideo(deviceId) {
 window.addEventListener('click', (e) => {
   if(e.target.className === 'option'){
     resetVideo(e.target.id);
-
+    document.getElementById('video-options').classList.toggle('show');
   }
   console.log(state)
 });
