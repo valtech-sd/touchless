@@ -34,7 +34,8 @@ function drawPath(ctx, points, closePath) {
   ctx.stroke(region);
 }
 
-let model, ctx, videoWidth, videoHeight, video, canvas;
+let model, ctx, videoWidth, videoHeight, video, canvas, selectedVideoInput, currentStream;
+let videoOptions = [];
 
 const VIDEO_SIZE = 240;
 const mobile = isMobile();
@@ -106,7 +107,7 @@ if (renderPointcloud) {
   state.renderPointcloud = true;
 }
 
-async function setupCamera() {
+async function setupCamera(cameraId) {
   video = document.getElementById('video');
 
   const stream = await navigator.mediaDevices.getUserMedia({
@@ -116,9 +117,11 @@ async function setupCamera() {
       // Only setting the video to a specified size in order to accommodate a
       // point cloud, so on mobile devices accept the default size.
       width: mobile ? (VIDEO_SIZE/2) : VIDEO_SIZE,
-      height: mobile ? (VIDEO_SIZE/2) : VIDEO_SIZE
+      height: mobile ? (VIDEO_SIZE/2) : VIDEO_SIZE,
+      deviceId: cameraId
     },
   });
+  currentStream = stream;
   video.srcObject = stream;
 
   return new Promise((resolve) => {
@@ -432,7 +435,7 @@ async function renderPrediction() {
   requestAnimationFrame(renderPrediction);
 };
 
-async function main() {
+export async function main() {
   await tf.setBackend(state.backend);
 
   const backendSelect = document.querySelector('select#backend');
@@ -442,7 +445,6 @@ async function main() {
     await tf.setBackend(newSelection)
     state.backend = newSelection;
   });
-
   await setupCamera();
   video.play();
   videoWidth = video.videoWidth;
@@ -468,6 +470,71 @@ async function main() {
   updateDom();
 };
 
-window.addEventListener('click', (e) => {console.log(state)});
+async function getVideoOptions(){
+  navigator.mediaDevices.enumerateDevices()
+  .then(function(devices) {
+    let videoDevices = devices.filter(device => device.kind === "videoinput")
+    videoDevices.forEach(function(device) {
+      videoOptions.push(device);
+    });
+    let optionList = document.getElementById("video-options")
+    let htmlOptions = videoOptions.map(option => {
+      return `<p class="option" id='${option.deviceId}'>${option.label}</p>`
+    })
+    console.log(videoOptions)
+    optionList.innerHTML = htmlOptions.join("")
+  })
+  .catch(function(err) {
+    console.log(err.name + ": " + err.message);
+  });
+}
+
+function stopMediaTracks(stream) {
+  stream.getTracks().forEach(track => {
+    track.stop();
+  });
+}
+
+async function resetVideo(deviceId) {
+  if (typeof currentStream !== 'undefined') {
+    stopMediaTracks(currentStream);
+  }
+  await setupCamera(deviceId);
+  video.oncanplay = async (e) => {
+    video.play();
+    videoWidth = video.videoWidth;
+    videoHeight = video.videoHeight;
+    video.width = videoWidth;
+    video.height = videoHeight;
+    
+    canvas = document.getElementById('output');
+    canvas.width = videoWidth;
+    canvas.height = videoHeight;
+    const canvasContainer = document.querySelector('.canvas-wrapper');
+    canvasContainer.style = `width: ${videoWidth}px; height: ${videoHeight}px`;
+
+    ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0,  canvas.width, canvas.height);
+    ctx.translate(canvas.width, 0);
+    ctx.scale(-1, 1);
+    ctx.fillStyle = '#32EEDB';
+    ctx.strokeStyle = '#32EEDB';
+    ctx.lineWidth = 0.5;
+
+    model = await facemesh.load({maxFaces: state.maxFaces});
+    renderPrediction();
+    updateDom();
+  }
+}
+
+
+window.addEventListener('click', (e) => {
+  if(e.target.className === 'option'){
+    resetVideo(e.target.id);
+
+  }
+  console.log(state)
+});
 
 main();
+getVideoOptions();
