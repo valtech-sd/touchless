@@ -34,8 +34,9 @@ function drawPath(ctx, points, closePath) {
   ctx.stroke(region);
 }
 
-let model, ctx, videoWidth, videoHeight, video, canvas, selectedVideoInput, currentStream;
+let model, ctx, videoWidth, videoHeight, video, canvas, selectedVideoInput;
 let videoOptions = [];
+let emoji = '–';
 
 const VIDEO_SIZE = 240;
 const mobile = isMobile();
@@ -121,7 +122,6 @@ async function setupCamera(cameraId) {
       deviceId: cameraId
     },
   });
-  currentStream = stream;
   video.srcObject = stream;
 
   return new Promise((resolve) => {
@@ -445,29 +445,7 @@ export async function main() {
     await tf.setBackend(newSelection)
     state.backend = newSelection;
   });
-  await setupCamera();
-  video.play();
-  videoWidth = video.videoWidth;
-  videoHeight = video.videoHeight;
-  video.width = videoWidth;
-  video.height = videoHeight;
-
-  canvas = document.getElementById('output');
-  canvas.width = videoWidth;
-  canvas.height = videoHeight;
-  const canvasContainer = document.querySelector('.canvas-wrapper');
-  canvasContainer.style = `width: ${videoWidth}px; height: ${videoHeight}px`;
-
-  ctx = canvas.getContext('2d');
-  ctx.translate(canvas.width, 0);
-  ctx.scale(-1, 1);
-  ctx.fillStyle = '#32EEDB';
-  ctx.strokeStyle = '#32EEDB';
-  ctx.lineWidth = 0.5;
-
-  model = await facemesh.load({maxFaces: state.maxFaces});
-  renderPrediction();
-  updateDom();
+  setVideo();
 };
 
 async function getVideoOptions(){
@@ -479,9 +457,11 @@ async function getVideoOptions(){
     });
     let optionList = document.getElementById("video-options")
     let htmlOptions = videoOptions.map(option => {
-      return `<p class="option" id='${option.deviceId}'>${option.label}</p>`
+      if( selectedVideoInput === option.deviceId){
+        emoji = '✓'
+      }
+      return `<p class="option" id='${option.deviceId}'>${emoji} ${option.label}</p>`
     })
-    console.log(videoOptions)
     optionList.innerHTML = htmlOptions.join("")
   })
   .catch(function(err) {
@@ -495,10 +475,8 @@ function stopMediaTracks(stream) {
   });
 }
 
-async function resetVideo(deviceId) {
-  if (typeof currentStream !== 'undefined') {
-    stopMediaTracks(currentStream);
-  }
+async function setVideo(deviceId) {
+
   await setupCamera(deviceId);
   video.oncanplay = async (e) => {
     video.play();
@@ -529,12 +507,16 @@ async function resetVideo(deviceId) {
 
 
 window.addEventListener('click', (e) => {
+  // Execute dropdown select functionality
   if(e.target.className === 'option'){
-    resetVideo(e.target.id);
+    setVideo(e.target.id);
+    selectedVideoInput = `${e.target.id}`
     document.getElementById('video-options').classList.toggle('show');
   }
+  // Log state to the console
   console.log(state)
 });
 
 main();
+// Get a list of video sources at first pageload
 getVideoOptions();
