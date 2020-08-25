@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Map from './Map';
@@ -11,6 +11,7 @@ export default function MapLayout({ state, setState }) {
       Math.floor((Date.now() / 5000) % config.trySaying.length)
     ];
   };
+  let zoomRef = useRef();
 
   useEffect(() => {
     let intervalHandle = setInterval(() => {
@@ -18,14 +19,14 @@ export default function MapLayout({ state, setState }) {
         ...s,
         phrase: phraseGenerator(),
         zoomResetCount: (s.zoomResetCount || 0) - 1,
-        zoom: s.zoomResetCount === 0 ? 1.2 : s.zoom,
+        zoom: s.zoomResetCount === 0 ? 'scale(1.2)' : s.zoom,
         zoomOrigin: s.zoomResetCount == 0 ? 'center' : s.zoomOrigin,
       }));
     }, 1000);
     setState((s) => ({
       ...s,
-      zoom: 1.2,
-      zoomOrigin: 'center',
+      zoom: 'scale(1.2)',
+      zoomOrigin: 'center center',
       counter: 0,
       phrase: phraseGenerator(),
     }));
@@ -38,30 +39,37 @@ export default function MapLayout({ state, setState }) {
     <div
       className="zoom"
       style={{
-        transform: `scale(${state.zoom})`,
-        transformOrigin: state.zoomOrigin,
+        transform: state.zoom,
+        //transformOrigin: state.zoomOrigin,
       }}
+      ref={zoomRef}
     >
       <Grid item xs={12} style={{ textAlign: 'center' }}>
         <Map
           directions={state.directions}
-          onPathBBoxChange={(bbox) => {
-            console.log(bbox);
+          onPathBBoxChange={({ pathBBox, imageBBox }) => {
+            console.log(pathBBox, imageBBox);
 
-            console.log(bbox, {
+            let zoom = {
               zoomResetCount: 5,
-              zoom: Math.min(1099 / bbox.width, 618 / bbox.height, 3),
-              zoomOrigin: `${Math.floor(
-                bbox.x + bbox.width / 2
-              )}px ${Math.floor(bbox.y + bbox.width / 2)}px`,
-            });
+              zoom: `scale(${Math.min(
+                1080 / pathBBox.width,
+                564 / pathBBox.height,
+                3
+              )}) translate(${
+                15 - Math.floor((pathBBox.x / (imageBBox.width * 2)) * 100)
+              }%, ${
+                10 - Math.floor((pathBBox.y / (imageBBox.height * 2)) * 100)
+              }%)`,
+              zoomOrigin: 'center center',
+              //zoomOrigin: `${Math.floor(
+              //  ((pathBBox.x + pathBBox.width / 2) / 1080) * 100
+              //)}% ${Math.floor(((pathBBox.y + pathBBox.width / 2) / 618) * 100)}%`,
+            };
+            console.log(pathBBox, zoom);
             setState((s) => ({
               ...s,
-              zoomResetCount: 5,
-              zoom: Math.min(899 / bbox.width, 418 / bbox.height, 2),
-              zoomOrigin: `${Math.floor(
-                ((bbox.x + bbox.width / 2) / 1080) * 100
-              )}% ${Math.floor(((bbox.y + bbox.width / 2) / 618) * 100)}%`,
+              ...zoom,
             }));
           }}
         ></Map>

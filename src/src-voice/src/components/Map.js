@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import map_img from '../images/airportmap2.png';
+import map_img from '../images/airportmap3.png';
 
 export default function Map({ directions, onPathBBoxChange }) {
   let [path, setPath] = useState('');
@@ -17,8 +17,9 @@ export default function Map({ directions, onPathBBoxChange }) {
   useEffect(() => {
     let bbox = pathRef.current.getBBox();
     if (bbox.x !== lastBbox.x || bbox.y !== lastBbox.y) {
+      let imageBBox = svgRef.current.getBBox();
       setLastBbox(bbox);
-      onPathBBoxChange(bbox);
+      onPathBBoxChange({ pathBBox: bbox, imageBBox });
     }
   });
 
@@ -64,9 +65,9 @@ export default function Map({ directions, onPathBBoxChange }) {
         </marker>
       </defs>
       <image
-        x="335"
+        x="80"
         y="0"
-        style={{ transform: 'scale(0.12)' }}
+        style={{ transform: 'scale(0.49)' }}
         href={map_img}
       ></image>
       <svg x="705" y="330">
