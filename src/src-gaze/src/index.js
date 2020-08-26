@@ -467,7 +467,7 @@ async function getVideoOptions(){
       } else {
         emoji = '–'
       }
-      console.log(selectedVideoInput)
+      // console.log(selectedVideoInput)
       return `<p class="option" id='${option.deviceId}'>${emoji} ${option.label}</p>`
     })
     optionList.innerHTML = htmlOptions.join("");
@@ -523,7 +523,7 @@ window.addEventListener('click', (e) => {
     getVideoOptions();
   }
   // Log state to the console
-  console.log(state)
+  // console.log(state)
 });
 
 main();
