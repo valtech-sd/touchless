@@ -34,7 +34,7 @@ function drawPath(ctx, points, closePath) {
   ctx.stroke(region);
 }
 
-let model, ctx, videoWidth, videoHeight, video, canvas, selectedVideoInput;
+let model, ctx, videoWidth, videoHeight, video, canvas, selectedVideoInput, videoLoaded;
 let videoOptions = [];
 let emoji = '–';
 
@@ -123,6 +123,7 @@ async function setupCamera(cameraId) {
     },
   });
   video.srcObject = stream;
+  selectedVideoInput = await stream.getVideoTracks()[0].getSettings().deviceId
 
   return new Promise((resolve) => {
     video.onloadedmetadata = () => {
@@ -432,10 +433,12 @@ async function renderPrediction() {
   if (state.hasNewHover || state.hasNewSelection) {
     updateDom();
   }
-  requestAnimationFrame(renderPrediction);
+  if(videoLoaded) {
+    requestAnimationFrame(renderPrediction);
+  }
 };
 
-export async function main() {
+async function main() {
   await tf.setBackend(state.backend);
 
   const backendSelect = document.querySelector('select#backend');
@@ -445,33 +448,32 @@ export async function main() {
     await tf.setBackend(newSelection)
     state.backend = newSelection;
   });
-  setVideo();
+  // Set up the video
+  await setVideo();
+  // Get a list of video sources
+  await getVideoOptions();
 };
 
 async function getVideoOptions(){
-  navigator.mediaDevices.enumerateDevices()
+  await navigator.mediaDevices.getUserMedia({video: true});
+  await navigator.mediaDevices.enumerateDevices()
   .then(function(devices) {
-    let videoDevices = devices.filter(device => device.kind === "videoinput")
-    videoDevices.forEach(function(device) {
-      videoOptions.push(device);
-    });
+    let videoDeviceSet = new Set(devices.filter(device => device.kind === "videoinput"));
+    let videoOptions = [...videoDeviceSet];
     let optionList = document.getElementById("video-options")
     let htmlOptions = videoOptions.map(option => {
       if( selectedVideoInput === option.deviceId){
         emoji = '✓'
+      } else {
+        emoji = '–'
       }
+      console.log(selectedVideoInput)
       return `<p class="option" id='${option.deviceId}'>${emoji} ${option.label}</p>`
     })
-    optionList.innerHTML = htmlOptions.join("")
+    optionList.innerHTML = htmlOptions.join("");
   })
   .catch(function(err) {
     console.log(err.name + ": " + err.message);
-  });
-}
-
-function stopMediaTracks(stream) {
-  stream.getTracks().forEach(track => {
-    track.stop();
   });
 }
 
@@ -505,18 +507,23 @@ async function setVideo(deviceId) {
   }
 }
 
+const videoObject = document.querySelector('video');
+
+videoObject.addEventListener('loadeddata', (event) => {
+  videoLoaded = true;
+});
 
 window.addEventListener('click', (e) => {
   // Execute dropdown select functionality
-  if(e.target.className === 'option'){
+  if(e.target.className === 'option' && e.target.id !== selectedVideoInput){
+    videoLoaded = false;
     setVideo(e.target.id);
     selectedVideoInput = `${e.target.id}`
     document.getElementById('video-options').classList.toggle('show');
+    getVideoOptions();
   }
   // Log state to the console
   console.log(state)
 });
 
 main();
-// Get a list of video sources at first pageload
-getVideoOptions();
