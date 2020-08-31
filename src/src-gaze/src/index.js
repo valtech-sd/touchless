@@ -34,7 +34,9 @@ function drawPath(ctx, points, closePath) {
   ctx.stroke(region);
 }
 
-let model, ctx, videoWidth, videoHeight, video, canvas;
+let model, ctx, videoWidth, videoHeight, video, canvas, selectedVideoInput, videoLoaded;
+let videoOptions = [];
+let emoji = '–';
 
 const VIDEO_SIZE = 240;
 const mobile = isMobile();
@@ -106,7 +108,7 @@ if (renderPointcloud) {
   state.renderPointcloud = true;
 }
 
-async function setupCamera() {
+async function setupCamera(cameraId) {
   video = document.getElementById('video');
 
   const stream = await navigator.mediaDevices.getUserMedia({
@@ -116,10 +118,12 @@ async function setupCamera() {
       // Only setting the video to a specified size in order to accommodate a
       // point cloud, so on mobile devices accept the default size.
       width: mobile ? (VIDEO_SIZE/2) : VIDEO_SIZE,
-      height: mobile ? (VIDEO_SIZE/2) : VIDEO_SIZE
+      height: mobile ? (VIDEO_SIZE/2) : VIDEO_SIZE,
+      deviceId: cameraId
     },
   });
   video.srcObject = stream;
+  selectedVideoInput = await stream.getVideoTracks()[0].getSettings().deviceId
 
   return new Promise((resolve) => {
     video.onloadedmetadata = () => {
@@ -429,7 +433,9 @@ async function renderPrediction() {
   if (state.hasNewHover || state.hasNewSelection) {
     updateDom();
   }
-  requestAnimationFrame(renderPrediction);
+  if(videoLoaded) {
+    requestAnimationFrame(renderPrediction);
+  }
 };
 
 async function main() {
@@ -442,32 +448,82 @@ async function main() {
     await tf.setBackend(newSelection)
     state.backend = newSelection;
   });
-
-  await setupCamera();
-  video.play();
-  videoWidth = video.videoWidth;
-  videoHeight = video.videoHeight;
-  video.width = videoWidth;
-  video.height = videoHeight;
-
-  canvas = document.getElementById('output');
-  canvas.width = videoWidth;
-  canvas.height = videoHeight;
-  const canvasContainer = document.querySelector('.canvas-wrapper');
-  canvasContainer.style = `width: ${videoWidth}px; height: ${videoHeight}px`;
-
-  ctx = canvas.getContext('2d');
-  ctx.translate(canvas.width, 0);
-  ctx.scale(-1, 1);
-  ctx.fillStyle = '#32EEDB';
-  ctx.strokeStyle = '#32EEDB';
-  ctx.lineWidth = 0.5;
-
-  model = await facemesh.load({maxFaces: state.maxFaces});
-  renderPrediction();
-  updateDom();
+  // Set up the video
+  await setVideo();
+  // Get a list of video sources
+  await getVideoOptions();
 };
 
-window.addEventListener('click', (e) => {console.log(state)});
+async function getVideoOptions(){
+  await navigator.mediaDevices.getUserMedia({video: true});
+  await navigator.mediaDevices.enumerateDevices()
+  .then(function(devices) {
+    let videoDeviceSet = new Set(devices.filter(device => device.kind === "videoinput"));
+    let videoOptions = [...videoDeviceSet];
+    let optionList = document.getElementById("video-options")
+    let htmlOptions = videoOptions.map(option => {
+      if( selectedVideoInput === option.deviceId){
+        emoji = '✓'
+      } else {
+        emoji = '–'
+      }
+      // console.log(selectedVideoInput)
+      return `<p class="option" id='${option.deviceId}'>${emoji} ${option.label}</p>`
+    })
+    optionList.innerHTML = htmlOptions.join("");
+  })
+  .catch(function(err) {
+    console.log(err.name + ": " + err.message);
+  });
+}
+
+async function setVideo(deviceId) {
+
+  await setupCamera(deviceId);
+  video.oncanplay = async (e) => {
+    video.play();
+    videoWidth = video.videoWidth;
+    videoHeight = video.videoHeight;
+    video.width = videoWidth;
+    video.height = videoHeight;
+    
+    canvas = document.getElementById('output');
+    canvas.width = videoWidth;
+    canvas.height = videoHeight;
+    const canvasContainer = document.querySelector('.canvas-wrapper');
+    canvasContainer.style = `width: ${videoWidth}px; height: ${videoHeight}px`;
+
+    ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0,  canvas.width, canvas.height);
+    ctx.translate(canvas.width, 0);
+    ctx.scale(-1, 1);
+    ctx.fillStyle = '#32EEDB';
+    ctx.strokeStyle = '#32EEDB';
+    ctx.lineWidth = 0.5;
+
+    model = await facemesh.load({maxFaces: state.maxFaces});
+    renderPrediction();
+    updateDom();
+  }
+}
+
+const videoObject = document.querySelector('video');
+
+videoObject.addEventListener('loadeddata', (event) => {
+  videoLoaded = true;
+});
+
+window.addEventListener('click', (e) => {
+  // Execute dropdown select functionality
+  if(e.target.className === 'option' && e.target.id !== selectedVideoInput){
+    videoLoaded = false;
+    setVideo(e.target.id);
+    selectedVideoInput = `${e.target.id}`
+    document.getElementById('video-options').classList.toggle('show');
+    getVideoOptions();
+  }
+  // Log state to the console
+  // console.log(state)
+});
 
 main();
