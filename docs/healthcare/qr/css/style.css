@@ -1,0 +1,297 @@
+body {
+  --pink: #FF1C68;
+  --green: #14D790;
+  --blue: #198FE3;
+  --black: #21282D;
+  --purple: #9B65DE;
+  background: pink;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size: 1.6em;
+  background-color: #000000;
+  color: white;
+  margin: auto;
+  overflow: hidden;
+  --poster-color: transparent
+  touch-action: pan-y;
+}
+
+#annotation-name {
+  height: 50%;
+  font-size: 2.5em;
+  transform: translate(10px, 50%);
+  padding: 0px 0px 100px 100px;
+}
+
+#details-title{
+  font-size: 1.5em;
+  padding:0em 0em 2em 0em;
+}
+#annotation-details {
+  float: right;
+  width:32.5%;
+  font-size: 0.65em;
+  height:100%;
+  transform:translateY(10%);
+
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+} 
+
+#flex-container {
+  display: flex;
+  font-size: 1.5em;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:0.25em;
+  justify-content: center;
+  width: 100%;
+}
+
+#link-debug {
+  background-color: rgba(255, 255, 255, 0.5);
+  position: flex;
+  z-index: 1000;
+}
+
+#qr-title {
+  font-size: 0.7em;
+  font-family: "Merriweather-Regular";
+  display: flex;
+  justify-content: center;
+  padding: 20px 0.2em 0 0;
+  text-align: center;
+}
+
+#qr-container {
+  border: 2px solid;
+  position: absolute;
+  bottom: 2em;
+  left: 2em;
+  width:8em;
+  height:10em;
+}
+
+#footer {
+  background-color: rgb(255,255,255,0.05);
+  border: 2px solid;
+  position: absolute;
+  bottom: 1px;
+  width:20%;
+  height:2em;
+  right:1%;
+}
+
+
+#footer-link {
+  font-size: 0.8em;
+  display: flex;
+  justify-content: center;
+  padding: 0.5em 0em 0em 0em;
+}
+#footer-link a {
+  color: white;
+}
+
+#placeHolder {
+  display: flex;
+  align-content: bottom;
+  align-self: center;
+  padding: 20% 0 0 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+#flex-list {
+  display: flex;
+  justify-content: center;
+  font-size: 1.1em;
+  color: #ffffff;
+  padding: 0em 10em 0em 10em;
+}
+
+#text-box {
+  display: block;
+  justify-content: left;
+  align-items: left;
+  padding: 20px 00px 50px 0px;
+  width: 100%;
+  line-height: 1.4;
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#model-container {
+  height:100%;
+  width:100%;
+  display: flex;
+  align-items: center;
+
+}
+
+model-viewer {
+  width: 100% !important;
+  height: 100%;
+  background-color: #000000;
+  position:relative;
+}
+
+
+.carousel {
+  position: absolute;
+  display:flex;
+  background: #000000;
+  height: 100%;
+  width: 100%;
+  transform:translateX(-300%);
+}
+
+.carousel .item {
+  height: 100%;
+  width: 100%;
+  flex: 0 0 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+}
+
+.controlcontainer {
+  text-transform: capitalize;
+  color: #d3d3d3;
+  font-size: 12px;
+  width: 25%;
+  /* Width of the outside container */
+  position: absolute !important;
+  bottom: 20px;
+  left: 350px;
+
+}
+
+.slidetextcontainer {
+  display: flex;
+  align-items: center;
+  width: 300px;
+}
+
+.textcontainer {
+  width: 65%;
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.5;
+  -webkit-transition: .2s;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #d3d3d3;
+}
+
+#bigfont {
+  font-family: Helvetica, sans-serif;
+  font-size: 1.9em !important;
+  font-weight: 300;
+}
+
+#loading {
+  height: 100% !important;
+  width: 100% !important;
+  display: block;
+  position: absolute !important;
+  z-index: 1 !important;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size: 2.6em;
+  color: white;
+  margin: auto;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  padding: 305px 00px 50px 0px;
+}
+
+#button-left {
+  overflow:hidden;
+  background-image: url(../images/chevron.svg);
+  background-repeat:no-repeat;
+  background-size:contain;
+  position: absolute;
+  left: 1em;
+  top: 50%;
+  width:1em;
+  justify-content: left;
+  transform: rotate(180deg);
+}
+
+#button-right {
+  background-image: url(../images/chevron.svg);
+  background-repeat:no-repeat;
+
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  width:1em;
+  justify-content: right;
+}
+#ui-container{
+  padding: 0;
+  margin: 0;
+  position:absolute;
+  top:50%;
+  left:50%;
+  align-items: center;
+  justify-content: center;
+}
+#ui-graphic {
+  background-image: url(../images/touch.svg);
+  background-repeat:no-repeat;
+  height: 3em;
+  width:3em;
+ }
+
+button {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+  width: 1em;
+  height: 1em;
+    border: none;
+}
