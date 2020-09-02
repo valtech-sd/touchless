@@ -160,7 +160,7 @@ model-viewer {
   background: #000000;
   height: 100%;
   width: 100%;
-  transform: translateX(-300%);
+  /* transform: translateX(-300%); */
 }
 
 .carousel .item {
