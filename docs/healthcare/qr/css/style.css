@@ -12,8 +12,7 @@ body {
   color: white;
   margin: auto;
   overflow: hidden;
-  --poster-color: transparent
-  touch-action: pan-y;
+  --poster-color: transparent touch-action: pan-y;
 }
 
 #annotation-name {
@@ -23,17 +22,19 @@ body {
   padding: 0px 0px 100px 100px;
 }
 
-#details-title{
+#details-title {
   font-size: 1.5em;
-  padding:0em 0em 2em 0em;
+  padding: 0em 0em 2em 0em;
 }
+
 #annotation-details {
   float: right;
-  width:32.5%;
+  width: 25%;
   font-size: 0.65em;
-  height:100%;
-  transform:translateY(10%);
-
+  height: 100%;
+  transform: translateY(10%);
+  right: 50px;
+  position: relative;
 }
 
 .column {
@@ -42,11 +43,12 @@ body {
 }
 
 /* Clear floats after the columns */
+
 .row:after {
   content: "";
   display: table;
   clear: both;
-} 
+}
 
 #flex-container {
   display: flex;
@@ -55,7 +57,7 @@ body {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top:0.25em;
+  margin-top: 0.25em;
   justify-content: center;
   width: 100%;
 }
@@ -80,20 +82,19 @@ body {
   position: absolute;
   bottom: 2em;
   left: 2em;
-  width:8em;
-  height:10em;
+  width: 8em;
+  height: 10em;
 }
 
 #footer {
-  background-color: rgb(255,255,255,0.05);
+  background-color: rgb(255, 255, 255, 0.05);
   border: 2px solid;
   position: absolute;
   bottom: 1px;
-  width:20%;
-  height:2em;
-  right:1%;
+  width: 20%;
+  height: 2em;
+  right: 1%;
 }
-
 
 #footer-link {
   font-size: 0.8em;
@@ -101,6 +102,7 @@ body {
   justify-content: center;
   padding: 0.5em 0em 0em 0em;
 }
+
 #footer-link a {
   color: white;
 }
@@ -139,28 +141,26 @@ body {
 }
 
 #model-container {
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
-
 }
 
 model-viewer {
   width: 100% !important;
   height: 100%;
   background-color: #000000;
-  position:relative;
+  position: relative;
 }
-
 
 .carousel {
   position: absolute;
-  display:flex;
+  display: flex;
   background: #000000;
   height: 100%;
   width: 100%;
-  transform:translateX(-300%);
+  transform: translateX(-300%);
 }
 
 .carousel .item {
@@ -169,7 +169,6 @@ model-viewer {
   flex: 0 0 100%;
   background-repeat: no-repeat;
   background-position: center center;
-
 }
 
 .controlcontainer {
@@ -181,7 +180,6 @@ model-viewer {
   position: absolute !important;
   bottom: 20px;
   left: 350px;
-
 }
 
 .slidetextcontainer {
@@ -199,6 +197,7 @@ model-viewer {
 }
 
 /* The slider itself */
+
 .slider {
   -webkit-appearance: none;
   appearance: none;
@@ -211,6 +210,7 @@ model-viewer {
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -248,43 +248,44 @@ model-viewer {
 }
 
 #button-left {
-  overflow:hidden;
+  overflow: hidden;
   background-image: url(../images/chevron.svg);
-  background-repeat:no-repeat;
-  background-size:contain;
+  background-repeat: no-repeat;
+  background-size: contain;
   position: absolute;
   left: 1em;
   top: 50%;
-  width:1em;
+  width: 1em;
   justify-content: left;
   transform: rotate(180deg);
 }
 
 #button-right {
   background-image: url(../images/chevron.svg);
-  background-repeat:no-repeat;
-
+  background-repeat: no-repeat;
   position: absolute;
   right: 1em;
   top: 50%;
-  width:1em;
+  width: 1em;
   justify-content: right;
 }
-#ui-container{
+
+#ui-container {
   padding: 0;
   margin: 0;
-  position:absolute;
-  top:50%;
-  left:50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   align-items: center;
   justify-content: center;
 }
+
 #ui-graphic {
   background-image: url(../images/touch.svg);
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   height: 3em;
-  width:3em;
- }
+  width: 3em;
+}
 
 button {
   background-color: transparent;
@@ -293,5 +294,5 @@ button {
   margin: 10px 0;
   width: 1em;
   height: 1em;
-    border: none;
+  border: none;
 }
