@@ -26,7 +26,7 @@
   <div class="carousel">
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/molecule.glb" id="earth" auto-rotate camera-controls interaction-prompt
+        <model-viewer src="models/molecule.glb" id="molecule" auto-rotate camera-controls interaction-prompt
           max-camera-orbit='auto auto 15m' min-camera-orbit='auto auto 15m' camera-orbit='auto auto 15m'
           loading='eager'>
           <div id="annotation-name"></div>
@@ -46,7 +46,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/skin.glb" id="mars" auto-rotate camera-controls interaction-prompt
+        <model-viewer src="models/skin.glb" id="skin" auto-rotate camera-controls interaction-prompt
           max-camera-orbit='auto auto 60m' min-camera-orbit='auto auto 60m' camera-orbit='auto auto 60m'
           loading='eager'>
           <div id="annotation-name"></div>
@@ -165,7 +165,6 @@
 
 
     }
-
     //select selected planet element
     let modelViewer = document.getElementById(elementId);
     var rotX = firebase.database().ref(uid + '/rotation/x/');
