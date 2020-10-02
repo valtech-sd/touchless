@@ -297,11 +297,12 @@ a.demos-link {
   position: relative;
   flex-direction: column;
   align-items: right;
+
   font-size: 50px;
   font-weight: 800;
   color: #fff;
   padding: 1em 2.5em;
-  margin: 0 -30px;
+  margin: -35px -30px;
   width: 100vw;
   background: var(--group-title-color);
 }
@@ -722,8 +723,8 @@ a.demos-link {
   right: 0;
   height: 20px;
   content: "";
-  background: transparent url("/images/slant-left.svg") scroll no-repeat center
-    bottom;
+  /* background: transparent url("/images/slant-left.svg") scroll no-repeat center
+    bottom; */
   background-size: 100% 100%;
 }
 #about::after {
@@ -733,8 +734,8 @@ a.demos-link {
   right: 0;
   height: 20px;
   content: "";
-  background: transparent url("/images/slant-right.svg") scroll no-repeat center
-    bottom;
+  /* background: transparent url("/images/slant-right.svg") scroll no-repeat center
+    bottom; */
   background-size: 100% 100%;
 }
 #poc-group::after {
@@ -744,8 +745,8 @@ a.demos-link {
   right: 0;
   height: 20px;
   content: "";
-  background: transparent url("images/slant-right.svg") scroll no-repeat center
-    bottom;
+  /* background: transparent url("images/slant-right.svg") scroll no-repeat center
+    bottom; */
   background-size: 100% 100%;
 }
 #prototypes::after {
@@ -753,10 +754,10 @@ a.demos-link {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 20px;
+  height: 0px;
   content: "";
-  background: transparent url("/images/slant-left.svg") scroll no-repeat center
-    bottom;
+  /* background: transparent url("/images/slant-left.svg") scroll no-repeat center
+    bottom; */
   background-size: 100% 100%;
 }
 #resources::after {
@@ -766,7 +767,7 @@ a.demos-link {
   right: 0;
   height: 20px;
   content: "";
-  background: transparent url("/images/slant-right-footer.svg") scroll no-repeat
-    center bottom;
+  /* background: transparent url("/images/slant-right-footer.svg") scroll no-repeat
+    center bottom; */
   background-size: 100% 100%;
 }
