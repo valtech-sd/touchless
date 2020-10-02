@@ -91,6 +91,7 @@ th:not([align]) {
   --tag-shadow-color: #6d6d6d42;
   --citations-link-bg-hover-color: #dcdcdc;
   --citations-title-color: #888888;
+  --group-title-color: #465790;
 }
 
 html {
@@ -385,6 +386,11 @@ a.demos-link {
   display: block;
   height: 3em;
   margin: -30px 0 0;
+}
+.poc-group {
+  display: block;
+  min-width: 100%;
+  color: var(--group-title-color);
 }
 
 .poc-item {
