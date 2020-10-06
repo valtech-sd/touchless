@@ -23,9 +23,9 @@
       <div class="slides">
         <section data-background-color="rgb(70, 70, 255)">
           <br></ br>
-          <h8 id="bigfont">Touchless Experiences</h8>          <br></ br>
+          <h8 id="bigfont">Touchless Experiences</h8> <br></ br>
           <br></ br>
-          Valtech is exploring new prototypes for touchless interactive experiences. 
+          Valtech is exploring new prototypes for touchless interactive experiences.
           <br></ br>
           To navigate the presentation, use your hands to display 👍 to move forward and ✌️ to move back.
           <br></ br>
@@ -57,7 +57,7 @@
           <br></ br>
           This technology relies on open-source machine learning models to recognize specific hand gestures.
           <br></ br>
-            <img src="images/tf.png" height="168" width="300">
+          <img src="images/tf.png" height="168" width="300">
 
         </section>
         <section data-background-color="rgb(254, 164, 159)">
@@ -72,56 +72,61 @@
         </section>
         <section data-background-color="rgb(92,219,149)">
           <br></ br>
-          <br></ br>  
+          <br></ br>
           Or possibly using a personal smartphone as a type of remote control.
           <br></ br>
-            <img src="images/qr-phone.png" height="203" width="134">
+          <img src="images/qr-phone.png" height="203" width="134">
         </section>
         <section data-background-color="rgb(0,0,0)">
           <br></ br>
-          <br></ br>  
-          Interested in learning more? <a href="https://www.valtech.com/about/contact-us/">Please contact us. </a> 
+          <br></ br>
+          Interested in learning more? <a href="https://www.valtech.com/about/contact-us/">Please contact us. </a>
           <br></ br>
           <img src="images/valtech.jpeg" height="200" width="200">
         </section>
       </div>
     </div>
     <div id="video-container">
-      <video id="pose-video"  playsinline></video>
-      <canvas id="pose-canvas" ></canvas>
-      <div id="pose-result" ></div>
+      <video id="pose-video" playsinline></video>
+      <canvas id="pose-canvas"></canvas>
+      <div id="pose-result"></div>
+    </div>
+    <div id="video-select">
+      <button id="video-options-button"
+        onclick="document.getElementById('video-options').classList.toggle('show');">Video Select</button>
+      <div id="video-options" class="hide"></br> </div>
     </div>
 
     <div class="controlcontainer">
       <b>settings:</b>
-        <div class="slidetextcontainer">
-          <div class="textcontainer">
+      <div class="slidetextcontainer">
+        <div class="textcontainer">
           confidence:
-        </div>  
+        </div>
         <div class="slidecontainer">
           <input type="range" oninput="sliderControl(0, this.value)" min="0.5" max="10" value="7.5" class="slider"
             id="myRange">
-          </div>      
-    </div>
-    <div class="slidetextcontainer">
-      <div class="textcontainer">
-        cooldown time:
-      </div>  
-      <div class="slidecontainer">
-      <input type="range" oninput="sliderControl(1, this.value)" min="1" max="3000" value="1000" class="slider"
-        id="myRange">
+        </div>
+      </div>
+      <div class="slidetextcontainer">
+        <div class="textcontainer">
+          cooldown time:
+        </div>
+        <div class="slidecontainer">
+          <input type="range" oninput="sliderControl(1, this.value)" min="1" max="3000" value="1000" class="slider"
+            id="myRange">
+        </div>
+      </div>
+      <div class="slidetextcontainer">
+        <div class="textcontainer">
+          detection time:
+        </div>
+        <div class="slidecontainer">
+          <input type="range" oninput="sliderControl(2, this.value)" min="0" max="30" value="5" class="slider"
+            id="myRange">
+        </div>
       </div>
     </div>
-    <div class="slidetextcontainer">
-      <div class="textcontainer">
-        detection time:
-      </div>  
-      <div class="slidecontainer">
-      <input type="range" oninput="sliderControl(2, this.value)" min="0" max="30" value="5" class="slider"
-        id="myRange">
-      </div>
-    </div>
-  </div>  
 
     <script src="dist/reveal.js"></script>
     <script src="plugin/notes/notes.js"></script>
@@ -146,7 +151,7 @@
       });
     </script>
 
-<div id="loading">Loading...</div>
+    <div id="loading">Loading...</div>
   </body>
 
 </html>
