@@ -283,27 +283,18 @@ a.demos-link {
 }
 
 #prototypes {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.5em 6em 4em;
+  display: block;
+  padding: 1.5em 0;
   background: #f1f1f1;
   color: black;
 }
 
 #poc-group {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: right;
-
+  display: block;
   font-size: 50px;
   font-weight: 800;
   color: #fff;
-  padding: 1em 2.5em;
-  margin: -35px -30px;
-  width: 100vw;
+  padding: 1.5em 0;
   background: var(--group-title-color);
 }
 
@@ -407,8 +398,7 @@ a.demos-link {
 
 .poc-item {
   display: block;
-  padding-bottom: 1em;
-  min-width: 100%;
+  padding: 0 1.5em 1em 1.5em;
 }
 .poc-item article {
   width: 100%;
@@ -469,8 +459,7 @@ a.demos-link {
 
 @media screen and (min-width: 1024px) {
   #prototypes {
-    padding-top: 0;
-    padding-bottom: 2.5em;
+    padding: 0 0.5em 2.5em 0.5em;
   }
   .poc-item {
     display: grid;
@@ -735,17 +724,6 @@ a.demos-link {
   height: 20px;
   content: "";
   /* background: transparent url("/images/slant-right.svg") scroll no-repeat center
-    bottom; */
-  background-size: 100% 100%;
-}
-#poc-group::after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 20px;
-  content: "";
-  /* background: transparent url("images/slant-right.svg") scroll no-repeat center
     bottom; */
   background-size: 100% 100%;
 }

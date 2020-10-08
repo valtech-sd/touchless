@@ -162,7 +162,6 @@ async function getVideoOptions() {
       let videoDeviceSet = new Set(
         devices.filter((device) => device.kind === "videoinput")
       );
-      console.log("getVideoOptions");
       let videoOptions = [...videoDeviceSet];
       let optionList = document.getElementById("video-options");
       let htmlOptions = videoOptions.map((option) => {
