@@ -165,11 +165,6 @@ function runDetection() {
   });
 }
 
-// Load the model
-handTrack.load(modelParams).then((lmodel) => {
-  model = lmodel;
-});
-
 // map
 function convertToRange(value, srcRange, dstRange) {
   // value is outside source range return
@@ -201,7 +196,6 @@ async function getVideoOptions() {
       let videoDeviceSet = new Set(
         devices.filter((device) => device.kind === "videoinput")
       );
-
       let videoOptions = [...videoDeviceSet];
       let optionList = document.getElementById("video-options");
       let htmlOptions = videoOptions.map((option) => {
@@ -210,10 +204,10 @@ async function getVideoOptions() {
         } else {
           emoji = "–";
         }
-        console.log(selectedVideoInput);
         return `<p class="option" id='${option.deviceId}'>${emoji} ${option.label}</p>`;
       });
       optionList.innerHTML = htmlOptions.join("");
+      // deviceId = selectedVideoInput;
     })
     .catch(function (err) {
       console.log(err.name + ": " + err.message);
@@ -221,29 +215,27 @@ async function getVideoOptions() {
 }
 
 async function setVideo(deviceId) {
-  console.log("set video");
   const video = document.getElementById("video");
   await startVideo(deviceId);
-  video.oncanplay = async (e) => {
-    video.play();
-  };
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  getVideoOptions();
+  // Load the model
+  handTrack.load(modelParams).then((lmodel) => {
+    model = lmodel;
+    startVideo();
+    getVideoOptions();
+  });
 });
 
 window.addEventListener("click", (e) => {
   // Execute dropdown select functionality
   if (e.target.className === "option" && e.target.id !== selectedVideoInput) {
-    console.log("click");
     setVideo(e.target.id);
     selectedVideoInput = `${e.target.id}`;
     document.getElementById("video-options").classList.toggle("show");
     getVideoOptions();
   }
-  // Log state to the console
-  // console.log(state)
 });
 
 // map values to a given range
