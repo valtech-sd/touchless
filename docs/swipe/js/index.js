@@ -73,8 +73,8 @@ async function startVideo(cameraId) {
   // get video stream
   const stream = await navigator.mediaDevices.getUserMedia(constraints);
   video.srcObject = stream;
+  window.localStream = stream;
   selectedVideoInput = await stream.getVideoTracks()[0].getSettings().deviceId;
-  console.log(selectedVideoInput);
   handTrack.startVideo(video).then(function (status) {
     console.log("video started", status);
     if (status) {
@@ -83,7 +83,7 @@ async function startVideo(cameraId) {
   });
 }
 
-// code snippets lifted from https://github.com/umanghome/swipe-listener/blob/master/index.js
+// code snippets from https://github.com/umanghome/swipe-listener/blob/master/index.js
 function detectSwipe() {
   // console.log("box: " + getTranslateX(box));
   if (movements.length > 0) {
@@ -207,7 +207,6 @@ async function getVideoOptions() {
         return `<p class="option" id='${option.deviceId}'>${emoji} ${option.label}</p>`;
       });
       optionList.innerHTML = htmlOptions.join("");
-      // deviceId = selectedVideoInput;
     })
     .catch(function (err) {
       console.log(err.name + ": " + err.message);
@@ -215,16 +214,15 @@ async function getVideoOptions() {
 }
 
 async function setVideo(deviceId) {
-  const video = document.getElementById("video");
   await startVideo(deviceId);
+  await getVideoOptions();
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   // Load the model
   handTrack.load(modelParams).then((lmodel) => {
     model = lmodel;
-    startVideo();
-    getVideoOptions();
+    setVideo();
   });
 });
 
@@ -234,7 +232,6 @@ window.addEventListener("click", (e) => {
     setVideo(e.target.id);
     selectedVideoInput = `${e.target.id}`;
     document.getElementById("video-options").classList.toggle("show");
-    getVideoOptions();
   }
 });
 
