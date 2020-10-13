@@ -1,14 +1,14 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
 
   <title>Handtracking Navigation</title>
-  
 
-  
-  <video class="videobox" autoplay="autoplay" id="video"></video>
+
+
   <canvas id="canvas" class="border canvasbox"></canvas>
 
   <link rel="stylesheet" href="css/style.css">
@@ -23,7 +23,16 @@
     <div class="item"></div>
     <div class="item"></div>
   </div>
-</div>
+  </div>
+  <video class="videobox" autoplay="autoplay" id="video"></video>
+
+  <div id="video-select">
+    <button id="video-options-button" onclick="document.getElementById('video-options').classList.toggle('show');">Video
+      Select</button>
+    <div id="video-options" class="hide"></br> </div>
+  </div>
+
+
   <!-- <div class="balls"><div class="ball"></div></div> -->
   <!-- <link rel="stylesheet" type="text/css" href="fullpage.css" />   -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popmotion/9.0.0-beta-8/popmotion.js"></script>
@@ -35,4 +44,5 @@
   <script src="js/index.js"></script>
 
 </body>
+
 </html>
