@@ -40,20 +40,17 @@ body {
   margin-right: 10px;
   width: 215px;
   height: 162px;
-  border-bottom: 3px solid #0063ff;
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 #00000030;
+  z-index:1;
 }
 #video-select {
   position: absolute;
   top: 0;
-  left: 60%;
+  left: 5%;
   width: 40%;
   z-index: 1000;
 }
 button#video-options-button {
-  box-shadow: inset 0px 0px 15px 3px #23395e;
   background-color: black;
-  border-radius: 17px;
   border: 1px solid #1f2f47;
   display: inline-block;
   cursor: pointer;
@@ -61,7 +58,6 @@ button#video-options-button {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 6px 13px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #263666;
 }
 #video-options {
   background: black;
