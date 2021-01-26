@@ -27,24 +27,24 @@ if (typeof DeviceMotionEvent.requestPermission === 'function') {
   DeviceMotionEvent.requestPermission()
     .then(permissionState => {
       if (permissionState === 'granted') {
-        window.addEventListener("devicemotion", handleMotionEvent, true);
+        window.addEventListener("devicemotion", handleMotionEvent, {passive: true});
       }
     })
     .catch(console.error);
 } else {
-  window.addEventListener("devicemotion", handleMotionEvent, true);
+  window.addEventListener("devicemotion", handleMotionEvent, {passive: true});
 }
 
 if (typeof DeviceOrientationEvent.requestPermission === 'function') {
   DeviceOrientationEvent.requestPermission()
     .then(permissionState => {
       if (permissionState === 'granted') {
-        window.addEventListener("deviceorientation", handleOrientation, true);
+        window.addEventListener("deviceorientation", handleOrientation, {passive: true});
       }
     })
     .catch(console.error);
 } else {
-  window.addEventListener("deviceorientation", handleOrientation, true);
+  window.addEventListener("deviceorientation", handleOrientation, {passive: true});
 }
 
 let touchX = 0;
