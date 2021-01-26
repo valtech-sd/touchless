@@ -12,10 +12,6 @@
   <meta property="og:url" content="">
   <meta property="og:image" content="">
 
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
 
@@ -26,8 +22,8 @@
   <div class="carousel">
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/sun.glb" id="sun" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
+        <model-viewer src="models/sun.glb" id="sun" camera-controls interaction-prompt
+          max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager' >
           <div id="annotation-name">SUN</div>
           <div id="annotation-details">
             <div id="details-title"> SUN FACTS</div>
@@ -47,7 +43,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/mercury.glb" id="mercury" auto-rotate camera-controls interaction-prompt
+        <model-viewer src="models/mercury.glb" id="mercury" camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">MERCURY</div>
           <div id="annotation-details">
@@ -70,7 +66,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/venus.glb" id="venus" auto-rotate camera-controls interaction-prompt
+        <model-viewer src="models/venus.glb" id="venus" camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">VENUS</div>
           <div id="annotation-details">
@@ -94,7 +90,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/earth.glb" id="earth" auto-rotate camera-controls interaction-prompt
+        <model-viewer src="models/earth.glb" id="earth" camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">EARTH</div>
           <div id="annotation-details">
@@ -117,7 +113,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/mars.glb" id="mars" auto-rotate camera-controls interaction-prompt
+        <model-viewer src="models/mars.glb" id="mars" camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">MARS</div>
           <div id="annotation-details">
@@ -140,7 +136,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/jupiter.glb" id="jupiter" auto-rotate camera-controls interaction-prompt
+        <model-viewer src="models/jupiter.glb" id="jupiter" camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">JUPITER</div>
           <div id="annotation-details">
@@ -163,8 +159,8 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/saturn.glb" id="saturn" auto-rotate camera-controls interaction-prompt
-          max-camera-orbit='auto auto 3000m' min-camera-orbit='auto auto 3000m' camera-orbit='auto auto 3000m'>
+        <model-viewer src="models/saturn.glb" id="saturn" camera-controls interaction-prompt
+          max-camera-orbit='auto auto 3000m' min-camera-orbit='auto auto 3000m' camera-orbit='auto auto 3000m' loading='eager'>
           <div id="annotation-name">SATURN</div>
           <div id="annotation-details">
             <div id="details-title"> SATURN FACTS</div>
@@ -186,7 +182,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/uranus.glb" id="uranus" auto-rotate camera-controls interaction-prompt
+        <model-viewer src="models/uranus.glb" id="uranus" camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">URANUS</div>
           <div id="annotation-details">
@@ -209,7 +205,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/neptune.glb" id="neptune" auto-rotate camera-controls interaction-prompt
+        <model-viewer src="models/neptune.glb" id="neptune" camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">NEPTUNE</div>
           <div id="annotation-details">
@@ -232,7 +228,7 @@
     </div>
     <div class="item">
       <div id="model-container">
-        <model-viewer src="models/pluto.glb" id="pluto" auto-rotate camera-controls interaction-prompt
+        <model-viewer src="models/pluto.glb" id="pluto" camera-controls interaction-prompt
           max-camera-orbit='auto auto 2000m' min-camera-orbit='auto auto 2000m' camera-orbit='auto auto 2000m' loading='eager'>
           <div id="annotation-name">PLUTO</div>
           <div id="annotation-details">
@@ -427,6 +423,8 @@
 
     //queue next planet
     function queueForward() {
+      //stop planet auto-rotation animation if planet is moving off screen
+      document.getElementById(elementId).__autoRotate = false;
       if (planetIndex < 10) {
       divStylers.forEach(element =>
         tween({
@@ -442,11 +440,15 @@
       getElementName();
       modelViewer = document.getElementById(elementId);
       console.log("queueing planet: " + elementId);
+      // start new planet auto-rotation animation
+      document.getElementById(elementId).__autoRotate = true;
       }
     }
 
     //queue prev planet
     function queueBackward() {
+      //stop planet auto-rotation animation if planet is moving off screen
+      document.getElementById(elementId).__autoRotate = false;
       if (planetIndex>1) {
  
       divStylers.forEach(element =>
@@ -464,6 +466,8 @@
       getElementName();
       modelViewer = document.getElementById(elementId);
       console.log("queueing planet: " + elementId);
+      // start new planet auto-rotation animation
+      document.getElementById(elementId).__autoRotate = true;
       }
     }
 
