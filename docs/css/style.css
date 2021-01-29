@@ -407,6 +407,14 @@ a.demos-link {
   width: 100%;
 }
 
+.poc-item figure:hover > .vid-overlay {
+  visibility:visible;
+}
+
+.poc-item figure:focus > .vid-overlay {
+  visibility:visible;
+}
+
 .poc-item h1 {
   line-height: 1.1em;
 }
@@ -422,7 +430,7 @@ a.demos-link {
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding-top: 68.25%;
+  /* padding-top: 68.25%; */
 }
 
 .poc-video-wrapper video,
@@ -435,6 +443,17 @@ a.demos-link {
   width: 100%;
   height: 100%;
 }
+
+@media (hover: hover) and (pointer: fine) {
+  .poc-description {
+    display: none;
+  }
+
+  .vid-overlay {
+    display: block;
+  }
+}
+
 
 @media screen and (min-width: 800px) {
   .nav ul {
@@ -749,3 +768,18 @@ a.demos-link {
     center bottom; */
   background-size: 100% 100%;
 }
+
+  .vid-overlay {
+    position: absolute;
+    visibility: hidden;
+s    color: var(--link-color);
+    top: 0;
+    left: 0;
+    height: 65%;
+    width: 100%;
+    z-index: 2;
+    margin-top: 15%;
+    padding: 15% 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+  }
