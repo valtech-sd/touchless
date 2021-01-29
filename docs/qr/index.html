@@ -423,51 +423,50 @@
 
     //queue next planet
     function queueForward() {
-      //stop planet auto-rotation animation if planet is moving off screen
-      document.getElementById(elementId).__autoRotate = false;
       if (planetIndex < 10) {
-      divStylers.forEach(element =>
-        tween({
-          from: startX,
-          to: { x: startX - distance },
-          duration: 1000,
-          ease: easing.anticipate
-        }).
-        start(element.set, console.log(distance + " " + element.get('x')))
-      );
-      startX -= distance;
-      planetIndex++;
-      getElementName();
-      modelViewer = document.getElementById(elementId);
-      console.log("queueing planet: " + elementId);
-      // start new planet auto-rotation animation
-      document.getElementById(elementId).__autoRotate = true;
+        //stop planet auto-rotation animation if planet is moving off screen
+        document.getElementById(elementId).__autoRotate = false;
+        divStylers.forEach(element =>
+          tween({
+            from: startX,
+            to: { x: startX - distance },
+            duration: 1000,
+            ease: easing.anticipate
+          }).
+          start(element.set, console.log(distance + " " + element.get('x')))
+        );
+        startX -= distance;
+        planetIndex++;
+        getElementName();
+        modelViewer = document.getElementById(elementId);
+        console.log("queueing planet: " + elementId);
+        // start new planet auto-rotation animation
+        document.getElementById(elementId).__autoRotate = true;
       }
     }
 
     //queue prev planet
     function queueBackward() {
-      //stop planet auto-rotation animation if planet is moving off screen
-      document.getElementById(elementId).__autoRotate = false;
       if (planetIndex>1) {
- 
-      divStylers.forEach(element =>
-        tween({
-          from: startX,
-          to: { x: startX + distance },
-          duration: 1000,
-          ease: easing.anticipate
-        }).
-          start(element.set, console.log(distance + " " + element.get('x')))
-      );
-      startX += distance;
-      planetIndex--;
+        //stop planet auto-rotation animation if planet is moving off screen
+        document.getElementById(elementId).__autoRotate = false;
+        divStylers.forEach(element =>
+          tween({
+            from: startX,
+            to: { x: startX + distance },
+            duration: 1000,
+            ease: easing.anticipate
+          }).
+            start(element.set, console.log(distance + " " + element.get('x')))
+        );
+        startX += distance;
+        planetIndex--;
 
-      getElementName();
-      modelViewer = document.getElementById(elementId);
-      console.log("queueing planet: " + elementId);
-      // start new planet auto-rotation animation
-      document.getElementById(elementId).__autoRotate = true;
+        getElementName();
+        modelViewer = document.getElementById(elementId);
+        console.log("queueing planet: " + elementId);
+        // start new planet auto-rotation animation
+        document.getElementById(elementId).__autoRotate = true;
       }
     }
 

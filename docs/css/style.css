@@ -155,7 +155,7 @@ a:visited {
 
 a:focus {
   outline: none;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(219, 219, 219, 1);
 }
 
 .nav a {
@@ -171,8 +171,8 @@ a:focus {
 }
 
 .nav a:focus {
-  outline: none;
-  background: rgba(0, 0, 0, 0.1);
+  outline: 1px solid rgba(219, 219, 219, 1);
+  background: none; 
 }
 
 /* nav */
@@ -407,6 +407,17 @@ a.demos-link {
   width: 100%;
 }
 
+.poc-item figure:hover > .vid-overlay {
+  visibility:visible;
+}
+
+.video-link:focus {
+  height: 100%;
+}
+.video-link:focus + a{
+  visibility: visible;
+}
+
 .poc-item h1 {
   line-height: 1.1em;
 }
@@ -435,6 +446,17 @@ a.demos-link {
   width: 100%;
   height: 100%;
 }
+
+@media (hover: hover) and (pointer: fine) {
+  .poc-description {
+    display: none;
+  }
+
+  .vid-overlay {
+    display: block;
+  }
+}
+
 
 @media screen and (min-width: 800px) {
   .nav ul {
@@ -471,7 +493,7 @@ a.demos-link {
     padding-top: 2.5em;
     width: 100%;
     max-width: 68em;
-    margin: 0 auto;
+    margin: 0 auto 1rem auto;
   }
   /* .poc-text-wrapper {
     display: flex;
@@ -494,6 +516,7 @@ a.demos-link {
     align-items: center; */
     display: block;
     grid-area: video;
+    padding-top: 0;
   }
 }
 
@@ -507,6 +530,7 @@ a.demos-link {
   display: block;
   font-size: 0.75em;
   padding: 0;
+  display: flex;
 }
 
 .poc-tags li {
@@ -522,10 +546,23 @@ a.demos-link {
   box-shadow: var(--tag-shadow-color) 8px 7px 10px;
   transform: scale(1.1);
 }
-.poc-tags li a {
+
+.poc-tags a:focus {
+  background: none;
+}
+
+.poc-tags a:focus li {
+  /* text-decoration: underline; */
+  box-shadow: var(--tag-shadow-color) 8px 7px 10px;
+  transform: scale(1.1);
+  background: var(--tag-bubble-color);
+  transition: all .5s ease;
+}
+
+.poc-tags a li {
   color: var(--tag-link-color);
 }
-.poc-tags li:hover a {
+.poc-tags a:hover li {
   color: var(--tag-link-hover-color);
 }
 
@@ -749,3 +786,23 @@ a.demos-link {
     center bottom; */
   background-size: 100% 100%;
 }
+
+  .vid-overlay {
+    position: absolute;
+    visibility: hidden;
+    color: var(--link-color);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    padding: 25% 1rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    text-align: center;
+    font-size: x-large;
+  }
+
+  .poc-item a .vid-overlay {
+    display: flex;
+    align-items: center;
+  }
