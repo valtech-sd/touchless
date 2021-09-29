@@ -48,7 +48,7 @@ async function main() {
 
   // main estimation loop
   const estimateHands = async () => {
-
+console.log("estimate hands and draw");
     // clear canvas overlay
     ctx.clearRect(0, 0, config.video.width, config.video.height);
     resultLayer.innerText = '';
@@ -73,11 +73,13 @@ async function main() {
       let distance = 1000;
 
       if (est.gestures.length > 0) {
-
+        console.log("analyze gesture");
         // find gesture with highest confidence
         let result = est.gestures.reduce((p, c) => {
           return (p.confidence > c.confidence) ? p : c;
         });
+        console.log("result.name: " + result.name);
+        console.log("detectable: " + detectable);
 
         if (result.name == 'thumbs_up' && detectable ) {
           detectable = false;
