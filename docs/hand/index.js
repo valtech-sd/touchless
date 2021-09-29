@@ -98,7 +98,8 @@ console.log("estimate hands and draw");
     }
 
     // ...and so on
-    setTimeout(() => { estimateHands(); }, 1000 / config.video.fps);
+    setTimeout(() => { console.log(".."); estimateHands();   }, 1000 / config.video.fps);
+   
   };
 
   estimateHands().then(console.log("finished loading"));
