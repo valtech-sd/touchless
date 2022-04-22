@@ -18,7 +18,7 @@
   "homepage": "https://github.com/erik-valtechsd/hand-tracking-poc#readme",
   "dependencies": {
     "fingerpose": "0.0.2",
-    "fullpage.js": "^3.0.8",
+    "fullpage.js": "^4.0.5",
     "handtrackjs": "0.0.13",
     "popmotion": "^8.7.3",
     "swipe-listener": "^1.2.0"
