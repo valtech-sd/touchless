@@ -291,7 +291,9 @@ model-viewer {
 
 .instructions {
   margin-top: 100px;
-}
+  text-align: center;
+  width: 90%;
+  }
 
 #ui-graphic {
   background-image: url(../images/3d.png);
