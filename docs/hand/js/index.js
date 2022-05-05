@@ -81,7 +81,10 @@ async function main() {
       // get hand landmarks from video
       // Note: Handpose currently only detects one hand at a time
       // Therefore the maximum number of predictions is 1
+      console.log("1");
+
       const predictions = await model.estimateHands(video, true);
+      console.log("predictions.length : " + predictions.length);
 
       for (let i = 0; i < predictions.length; i++) {
         // draw colored dots at each predicted joint position

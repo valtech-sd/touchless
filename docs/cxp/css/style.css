@@ -8,8 +8,8 @@ body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   font-size: 1.6em;
-  background-color: #000000;
-  color: white;
+  background-color: lightgrey;
+  color: black;
   margin: auto;
   overflow: hidden;
   --poster-color: transparent
@@ -265,6 +265,8 @@ model-viewer {
   transform: rotate(180deg);
 }
 
+#instructions{}
+
 #button-right {
   background-image: url(../images/chevron.svg);
   background-repeat:no-repeat;
@@ -277,19 +279,31 @@ model-viewer {
 }
 #ui-container{
   padding: 0;
-  margin: 0;
-  position:absolute;
-  top:50%;
-  left:50%;
+  margin: auto;
+  position: relative;
+  display: flex;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
+
+.instructions {
+  margin-top: 100px;
+}
+
 #ui-graphic {
-  background-image: url(../images/touch.svg);
-  background-repeat:no-repeat;
+  background-image: url(../images/3d.png);
+  background-repeat: no-repeat;
   height: 3em;
-  width:3em;
- }
+  width: 3em;
+  object-fit: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  margin-top: 10%;
+}
 
 button {
   background-color: transparent;
